@@ -7,17 +7,24 @@
     <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
-    <nav id="container">
-        <img id="logo" src="/image/Logo.png" alt="">
+    <div class="navbar">
         <div>
-            <a class="test" href="">home</a>
-            <a href="">producten</a>
-            <a href="">over ons</a>
-            <a href="">contact</a>
+        <a id="logo-button" href="/"><img id="logo" src="/image/Logo.png" alt=""></a>
         </div>
-        <div id="login">
-            <a href="">Login</a>
+        <a href="#home">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Producten
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
         </div>
-    </nav>
+        <a class="right" href="#news">Over Ons</a>
+        <a href="">Contact</a>
+        <a id="login" href="">Login</a>
+      </div> 
 </body>
 </html>
