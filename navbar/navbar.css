@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+}
 body {
     margin: 0;
 }
 nav {
-    background-color: #1c1b22;
+    background-color: #23232f;
     overflow: hidden;
     position: relative;
     top: 0;
@@ -25,13 +29,13 @@ nav a {
 }
 
 #logo {
-    width: 7%;
+    width: 13%;
     margin-right: 15px;
     margin-left: 15px;
 }
 
 footer {
-    background-color: #1c1b22;
+    background-color: #23232f;
     overflow: hidden;
     position: relative;
     top: 0;
