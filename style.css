@@ -1,0 +1,18 @@
+.About-us {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 40px 80px;
+    border-top: 2px solid #eeeeee;
+}
+
+.About-us-text p {
+    width: 100%;
+}
+
+#image-Nerdy-Gadgets {
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 100px;
+}
