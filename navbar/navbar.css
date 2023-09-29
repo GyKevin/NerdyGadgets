@@ -57,6 +57,7 @@ body {
   .up {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+    transition: all 0.3s;
   }
   .dropdown:hover .up {
     transform: rotate(-315deg);
