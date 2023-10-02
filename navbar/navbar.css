@@ -48,20 +48,18 @@ body {
     transition: all 0.3s ease-in-out;
   }
 
-  .arrow {
-    border: solid white;
-    border-width: 0 2px 2px 0;
+  .fa {
     display: inline-block;
     padding: 3px;
   }
-  .up {
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
+  .fa-caret-down {
+    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
     transition: all 0.3s;
   }
-  .dropdown:hover .up {
-    transform: rotate(-315deg);
-    -webkit-transform: rotate(-315deg);
+  .dropdown:hover .fa-caret-down {
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
   }
   
   /* The dropdown container */
@@ -149,6 +147,12 @@ footer {
 }
 .links ul li {
     padding: 5px;
+}
+.links ul li:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+    cursor: pointer;
 }
 .nieuwsbrief {
   position: absolute;
