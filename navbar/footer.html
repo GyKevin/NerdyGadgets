@@ -27,9 +27,12 @@
             </ul>
        </div>
         <div class="nieuwsbrief">
-            <p>Abonneer op onze nieuwsbrief!</p>
-            <input type="text" placeholder="Jouw E-mail">
-            <button>Abonneer</button>
+            <iframe name="frame" style="display: none;"></iframe>
+            <form action="/newsletter.php" type="email" method="post" target="frame">
+                <p>Abonneer op onze nieuwsbrief!</p>
+                <input type="text" name="email" placeholder="Jouw E-mail">
+                <button type="submit">Abonneer</button>
+            </form>
         </div>
     </footer>
 </body>
