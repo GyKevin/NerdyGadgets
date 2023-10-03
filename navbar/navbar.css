@@ -35,6 +35,7 @@ body {
     overflow: hidden;
     background-color: #23232f;
     font-family: Arial;
+    height: 55px;
   }
   
   /* Links inside the navbar */
@@ -74,7 +75,7 @@ body {
     border: none;
     outline: none;
     color: white;
-    padding: 18px 16px;
+    padding: 17px 16px;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
