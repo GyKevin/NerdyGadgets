@@ -27,11 +27,19 @@
             </ul>
        </div>
         <div class="nieuwsbrief">
-            <iframe name="frame" style="display: none;"></iframe>
-            <form action="/newsletter.php" type="email" method="post" target="frame">
+            <!-- <iframe name="frame" style="display: none;"></iframe> -->
+            <form action="/newsletter.php" type="email" method="post" autocomplete="off">
                 <p>Abonneer op onze nieuwsbrief!</p>
                 <input type="text" name="email" placeholder="Jouw E-mail">
                 <button type="submit">Abonneer</button>
+                <br>
+                <?php 
+                    session_start();
+                    if(isset($_SESSION['error'])){
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']);
+                    }
+                ?>
             </form>
         </div>
     </footer>

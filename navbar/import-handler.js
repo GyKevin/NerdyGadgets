@@ -6,7 +6,7 @@ fetch('/navbar/navbar.html')
 });
 
 // import footer
-fetch('/navbar/footer.html')
+fetch('/navbar/footer.php')
     .then(response => response.text())
     .then(data => {
         document.getElementById('footer').innerHTML = data;
