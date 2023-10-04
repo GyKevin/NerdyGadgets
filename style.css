@@ -102,3 +102,14 @@
     margin: 0;
     text-align: center;
 }
+
+.best-seller {
+    text-align: center;
+}
+.best-seller img {
+    width: 150px;
+    height: 150px;
+}
+.product {
+    margin: 0 40px;
+}
