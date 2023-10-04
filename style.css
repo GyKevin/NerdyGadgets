@@ -77,6 +77,7 @@
 
 .reviews {
     /* border: 2px solid red; */
+    border-top: 2px solid #eeeeee;
     border-width: 95%;
     height: 230px;
     text-align: center;
@@ -110,11 +111,21 @@
 
 .best-seller {
     text-align: center;
+    margin-bottom: 50px;
 }
 .best-seller img {
     width: 150px;
     height: 150px;
 }
 .product {
-    margin:  0 140px;
+    margin: 0 40px;
+    width: 350px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+.product:hover {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
