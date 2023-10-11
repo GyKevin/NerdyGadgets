@@ -22,28 +22,33 @@
     <!-- navbar -->
     <div id="navbar"></div>
 
-    <?php 
-    // connect database
-    include_once("../db/dbc.php");
-    // get data from database
-    $sql = "SELECT * FROM product";
-    $result = mysqli_query($conn, $sql);
-    
-    ?>
+    <!-- content -->
+    <main>
+        <?php 
+        include_once("../db/dbc.php");
+        $sql = "SELECT * FROM product";
+        $result = $conn->query($sql);
 
-    <!-- producten -->
-    <div>
-        <!-- on click redirect to the right product page -->
-        <a href="product.php?id=1">
-            <?php
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<img src='../image/product_images/" . $row['image'] . ".jpg' alt='product image' width='100px'> <br>";
-                echo "<h5>" . $row['name'] . "</h5> ";
-                echo "<p>" . $row['price'] . "</p>";
+        $productLinks = array();
+
+        if($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $productId = $row['id'];
+                $productName = $row['name'];
+                $productPrice = $row['price'];
+                $productDescription = $row['description'];
+                $productImage = $row['image'];
+                $productLinks[] = "<img src='../image/product_images/" . $productImage . ".jpg' alt='product image' width='100px'>
+                <a href='product.php?id=$productId'>$productName</a> <p>€ $productPrice</p> <br>";
             }
-            ?>
-            </a>
-    </div>
+        }
+
+        $conn->close();
+        ?>
+        <div>
+        <?php echo implode($productLinks); ?>
+        </div>
+    </main>
 
     <!-- footer -->
     <div id="footer"></div>
