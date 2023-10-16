@@ -38,11 +38,17 @@
                 $productPrice = $row['price'];
                 $productDescription = $row['description'];
                 $productImage = $row['image'];
-                $productLinks[] = 
+                echo
                 // this is where all the items get added to the page, feel free to reorder it and change it to your liking
                 // treat this as if it's html and just add a class to it if you want to style it
-                "<img src='../image/product_images/" . $productImage . ".jpg' alt='product image' width='100px'>
-                <a href='product.php?id=$productId'>$productName</a> <p>€ $productPrice</p> <br>";
+                "<div class='prodCard'>
+                    <img src='../image/product_images/" . $productImage . ".jpg' alt='product image' width='100px'>
+                    <a href='product.php?id=$productId'>$productName</a>
+                    <div id='buy-btn'>
+                    <p>€ $productPrice</p> <br>
+                    <button id='koop-btn'>Koop nu</button>
+                    </div>
+                </div>";
             }
         }
 
@@ -50,12 +56,71 @@
         ?>
         <!-- this is where all the items get put on the page -->
         <!-- you can still change things around as long as you dont touch the echo -->
-        <div>
-        <?php echo implode($productLinks); ?> <!-- don't touch this line -->
-        </div>
     </main>
 
     <!-- footer -->
     <div id="footer"></div>
 </body>
 </html>
+
+<style>
+.prodCard {
+    /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
+    border: 2px solid #d1d1d1;
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
+    display: flex; 
+    flex-direction: column;
+    padding: 15px;
+    margin: 15px;
+}
+.prodCard img {
+    /* margin: auto; */
+    margin: 0 auto;
+    width: 170px;
+    height: 150px;
+    object-fit: contain;
+}
+.prodCard a {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    
+}
+.prodCard button {
+    margin-top: auto;
+    background-color: #4CAF50;
+    width: 250px;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#buy-btn {
+    padding: 0;
+    margin: 0;
+    margin-top: auto;
+}
+.prodCard:hover {
+    /* transform: scale(0.95); */
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    transition: 0.3s;
+}
+.prodCard button:hover {
+    background-color: #3e8e41;
+}
+.prodCard a:hover {
+    text-decoration: underline;
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+</style>
