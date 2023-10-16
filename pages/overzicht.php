@@ -1,3 +1,9 @@
+<?php 
+include_once("../db/dbc.php");
+$sql = "SELECT * FROM product";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +12,8 @@
     <title>Producten</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- import font-awesome -->
+    <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
     <style>
         body {
@@ -24,13 +32,24 @@
 
     <!-- content -->
     <main>
+    <!-- filter -->
+        <div class="filter">
+            <select name="type" id="">
+                    <?php
+                    $sqlCategory = "SELECT DISTINCT category, price FROM product";
+                    $resultCategory = $conn->query($sqlCategory);
+                     if($resultCategory->num_rows > 0) {
+                        while($row = $resultCategory->fetch_assoc()) {
+                            $productType = $row['category'];
+                            echo "<option value='$productType'>$productType</option>";
+                        }
+                     }
+                    ?>
+            </select>
+        </div>
+    <!-- product cards -->
+    <div class="card-container">
         <?php 
-        include_once("../db/dbc.php");
-        $sql = "SELECT * FROM product";
-        $result = $conn->query($sql);
-
-        $productLinks = array();
-
         if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $productId = $row['id'];
@@ -39,14 +58,14 @@
                 $productDescription = $row['description'];
                 $productImage = $row['image'];
                 echo
-                // this is where all the items get added to the page, feel free to reorder it and change it to your liking
-                // treat this as if it's html and just add a class to it if you want to style it
                 "<div class='prodCard'>
                     <img src='../image/product_images/" . $productImage . ".jpg' alt='product image' width='100px'>
                     <a href='product.php?id=$productId'>$productName</a>
                     <div id='buy-btn'>
-                    <p>€ $productPrice</p> <br>
-                    <button id='koop-btn'>Koop nu</button>
+                        <p>€ $productPrice</p> <br>
+                        <a href='product.php?id=$productId'>
+                            <button id='koop-btn'>Bekijk Product</button>
+                        </a>
                     </div>
                 </div>";
             }
@@ -54,8 +73,7 @@
 
         $conn->close();
         ?>
-        <!-- this is where all the items get put on the page -->
-        <!-- you can still change things around as long as you dont touch the echo -->
+        </div>
     </main>
 
     <!-- footer -->
@@ -64,6 +82,17 @@
 </html>
 
 <style>
+main {
+    display: flex;
+    flex-direction: row ;
+    /* flex-wrap: wrap; */
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
 .prodCard {
     /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
     border: 2px solid #d1d1d1;
@@ -100,11 +129,14 @@
     font-size: 15px;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.3s all ease-in-out;
 }
 #buy-btn {
-    padding: 0;
-    margin: 0;
     margin-top: auto;
+}
+#buy-btn p {
+    margin: 0;
+    padding: 0;
 }
 .prodCard:hover {
     /* transform: scale(0.95); */
@@ -117,10 +149,10 @@
 .prodCard a:hover {
     text-decoration: underline;
 }
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
+.filter {
+    position: relative;
+    border: 2px solid #d1d1d1;
+    height: 100vh;
+    width: 250px;
 }
 </style>
