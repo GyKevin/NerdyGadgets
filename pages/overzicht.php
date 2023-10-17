@@ -40,6 +40,9 @@ $result = $conn->query($sql);
             display: flex;
             flex-direction: column;
         }
+        main {
+            padding-top: 55px;
+        }
         #footer {
             margin-top: auto; 
         }
@@ -126,6 +129,7 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    margin-left: 250px;
 }
 .prodCard {
     /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
@@ -184,7 +188,7 @@ main {
     text-decoration: underline;
 }
 .filter {
-    position: relative;
+    position: fixed;
     border: 2px solid #d1d1d1;
     height: 100vh;
     width: 250px;
