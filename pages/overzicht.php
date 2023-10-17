@@ -2,14 +2,24 @@
 include_once("../db/dbc.php");
 
 $type = $_GET['type'];
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 
 if ($type == 'all') {
     $sql = "SELECT * FROM product";
-    $result = $conn->query($sql);
 } elseif (isset($type)) {
     $sql = "SELECT * FROM product WHERE category = '$type'";
-    $result = $conn->query($sql);
 }
+
+// Add sorting logic
+if ($sort == 'price_lowest') {
+    $sql .= " ORDER BY price ASC";
+} elseif ($sort == 'price_highest') {
+    $sql .= " ORDER BY price DESC";
+} elseif($sort == 'default') {
+    $sql .= " ORDER BY id ASC";
+}
+
+$result = $conn->query($sql);
 ?>
 
 
@@ -44,23 +54,31 @@ if ($type == 'all') {
     <!-- filter -->
         <div class="filter">
             <form>
-            <select name="type" id="type" onchange="this.form.submit() && remember(this.selectedIndex)">
-                <option value="all">Alle producten</option>
-                    <?php
-                    $sqlCategory = "SELECT DISTINCT category FROM product";
-                    $resultCategory = $conn->query($sqlCategory);
-                     if($resultCategory->num_rows > 0) {
-                        while($row = $resultCategory->fetch_assoc()) {
-                            $productType = $row['category'];
-                            echo "<option value='$productType'>$productType</option>";
-                        }
-                     }
-                    ?>
-            </select>
+                <div class="select-container">
+                    <select name="type" id="type" onchange="this.form.submit() && remember(this.selectedIndex)">
+                        <option value="all">Alle producten</option>
+                            <?php
+                            $sqlCategory = "SELECT DISTINCT category FROM product";
+                            $resultCategory = $conn->query($sqlCategory);
+                            if($resultCategory->num_rows > 0) {
+                                while($row = $resultCategory->fetch_assoc()) {
+                                    $productType = $row['category'];
+                                    echo "<option value='$productType'>$productType</option>";
+                                }
+                            }
+                            ?>
+                    </select>
+                    
+                    <select name="sort" id="sort" onchange="this.form.submit()">
+                        <option value="default">Sort by: Relevantie</option>
+                        <option value="price_lowest">Sort by: Price (Lowest to Highest)</option>
+                        <option value="price_highest">Sort by: Price (Highest to Lowest)</option>
+                    </select>
+                </div>
             <script type="text/javascript">
                 document.getElementById('type').value = "<?php echo $_GET['type'];?>";
+                document.getElementById('sort').value = "<?php echo $_GET['sort'];?>";
             </script>
-            <!-- <input type="submit" /> -->
             </form>
         </div>
     <!-- product cards -->
