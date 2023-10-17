@@ -1,8 +1,17 @@
 <?php 
 include_once("../db/dbc.php");
-$sql = "SELECT * FROM product";
-$result = $conn->query($sql);
+
+$type = $_GET['type'];
+
+if ($type == 'all') {
+    $sql = "SELECT * FROM product";
+    $result = $conn->query($sql);
+} elseif (isset($type)) {
+    $sql = "SELECT * FROM product WHERE category = '$type'";
+    $result = $conn->query($sql);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +43,11 @@ $result = $conn->query($sql);
     <main>
     <!-- filter -->
         <div class="filter">
-            <select name="type" id="">
+            <form>
+            <select name="type" id="type" onchange="this.form.submit() && remember(this.selectedIndex)">
+                <option value="all">Alle producten</option>
                     <?php
-                    $sqlCategory = "SELECT DISTINCT category, price FROM product";
+                    $sqlCategory = "SELECT DISTINCT category FROM product";
                     $resultCategory = $conn->query($sqlCategory);
                      if($resultCategory->num_rows > 0) {
                         while($row = $resultCategory->fetch_assoc()) {
@@ -46,6 +57,11 @@ $result = $conn->query($sql);
                      }
                     ?>
             </select>
+            <script type="text/javascript">
+                document.getElementById('type').value = "<?php echo $_GET['type'];?>";
+            </script>
+            <!-- <input type="submit" /> -->
+            </form>
         </div>
     <!-- product cards -->
     <div class="card-container">
