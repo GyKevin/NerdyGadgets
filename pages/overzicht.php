@@ -189,4 +189,17 @@ main {
     height: 100vh;
     width: 250px;
 }
+Select {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid #d1d1d1;
+    padding-left: 10px;
+    outline: none;
+    cursor: pointer;
+}
+select:focus {
+    margin-bottom: 85%;
+}
+
 </style>
