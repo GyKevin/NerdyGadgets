@@ -32,10 +32,29 @@
         </div>
         <!-- best sellers -->
         <div class="best-seller">
-            <h1>Best Sellers</h1>
+            <h1>Meest Verkochte Producten</h1>
             <p>Krijg nu 10% korting op onze fantastische producten!</p>
             <div style="display: flex; justify-content: center;">
-                <div class="product">
+            <?php 
+                include_once("./db/dbc.php");
+                $sql = "SELECT * FROM `product`
+                JOIN order_item ON product.id = order_item.product_id
+                GROUP BY product.id
+                ORDER BY order_item.quantity DESC
+                LIMIT 4";
+                $result = $conn->query($sql);
+
+                while($row = $result->fetch_assoc()) {
+                    $productImage = $row['image'];
+
+                    echo "<div class='product'>";
+                    echo "<img src='/image/product_images/" . $productImage . ".jpg' alt=''>";
+                    echo "<p>" . $row['name'] . "</p>";
+                    echo "<p>Prijs: €" . $row['price'] . "</p>";
+                    echo "</div>";
+                }
+            ?>
+                <!-- <div class="product">
                     <img src="./image/bestseller.png" alt="Best Seller">
                     <p>Xiaomi Curved Monitor</p>
                     <p>Prijs: €349</p>
@@ -54,7 +73,7 @@
                     <img src="./image/tablet.png" alt="Toetsenbord">
                     <p>APPLE iPad 10.9" (2022) - 64 GB</p>
                     <p>Prijs: €573</p>
-                </div>
+                </div> -->
             </div>
         </div>
 
