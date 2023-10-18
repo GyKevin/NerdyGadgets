@@ -54,7 +54,7 @@
             <h4>€ <?php echo $productPrice ?></h4>
             <div class="add_to_cart">
                 <div class="quantity">
-                    <span>Add Quantity</span>
+                    <span>Aantal</span>
                     <input type="number" name="qty" id="number" value="1" />
                 </div>
                 <button class="add_cart" tabindex="0">
@@ -64,16 +64,43 @@
             <div class="Product_beschrijving">
                 <h3>Product beschrijving</h3>
                 <p><?php echo $productDescription ?></p>
-
+                <!-- <button onclick="readMore()">Lees Meer</button> -->
             </div>
         </div>
     </main>
 
     <!-- footer -->
     <div id="footer"></div>
+    <script>
+    function readMore() {
+        var productDescription = document.querySelector('.Product_beschrijving p');
+        var button = document.querySelector('.Product_beschrijving button');
+        var maxLength = 200; // You can adjust the maximum length as needed
+
+        if (productDescription.style.display === 'none' || productDescription.style.display === '') {
+            productDescription.style.display = 'block';
+            button.textContent = 'Lees Minder'; // Change button text to "Lees Minder" (Read Less)
+        } else {
+            productDescription.style.display = 'none';
+            button.textContent = 'Lees Meer'; // Change button text back to "Lees Meer" (Read More)
+        }
+
+        var text = productDescription.innerText;
+
+        if (text.length < maxLength) {
+            var truncatedText = text.slice(100, maxLength);
+            productDescription.innerText = truncatedText;
+        }
+    }
+    </script>
+
+
 </body>
 </html>
 <style>
+    #more {
+
+    }
     main{
         display: flex;
     }
@@ -86,21 +113,23 @@
         margin-left: 100px;
         object-fit: contain;
     }
+    .all_info{
+        margin-left: 100px;
+        width: 50%;
+        height: 100vh;
+        /* background-color: grey; */
+    }
     .add_cart{
-        margin-top: 20px;
-        margin-left: 0px;
-        margin-bottom: 15px;
-        height: 30px;
-        width: 125px;
-        background-color: #4CAF50; /* Green */
+        background-color: #4CAF50;
         border: none;
         color: white;
         padding: 15px 32px;
+        /* margin-left: 100px; */
+        margin-top: 15px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-
     }
     .Product_beschrijving{
     }
