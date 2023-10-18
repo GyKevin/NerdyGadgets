@@ -203,7 +203,7 @@ Select {
     cursor: pointer;
 }
 select:focus {
-    margin-bottom: 85%;
+    margin-bottom: 75%;
 }
 
 </style>
