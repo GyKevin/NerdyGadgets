@@ -32,8 +32,8 @@ body {
 
  /* Navbar container */
  .navbar {
-  /* position: fixed;
-  width: 100vw; */
+  position: fixed;
+  width: 100vw;
     overflow: hidden;
     background-color: #23232f;
     font-family: Arial;
@@ -119,6 +119,7 @@ body {
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
     display: block;
+    position: fixed;
   } 
 
   /* footer styling */

@@ -14,6 +14,9 @@
             display: flex;
             flex-direction: column;
         }
+        main {
+            padding-top: 55px;
+        }
         #footer {
             margin-top: auto; 
         }
