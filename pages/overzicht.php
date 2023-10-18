@@ -74,8 +74,8 @@ $result = $conn->query($sql);
                     
                     <select name="sort" id="sort" onchange="this.form.submit()">
                         <option value="default">Sort by: Relevantie</option>
-                        <option value="price_lowest">Sort by: Price (Lowest to Highest)</option>
-                        <option value="price_highest">Sort by: Price (Highest to Lowest)</option>
+                        <option value="price_lowest">Sorteren op: Prijs (Laag naar Hoog)</option>
+                        <option value="price_highest">Sorteren op: Prijs (Hoog naar Laag)</option>
                     </select>
                 </div>
             <script type="text/javascript">
@@ -84,8 +84,18 @@ $result = $conn->query($sql);
             </script>
             </form>
         </div>
+        
     <!-- product cards -->
     <div class="card-container">
+        <div class="test">
+            <h1><?php 
+                if($type == 'all') {
+                    echo "Alle Producten";
+                } else {
+                    echo ucfirst($type);
+                }
+            ?></h1>
+        </div>
         <?php 
         if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -205,5 +215,8 @@ Select {
 select:focus {
     margin-bottom: 75%;
 }
-
+.test {
+    width: 100%;
+    text-align: center;
+}
 </style>
