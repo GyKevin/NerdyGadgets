@@ -11,6 +11,7 @@
             $productPrice = $row['price'];
             $productDescription = $row['description'];
             $productImage = $row['image'];
+            $productCategory = $row['category'];
         }
     }
 ?>
@@ -44,28 +45,17 @@
 
     <!-- content -->
     <main>
-        <!-- all the data gets imported by doing '<?php //echo content ?>' 
-        feel free to move things around, as long as you include this.  -->
-        <div class="Image_container">
-            <img src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image" width="100px">
+        <!-- image slider -->
+        <div>
+        <img src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image">
         </div>
-        <div class="all_info">
-            <h2><?php echo $productName ?></h2>
-            <h4>€ <?php echo $productPrice ?></h4>
-            <div class="add_to_cart">
-                <div class="quantity">
-                    <span>Aantal</span>
-                    <input type="number" name="qty" id="number" value="1" />
-                </div>
-                <button class="add_cart" tabindex="0">
-                    <i class="fa fa-shopping-cart"></i> Add to Cart
-                </button>
-            </div>
-            <div class="Product_beschrijving">
-                <h3>Product beschrijving</h3>
-                <p><?php echo $productDescription ?></p>
-                <!-- <button onclick="readMore()">Lees Meer</button> -->
-            </div>
+        <!-- product info -->
+        <div>
+        <h3><?php echo $productName; ?></h3>
+        <p><?php echo $productCategory; ?></p>
+        <p><?php echo $productPrice; ?></p>
+        <div class="star-container"></div> <!-- star rating -->
+        <p class="Product_beschrijving"><?php echo $productDescription; ?></p>
         </div>
     </main>
 
@@ -97,41 +87,11 @@
 
 </body>
 </html>
+
 <style>
-    #more {
-
-    }
-    main{
-        display: flex;
-    }
-    .Image_container {
-        display: flex;
-    }
-    img{
-        width: 400px;
-        height: auto;
-        margin-left: 100px;
-        object-fit: contain;
-    }
-    .all_info{
-        margin-left: 100px;
-        width: 50%;
-        height: 100vh;
-        /* background-color: grey; */
-    }
-    .add_cart{
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        /* margin-left: 100px; */
-        margin-top: 15px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-    .Product_beschrijving{
-    }
-
+main {
+    display: flex;
+    flex-direction: row ;
+    /* flex-wrap: wrap; */
+}
 </style>

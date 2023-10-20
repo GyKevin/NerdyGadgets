@@ -38,6 +38,7 @@ body {
     background-color: #23232f;
     font-family: Arial;
     height: 55px;
+    z-index: 10;
   }
   
   /* Links inside the navbar */

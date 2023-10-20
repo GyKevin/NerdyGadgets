@@ -37,6 +37,7 @@
         <div class="best-seller">
             <h1>Meest Verkochte Producten</h1>
             <p>Krijg nu 10% korting op onze fantastische producten!</p>
+           <a href="">
             <div style="display: flex; justify-content: center;">
             <?php 
                 include_once("./db/dbc.php");
@@ -57,27 +58,8 @@
                     echo "</div>";
                 }
             ?>
-                <!-- <div class="product">
-                    <img src="./image/bestseller.png" alt="Best Seller">
-                    <p>Xiaomi Curved Monitor</p>
-                    <p>Prijs: €349</p>
-                </div>
-                <div class="product">
-                    <img src="./image/Pc.jpg" alt="PC">
-                    <p>High End Gaming PC</p>
-                    <p>Prijs: €1199</p>
-                </div>
-                <div class="product">
-                    <img src="./image/toetsenbord.jpg" alt="Toetsenbord">
-                    <p>Wired Gaming Toetsenbord & Muis</p>
-                    <p>Prijs: €49.99</p>
-                </div>
-                <div class="product">
-                    <img src="./image/tablet.png" alt="Toetsenbord">
-                    <p>APPLE iPad 10.9" (2022) - 64 GB</p>
-                    <p>Prijs: €573</p>
-                </div> -->
             </div>
+            </a>
         </div>
 
         <!-- klanten recenties -->

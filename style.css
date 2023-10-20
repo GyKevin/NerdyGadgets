@@ -112,10 +112,15 @@
 .best-seller {
     text-align: center;
     margin-bottom: 50px;
+    padding: 5px;
 }
 .best-seller img {
     width: 150px;
     height: 150px;
+}
+.best-seller a {
+    text-decoration: none;
+    color: black;
 }
 .product {
     margin: 0 40px;
