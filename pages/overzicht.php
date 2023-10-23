@@ -4,19 +4,27 @@ include_once("../db/dbc.php");
 $type = $_GET['type'];
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 
+// sort categories
 if ($type == 'all') {
     $sql = "SELECT * FROM product";
 } elseif (isset($type)) {
     $sql = "SELECT * FROM product WHERE category = '$type'";
 }
 
-// Add sorting logic
-if ($sort == 'price_lowest') {
-    $sql .= " ORDER BY price ASC";
-} elseif ($sort == 'price_highest') {
-    $sql .= " ORDER BY price DESC";
-} elseif($sort == 'default') {
+// sort price
+// if ($price == 'price_lowest') {
+//     $sql .= " ORDER BY price ASC";
+// } elseif ($price == 'price_highest') {
+//     $sql .= " ORDER BY price DESC";
+// }
+
+// sort name
+if ($sort == 'default') {
     $sql .= " ORDER BY id ASC";
+} elseif ($sort == 'name_a') {
+    $sql .= " ORDER BY name ASC";
+} elseif ($sort == 'name_z') {
+    $sql .= " ORDER BY name DESC";
 }
 
 $result = $conn->query($sql);
@@ -56,32 +64,34 @@ $result = $conn->query($sql);
     <main>
     <!-- filter -->
         <div class="filter">
-            <form>
-                <div class="select-container">
-                    <select name="type" id="type" onchange="this.form.submit() && remember(this.selectedIndex)">
-                        <option value="all">Alle producten</option>
-                            <?php
-                            $sqlCategory = "SELECT DISTINCT category FROM product";
-                            $resultCategory = $conn->query($sqlCategory);
-                            if($resultCategory->num_rows > 0) {
-                                while($row = $resultCategory->fetch_assoc()) {
-                                    $productType = $row['category'];
-                                    echo "<option value='$productType'>$productType</option>";
-                                }
-                            }
-                            ?>
-                    </select>
-                    
-                    <select name="sort" id="sort" onchange="this.form.submit()">
-                        <option value="default">Sort by: Relevantie</option>
-                        <option value="price_lowest">Sorteren op: Prijs (Laag naar Hoog)</option>
-                        <option value="price_highest">Sorteren op: Prijs (Hoog naar Laag)</option>
-                    </select>
+            <form id="filterForm">
+                <!-- sort -->
+                
+                <!-- category -->
+                <div>
+                    <?php 
+                    $sqlCategory = "SELECT DISTINCT category FROM product";
+                    $resultCategory = $conn->query($sqlCategory);
+                    if($resultCategory->num_rows > 0) {
+                        while($row = $resultCategory->fetch_assoc()) {
+                            $category = $row['category'];
+                            echo "<a href='/pages/overzicht.php?type=$category'>".ucfirst($category)."</a> <br>";
+                        }
+                    }
+                    ?>
                 </div>
-            <script type="text/javascript">
-                document.getElementById('type').value = "<?php echo $_GET['type'];?>";
-                document.getElementById('sort').value = "<?php echo $_GET['sort'];?>";
-            </script>
+                <div>
+                    <!-- <button value="default" name="price">Relevantie</button>
+                    <button value="name_a" name="price">Naam: A-Z</button>
+                    <button value="name_z" name="price">Naam: Z-A</button> -->
+                    <a href="/pages/overzicht.php?type=<?=$category?>&sort=default">Relevantie</a>
+                    <a href="/pages/overzicht.php?type=<?=$category?>&sort=name_a">Naam: A-Z</a>
+                    <a href="/pages/overzicht.php?type=<?=$category?>&sort=name_z">Naam: Z-A</a>
+                </div>
+                <!-- price -->
+                <div>
+                    <!-- <input type="checkbox" name="price" id="price"> -->
+                </div>
             </form>
         </div>
         
