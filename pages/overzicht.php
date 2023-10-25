@@ -1,17 +1,46 @@
-<?php 
+<?php
 include_once("../db/dbc.php");
 
 $type = $_GET['type'];
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 
-// sort categories
-if ($type == 'all') {
-    $sql = "SELECT * FROM product";
-} elseif (isset($type)) {
-    $sql = "SELECT * FROM product WHERE category = '$type'";
+// Define the base SQL query
+$sql = "SELECT * FROM product";
+
+// Add a WHERE clause for category filtering
+if ($type != 'all' && isset($type)) {
+    $sql .= " WHERE category = '$type'";
 }
 
-// sort name
+// Add a WHERE clause for price filtering
+if (isset($_GET['min']) && isset($_GET['max'])) {
+    $min = $_GET['min'];
+    $max = $_GET['max'];
+    if (strpos($sql, 'WHERE') === false) {
+        $sql .= " WHERE";
+    } else {
+        $sql .= " AND";
+    }
+    $sql .= " price BETWEEN $min AND $max";
+} elseif (isset($_GET['min'])) {
+    $min = $_GET['min'];
+    if (strpos($sql, 'WHERE') === false) {
+        $sql .= " WHERE";
+    } else {
+        $sql .= " AND";
+    }
+    $sql .= " price >= $min";
+} elseif (isset($_GET['max'])) {
+    $max = $_GET['max'];
+    if (strpos($sql, 'WHERE') === false) {
+        $sql .= " WHERE";
+    } else {
+        $sql .= " AND";
+    }
+    $sql .= " price <= $max";
+}
+
+// Add the sorting conditions
 if ($sort == 'default') {
     $sql .= " ORDER BY id ASC";
 } elseif ($sort == 'name_a') {
@@ -26,6 +55,7 @@ if ($sort == 'default') {
 
 $result = $conn->query($sql);
 ?>
+
 
 
 <!DOCTYPE html>
@@ -61,39 +91,54 @@ $result = $conn->query($sql);
     <main>
     <!-- filter -->
         <div class="filter">
-            <form id="filterForm">
-                <!-- sort -->
-                
-                <!-- category -->
-                <div>
-                    <?php 
-                    $sqlCategory = "SELECT DISTINCT category FROM product";
-                    $resultCategory = $conn->query($sqlCategory);
-                    if($resultCategory->num_rows > 0) {
-                        while($row = $resultCategory->fetch_assoc()) {
-                            $category = $row['category'];
-                            $selected = $category === $type ? 'selected' : '';
-                            // Add the current "sort" parameter to the URL
-                            echo "<a href='/pages/overzicht.php?type=$category&sort=$sort'>".ucfirst($category)."</a> <br>";
+        <form id="filterForm">
+            <!-- sort -->
+            <div>
+                <p>Sort By:</p>
+                <?php 
+                $sortOptions = [
+                    'default' => 'Standaard',
+                    'name_a' => 'Naam A-Z',
+                    'name_z' => 'Naam Z-A',
+                    'price_low' => 'Prijs Laag-Hoog',
+                    'price_high' => 'Prijs Hoog-Laag'
+                ];
 
-                        }
+                foreach ($sortOptions as $key => $value) {
+                    $selected = $key === $sort ? 'selected' : '';
+                    echo "<a href='/pages/overzicht.php?type=$type&sort=$key'>$value</a> <br>";
+                }
+                ?>
+            </div>
+            <!-- category -->
+            <div>
+                <p>categories: </p>
+                <a href="/pages/overzicht.php?type=all&sort=<?=$sort?>">Alle Producten</a> <br>
+                <?php 
+                $sqlCategory = "SELECT DISTINCT category FROM product";
+                $resultCategory = $conn->query($sqlCategory);
+                if($resultCategory->num_rows > 0) {
+                    while($row = $resultCategory->fetch_assoc()) {
+                        $category = $row['category'];
+                        $selected = $category === $type ? 'selected' : '';
+                        // Add the current "sort" parameter to the URL
+                        echo "<a href='/pages/overzicht.php?type=$category&sort=$sort'>".ucfirst($category)."</a> <br>";
                     }
-                    ?>
-                </div>
-                <div>
-                    <input type="hidden" name="type" value="<?php echo $type; ?>">
-                    <select name="sort" id="sort" onchange="this.form.submit() && remember(this.selectedIndex)">
-                        <option value="default">Standaard</option>
-                        <option value="name_a">Naam A-Z</option>
-                        <option value="name_z">Naam Z-A</option>
-                        <option value="price_low">Prijs Laag-Hoog</option>
-                        <option value="price_high">Prijs Hoog-Laag</option>
-                    </select>
-                </div>
-                <script>
-                    document.getElementById('sort').value = "<?php echo $_GET['sort'];?>";
-                </script>
-            </form>
+                }
+                ?>
+            </div>
+            <!-- prijs tussen x-x -->
+            <div>
+                <p>Prijs tussen: </p>
+                <input type="number" name="min" placeholder="min" min="0">
+                <input type="number" name="max" placeholder="max" min="0">
+                <button type="submit">Filter</button>
+            </div>
+            <div>
+                <input type="hidden" name="type" value="<?php echo $type; ?>">
+                <input type="hidden" name="sort" value="<?php echo $sort; ?>">
+            </div>
+        </form>
         </div>
         
     <!-- product cards -->
