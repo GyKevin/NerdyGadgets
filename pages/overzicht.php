@@ -11,13 +11,6 @@ if ($type == 'all') {
     $sql = "SELECT * FROM product WHERE category = '$type'";
 }
 
-// sort price
-// if ($price == 'price_lowest') {
-//     $sql .= " ORDER BY price ASC";
-// } elseif ($price == 'price_highest') {
-//     $sql .= " ORDER BY price DESC";
-// }
-
 // sort name
 if ($sort == 'default') {
     $sql .= " ORDER BY id ASC";
@@ -25,6 +18,10 @@ if ($sort == 'default') {
     $sql .= " ORDER BY name ASC";
 } elseif ($sort == 'name_z') {
     $sql .= " ORDER BY name DESC";
+} elseif ($sort == 'price_low') {
+    $sql .= " ORDER BY price ASC";
+} elseif ($sort == 'price_high') {
+    $sql .= " ORDER BY price DESC";
 }
 
 $result = $conn->query($sql);
@@ -75,23 +72,27 @@ $result = $conn->query($sql);
                     if($resultCategory->num_rows > 0) {
                         while($row = $resultCategory->fetch_assoc()) {
                             $category = $row['category'];
-                            echo "<a href='/pages/overzicht.php?type=$category'>".ucfirst($category)."</a> <br>";
+                            $selected = $category === $type ? 'selected' : '';
+                            // Add the current "sort" parameter to the URL
+                            echo "<a href='/pages/overzicht.php?type=$category&sort=$sort'>".ucfirst($category)."</a> <br>";
+
                         }
                     }
                     ?>
                 </div>
                 <div>
-                    <!-- <button value="default" name="price">Relevantie</button>
-                    <button value="name_a" name="price">Naam: A-Z</button>
-                    <button value="name_z" name="price">Naam: Z-A</button> -->
-                    <a href="/pages/overzicht.php?type=<?=$category?>&sort=default">Relevantie</a>
-                    <a href="/pages/overzicht.php?type=<?=$category?>&sort=name_a">Naam: A-Z</a>
-                    <a href="/pages/overzicht.php?type=<?=$category?>&sort=name_z">Naam: Z-A</a>
+                    <input type="hidden" name="type" value="<?php echo $type; ?>">
+                    <select name="sort" id="sort" onchange="this.form.submit() && remember(this.selectedIndex)">
+                        <option value="default">Standaard</option>
+                        <option value="name_a">Naam A-Z</option>
+                        <option value="name_z">Naam Z-A</option>
+                        <option value="price_low">Prijs Laag-Hoog</option>
+                        <option value="price_high">Prijs Hoog-Laag</option>
+                    </select>
                 </div>
-                <!-- price -->
-                <div>
-                    <!-- <input type="checkbox" name="price" id="price"> -->
-                </div>
+                <script>
+                    document.getElementById('sort').value = "<?php echo $_GET['sort'];?>";
+                </script>
             </form>
         </div>
         
