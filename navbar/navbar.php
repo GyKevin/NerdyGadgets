@@ -31,7 +31,7 @@
         </div>
         <a class="right" href="#news">Over Ons</a>
         <a href="">Contact</a>
-        <a id="login" href="">Login</a>
+        <a id="login" href="/pages/login.php">Login</a>
       </div> 
 </body>
 </html>

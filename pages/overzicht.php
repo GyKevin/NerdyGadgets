@@ -93,8 +93,8 @@ $result = $conn->query($sql);
         <div class="filter">
         <form id="filterForm">
             <!-- sort -->
-            <div>
-                <p>Sort By:</p>
+            <div class="sort">
+                <h4>Sorteren op:</h4>
                 <?php 
                 $sortOptions = [
                     'default' => 'Standaard',
@@ -106,14 +106,17 @@ $result = $conn->query($sql);
 
                 foreach ($sortOptions as $key => $value) {
                     $selected = $key === $sort ? 'selected' : '';
-                    echo "<a href='/pages/overzicht.php?type=$type&sort=$key'>$value</a> <br>";
+                    echo "<a href='/pages/overzicht.php?type=$type&sort=$key' class='options $selected'>$value</a> <br>";
                 }
                 ?>
             </div>
             <!-- category -->
             <div>
-                <p>categories: </p>
-                <a href="/pages/overzicht.php?type=all&sort=<?=$sort?>">Alle Producten</a> <br>
+                <h4>Categorieën: </h4>
+                <?php 
+                $selected = ($type === 'all') ? 'selected' : ''; // Initialize $selected for the first link
+                ?>
+                <a href="/pages/overzicht.php?type=all&sort=<?=$sort?>" class='options <?=$selected?>'>Alle Producten</a> <br>
                 <?php 
                 $sqlCategory = "SELECT DISTINCT category FROM product";
                 $resultCategory = $conn->query($sqlCategory);
@@ -122,17 +125,17 @@ $result = $conn->query($sql);
                         $category = $row['category'];
                         $selected = $category === $type ? 'selected' : '';
                         // Add the current "sort" parameter to the URL
-                        echo "<a href='/pages/overzicht.php?type=$category&sort=$sort'>".ucfirst($category)."</a> <br>";
+                        echo "<a href='/pages/overzicht.php?type=$category&sort=$sort' class='options $selected'>".ucfirst($category)."</a> <br>";
                     }
                 }
                 ?>
             </div>
             <!-- prijs tussen x-x -->
             <div>
-                <p>Prijs tussen: </p>
-                <input type="number" name="min" placeholder="min" min="0">
-                <input type="number" name="max" placeholder="max" min="0">
-                <button type="submit">Filter</button>
+                <h4>Prijs tussen: </h4>
+                <input type="number" name="min" placeholder="min" min="0" class="price_inp">
+                <input type="number" name="max" placeholder="max" min="0" class="price_inp">
+                <button type="submit" class="filter_btn">Filter</button>
             </div>
             <div>
                 <input type="hidden" name="type" value="<?php echo $type; ?>">
@@ -143,7 +146,7 @@ $result = $conn->query($sql);
         
     <!-- product cards -->
     <div class="card-container">
-        <div class="test">
+        <div class="category_name">
             <h1><?php 
                 if($type == 'all') {
                     echo "Alle Producten";
@@ -221,7 +224,7 @@ main {
     font-size: 15px;
     
 }
-.prodCard button {
+/* .prodCard button {
     margin-top: auto;
     background-color: #4CAF50;
     width: 250px;
@@ -232,6 +235,20 @@ main {
     text-decoration: none;
     font-size: 15px;
     border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+} */
+.prodCard button {
+    margin-top: auto;
+    background-color: white;
+    width: 250px;
+    border: 3px solid black;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 10px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
 }
@@ -247,32 +264,69 @@ main {
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     transition: 0.3s;
 }
-.prodCard button:hover {
+/* .prodCard button:hover {
     background-color: #3e8e41;
+} */
+.prodCard button:hover {
+    transform: scale(1.05);
 }
 .prodCard a:hover {
     text-decoration: underline;
 }
-.filter {
-    position: fixed;
-    border: 2px solid #d1d1d1;
-    height: 100vh;
-    width: 250px;
-}
-Select {
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-bottom: 2px solid #d1d1d1;
-    padding-left: 10px;
-    outline: none;
-    cursor: pointer;
-}
-select:focus {
-    margin-bottom: 75%;
-}
-.test {
+.category_name {
     width: 100%;
     text-align: center;
+}
+.filter {
+    position: fixed;
+    border-right: 2px solid #d1d1d1;
+    height: calc(100vh - 65px);
+    width: 250px;
+    overflow: auto;
+    padding: 5px;
+}
+.options {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+}
+.options:hover {
+    background-color: #ededed;
+}
+
+.sort {
+    width: 100%;   
+}
+.selected {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+}
+.filter_btn {
+    background-color: white;
+    border: 3px solid black;
+    width: 100%;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+.filter_btn:hover {
+    transform: scale(1.02);
+}
+.price_inp {
+    width: 95%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #d1d1d1;
+    border-radius: 5px;
 }
 </style>
