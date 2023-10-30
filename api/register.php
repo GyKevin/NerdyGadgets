@@ -45,9 +45,18 @@ if (empty($first_name) || empty($last_name) || empty($email) || empty($street_na
     echo "Please fill in all fields";
     exit();
 }
-
 // hash password
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-$sql = "INSERT INTO users VALUES ($first_name, $surname_prefix, $last_name, $email, $street_name, $house_number, $postal_code, $city, $hashed_password)";
+// replace $password with $hashed_password when the login issue is fixed
+$sql = "INSERT INTO user VALUES ('','$email', '$password', '$first_name', '$surname_prefix', '$last_name', '$street_name', '$house_number', '$postal_code', '$city')";
 
+// check if query is succesful
+if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . " " . mysqli_error($conn);
+}
+
+// close connection
+mysqli_close($conn);
 ?>

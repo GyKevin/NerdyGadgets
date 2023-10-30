@@ -27,10 +27,8 @@
     <div id="navbar"></div>
     <main>
         <div class="login">
-            <form action="/pages/login.php" method="post">
-                <label for="username">Gebruikersnaam</label>
-                <input type="text" name="username" id="username" placeholder="gebruikersnaam" required>
-                <label for="password">Wachtwoord</label>
+            <form action="../api/login.php" method="post">
+                <input type="email" name="email" id="email" placeholder="email" required>
                 <input type="password" name="password" id="password" placeholder="wachtwoord" required>
                 <input type="submit" value="Login">
             </form>
