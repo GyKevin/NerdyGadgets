@@ -85,6 +85,7 @@ $result = $conn->query($sql);
 main {
     display: flex;
     flex-direction: row ;
+    
     /* flex-wrap: wrap; */
 }
 .card-container {
