@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 include_once("../db/dbc.php");
 
@@ -29,10 +30,11 @@ $sql = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while($row = $result->fetch_assoc()){
-        echo "Login succesful";
         //set user id as cookie
-        setcookie("user_id", $row['id'], time() + (86400 * 30), "/");
-        exit();
+        // setcookie("user_id", $row['id'], time() + (86400 * 30), "/");
+
+        // set user id in local storage
+        $_SESSION['user_id'] = $row['id'];
     }
 } else {
     echo "Login failed";
