@@ -99,7 +99,5 @@
         font-size: 16px;
 
     }
-    .Product_beschrijving{
-    }
 
 </style>
