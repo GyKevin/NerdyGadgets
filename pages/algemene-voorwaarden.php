@@ -36,69 +36,79 @@
             verklaart u akkoord te gaan met en gebonden te zijn aan deze algemene voorwaarden.
         </p>
 
-        <h2>2. Productinformatie en Prijsstelling</h2>
+        <h2>2. Contact informatie</h2>
+        <p>Telefoonnummer: 036123456789</p>
+        <p>E-mail: klantenservice@nerdygadgets.nl</p>
+        <p>Adres:  Hospitaaldreef 5, 1315 RC Almere</p>
+
+        <h2>3. Productinformatie en Prijsstelling</h2>
         <p>
-            2.1. Wij streven ernaar om accurate productinformatie te verstrekken, inclusief beschrijvingen, prijzen en
+            3.1. Wij streven ernaar om accurate productinformatie te verstrekken, inclusief beschrijvingen, prijzen en
             afbeeldingen. Echter, wij kunnen geen garantie geven voor de absolute nauwkeurigheid van deze informatie.
         </p>
         <p>
-            2.2. Prijzen kunnen zonder voorafgaande kennisgeving worden gewijzigd. Alle prijzen zijn inclusief BTW en
+            3.2. Prijzen kunnen zonder voorafgaande kennisgeving worden gewijzigd. Alle prijzen zijn inclusief BTW en
             andere toepasselijke belastingen.
         </p>
 
-        <h2>3. Bestellen en Betalen</h2>
+        <h2>4. Bestellen en Betalen</h2>
         <p>
-            3.1. Door het plaatsen van een bestelling gaat u ermee akkoord om de totale kosten van de bestelling te
+            4.1. Door het plaatsen van een bestelling gaat u ermee akkoord om de totale kosten van de bestelling te
             betalen, inclusief de prijs van de producten, verzendkosten en eventuele belastingen.
         </p>
         <p>
-            3.2. Betalingen kunnen worden gedaan via de beschikbare betaalmethoden op de website van NerdyGadgets.
+            4.2. Betalingen kunnen worden gedaan via de beschikbare betaalmethoden op de website van NerdyGadgets.
         </p>
         <p>
-            3.3. Bestellingen zijn pas definitief nadat de betaling is ontvangen en bevestigd.
+            4.3. Bestellingen zijn pas definitief nadat de betaling is ontvangen en bevestigd.
         </p>
-        <h2>4. Verzending en Levering</h2>
+
+        <h2>5. Verzending en Levering</h2>
         <p>
-            4.1. Wij streven ernaar om bestellingen zo snel mogelijk te verzenden. De geschatte levertijden zijn indicatief
+            5.1. Wij streven ernaar om bestellingen zo snel mogelijk te verzenden. De geschatte levertijden zijn indicatief
             en kunnen variëren.
         </p>
         <p>
-            4.2. De verzendkosten worden weergegeven tijdens het bestelproces en kunnen variëren op basis van de
+            5.2. De verzendkosten worden weergegeven tijdens het bestelproces en kunnen variëren op basis van de
             bezorg bestemming en de grootte/gewicht van de bestelling.
         </p>
-        <h2>5. Retourbeleid</h2>
+
+        <h2>6. Retourbeleid</h2>
         <p>
-            5.1. U heeft het recht om uw aankoop binnen 14 dagen na ontvangst te retourneren, op voorwaarde dat het product
+            6.1. U heeft het recht om uw aankoop binnen 14 dagen na ontvangst te retourneren, op voorwaarde dat het product
             in ongebruikte staat verkeert en in de originele verpakking zit.
         </p>
         <p>
-            5.2. Voor retourzendingen moet u contact opnemen met onze klantenservice om instructies te ontvangen.
+            6.2. Voor retourzendingen moet u contact opnemen met onze klantenservice om instructies te ontvangen.
         </p>
-        <h2>6. Privacybeleid</h2>
+
+        <h2>7. Privacybeleid</h2>
         <p>
-            6.1. Uw persoonlijke gegevens worden verwerkt in overeenstemming met ons Privacybeleid, dat beschikbaar is op
+            7.1. Uw persoonlijke gegevens worden verwerkt in overeenstemming met ons Privacybeleid, dat beschikbaar is op
             onze website.
         </p>
-        <h2>7. Aansprakelijkheid en Garantie</h2>
+        <h2>8. Aansprakelijkheid en Garantie</h2>
         <p>
-            7.1. Wij streven ernaar om kwaliteitsproducten te leveren. Eventuele garanties worden expliciet vermeld in de
+            8.1. Wij streven ernaar om kwaliteitsproducten te leveren. Eventuele garanties worden expliciet vermeld in de
             productinformatie.
         </p>
         <p>
-            7.2. Onze aansprakelijkheid is beperkt tot het aankoopbedrag van het product.
+            8.2. Onze aansprakelijkheid is beperkt tot het aankoopbedrag van het product.
         </p>
-        <h2>8. Toepasselijk recht en Geschillen</h2>
+
+        <h2>9. Toepasselijk recht en Geschillen</h2>
         <p>
-            8.1. Op deze algemene voorwaarden is Nederlands recht van toepassing.
+            9.1. Op deze algemene voorwaarden is Nederlands recht van toepassing.
         </p>
         <p>
-            8.2. Geschillen die voortvloeien uit of verband houden met deze overeenkomst zullen in eerste instantie worden
+            9.2. Geschillen die voortvloeien uit of verband houden met deze overeenkomst zullen in eerste instantie worden
             beslecht door middel van onderhandeling. Indien geen minnelijke schikking wordt bereikt, zal het geschil worden
             voorgelegd aan de bevoegde Nederlandse rechtbank.
         </p>
-        <h2>9. Wijzigingen in de Algemene Voorwaarden</h2>
+
+        <h2>10. Wijzigingen in de Algemene Voorwaarden</h2>
         <p>
-            9.1. NerdyGadgets behoudt zich het recht voor om deze algemene voorwaarden op elk moment te wijzigen.
+            10.1. NerdyGadgets behoudt zich het recht voor om deze algemene voorwaarden op elk moment te wijzigen.
             Gewijzigde voorwaarden zijn van toepassing op nieuwe bestellingen.
         </p>
     </div>

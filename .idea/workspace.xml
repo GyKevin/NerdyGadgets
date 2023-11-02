@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1159aa73-71e8-492f-a6ba-450242ca2854" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/css/algemene-voorwaardes.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/dbc.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/dbc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/algemene-voorwaardes.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/algemene-voorwaardes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/algemene-voorwaarden.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/algemene-voorwaarden.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,11 +76,27 @@
       <workItem from="1697544828976" duration="16000" />
       <workItem from="1697545078895" duration="575000" />
       <workItem from="1698954726373" duration="2218000" />
+      <workItem from="1698960857868" duration="377000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="algemene-voorwaarden.php bewerkt met de voorwaardes.&#10;algemene-voorwaarden.css aangemaakt voor de spacing." />
+    <option name="LAST_COMMIT_MESSAGE" value="algemene-voorwaarden.php bewerkt met de voorwaardes.&#10;algemene-voorwaarden.css aangemaakt voor de spacing." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
