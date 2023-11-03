@@ -1,7 +1,7 @@
 <?php 
 $dbhost = "localhost";
 $dbuser = "root";
-$dbpass = "Password123";
+$dbpass = "";
 $dbname = "nerdy_gadgets_start";
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if(mysqli_connect_errno()){
