@@ -13,7 +13,7 @@
         <img class="footer-logo" src="/image/Logo.png" alt="">
             <ul>
                 <!-- andere paginas -->
-                <li><a href="">Algemene Voorwaarden</a></li>
+                <li><a href="../pages/algemene-voorwaarden.php">Algemene Voorwaarden</a></li>
                 <li><a href="">Over ons</a></li>
                 <li><a href="">Retourneren</a></li>
                 <li><a href="">Contact</a></li>
