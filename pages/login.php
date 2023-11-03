@@ -27,6 +27,7 @@
     <div id="navbar"></div>
     <main>
         <div class="login">
+            <h2>Inloggen</h2>
             <form action="../api/login.php" method="post">
                 <input type="email" name="email" id="email" placeholder="email" required>
                 <input type="password" name="password" id="password" placeholder="wachtwoord" required>
