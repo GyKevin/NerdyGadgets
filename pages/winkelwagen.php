@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/navbar/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/navbar/import-handler.js"></script>
+    <link rel="stylesheet" href="/css/winkelwagen.css">
     <style>
         body {
             min-height: 100vh;
@@ -21,15 +22,17 @@
     <main>
     <div class="content">
         <div class="winkelwagen">
+            <div class="titel">
+                Winkelwagen
+            </div>
 <!-- "product 1" -->
-            <div class="item">
-                <div class="buttons">
-                    <button>Delete</button>
-                </div>
+        <div class="item">
+            <div class="buttons">
+            <button><img src="/image/111056_trash_can_icon.png"></button> 
             </div>
 
             <div class="image">
-                <img src="...">
+                <img src="/image/Pc.jpg">
             </div>
 
             <div class="description">
@@ -41,36 +44,12 @@
                 <input type="number" name="quantity" value="1">
             </div>
 
-        <div class="price">
-            <p>$10</p>
-        </div>
-        </div>
+            <div class="price">
+                <p>$10</p>
+            </div>
     </div>
-<!-- product 2 -->
-<div class="item">
-        <div class="buttons">
-            <button>Delete</button>
-        </div>
-            </div>
-
-            <div class="image">
-                <img src="...">
-            </div>
-
-            <div class="description">
-                <p>uufbvuubb nincionoiwn incwioenje</p>
-                <p>jnvjnfojdnof kicninceroi cpewniewn</p>
-            </div>
-
-            <div class="quantity"> 
-                <input type="number" name="quantity" value="1">
-            </div>
-
-        <div class="price">
-            <p>$10</p>
-        </div>
-        </div>
-    </div>
+</div>
+</div>
     </main>
     <!-- footer -->
     <div id="footer"></div>
