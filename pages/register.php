@@ -27,6 +27,15 @@
 <div id="navbar"></div>
     <main>
         <div class="registratie-container">
+            <?php 
+                session_start();
+                if (isset($_SESSION['error'])) {
+                    $error_output = $_SESSION['error'];
+                    echo "<p style='color: red;'$error_output</p>";
+                    echo $error_output;
+                    unset($_SESSION['error']);
+                }
+            ?>
             <h2>Registratie</h2>
             <form action="../api/register.php" method="post">
                 <input type="text" name="first_name" placeholder="first name"> <br>
@@ -41,6 +50,8 @@
                 <input type="password" name="repeat_password" placeholder="repeat password"><br>
                 <input type="submit" class="Registreer" value="Registreer">
             </form>
+            
+
             <a class="go-to-login" href="/pages/login.php">Heb je al een account? Log in.</a>
         </div>
     </main>
@@ -89,6 +100,7 @@ input {
 }
 .go-to-login {
     color: black;
+    padding-bottom: 25px;
 }
 .go-to-login:hover {
     color: #4e4e58;

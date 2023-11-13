@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 include_once("../db/dbc.php");
 
@@ -20,31 +21,30 @@ $city = $_POST['city'];
 $password = $_POST['password'];
 $repeat_password = $_POST['repeat_password'];   
 
-// check if email already exists
-// $sql = "SELECT * FROM users WHERE email = '$email'";
-// $result = mysqli_query($conn, $sql);
-// if (mysqli_num_rows($result) > 0) {
-//     echo "Email already exists";
-//     exit();
-// }
+// check if fields are empty
+if (empty($first_name) || empty($last_name) || empty($email) || empty($street_name) || empty($house_number) || empty($postal_code) || empty($city) || empty($password) || empty($repeat_password)) {
+    // echo "Please fill in all fields";
+    $_SESSION['error'] = "Vul alle velden in";
+    header("location: ../pages/register.php");
+    exit();
+}
 
 // check if email is valid
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo "Invalid email";
+    // echo "Invalid email";
+    $_SESSION['error'] = "Email is niet geldig";
+    header("location: ../pages/register.php");
     exit();
 }
 
 // check if passwords match
 if ($password != $repeat_password) {
-    echo "Passwords do not match";
+    // echo "Passwords do not match";
+    $_SESSION['error'] = "Wachtwoorden matchen niet";
+    header("location: ../pages/register.php");
     exit();
 }
 
-// check if fields are empty
-if (empty($first_name) || empty($last_name) || empty($email) || empty($street_name) || empty($house_number) || empty($postal_code) || empty($city) || empty($password) || empty($repeat_password)) {
-    echo "Please fill in all fields";
-    exit();
-}
 // hash password
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 // replace $password with $hashed_password when the login issue is fixed
@@ -53,6 +53,7 @@ $sql = "INSERT INTO user VALUES ('','$email', '$password', '$first_name', '$surn
 // check if query is succesful
 if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
+    header("location: ../pages/login.php");
 } else {
     echo "Error: " . $sql . " " . mysqli_error($conn);
 }

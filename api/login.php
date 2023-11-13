@@ -15,13 +15,17 @@ $password = $_POST['password'];
 
 // check if data is empty
 if (empty($email) || empty($password)) {
-    echo "Please fill in all fields";
+    // echo "Please fill in all fields";
+    $_SESSION['error'] = "Vul alle velden in";
+    header("location: ../pages/login.php");
     exit();
 }
 
 // check if email is valid
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo "Invalid email";
+    // echo "Invalid email";
+    $_SESSION['error'] = "Email is niet geldig";
+    header("location: ../pages/login.php");
     exit();
 }
 
@@ -35,9 +39,12 @@ if (mysqli_num_rows($result) > 0) {
 
         // set user id in local storage
         $_SESSION['user_id'] = $row['id'];
+        header("location: /");
     }
 } else {
-    echo "Login failed";
+    // echo "Login failed";
+    $_SESSION['error'] = "Wachtwoord of email is niet geldig";
+    header("location: ../pages/login.php");
     exit();
 }
 
