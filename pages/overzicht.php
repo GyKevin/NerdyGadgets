@@ -53,6 +53,12 @@ if ($sort == 'default') {
     $sql .= " ORDER BY price DESC";
 }
 
+//functie voor het veranderen naar de product pagina
+if (isset($_POST['kopen'])){
+    $id = $_POST['kopen'];
+    exit(header("location: product.php?id={$id}"));
+}
+
 $result = $conn->query($sql);
 ?>
 
@@ -169,13 +175,16 @@ $result = $conn->query($sql);
                     <a href='product.php?id=$productId'>$productName</a>
                     <div id='buy-btn'>
                         <p>€ $productPrice</p> <br>
-                        <a href='product.php?id=$productId'>
-                            <button id='koop-btn'>Bekijk Product</button>
-                        </a>
+                        
+//                        veranderd van href naar form
+                        <form method='post'>
+                            <button type='submit' id='koop-btn' name='kopen' value='$productId'>Bekijk Product</button>
+                        </form>
                     </div>
                 </div>";
             }
         }
+
 
         $conn->close();
         ?>
