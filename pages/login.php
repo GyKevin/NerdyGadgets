@@ -37,7 +37,7 @@
                 }
             ?>
             <h2>Inloggen</h2>
-            <form action="../api/login.php" method="post">
+            <form action="../api/login.php" method="post" class="login-form">
                 <input type="email" name="email" placeholder="email"> <br>
                 <input type="password" name="password" placeholder="wachtwoord"> <br>
                 <input type="submit" class="login" value="Login">
@@ -67,15 +67,15 @@ main {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-input {
-    width: 300px;
+.login-form input{
+    width: 100%;
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 3px;
 }
 .login {
-    width: 100%;
+    width: 100% !important;
     padding: 12px;
     background-color: #23232f;
     color: #ffffff;

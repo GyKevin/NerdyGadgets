@@ -37,7 +37,7 @@
                 }
             ?>
             <h2>Registratie</h2>
-            <form action="../api/register.php" method="post">
+            <form action="../api/register.php" method="post" class="registratie-form">
                 <input type="text" name="first_name" placeholder="first name"> <br>
                 <input type="text" name="surname_prefix" placeholder="surname"><br>
                 <input type="text" name="last_name" placeholder="last name"><br>
@@ -76,7 +76,7 @@ main {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-input {
+.registratie-form input {
     width: 300px;
     padding: 12px;
     margin: 10px 0;
@@ -84,7 +84,7 @@ input {
     border-radius: 3px;
 }
 .Registreer {
-    width: 100%;
+    width: 100% !important;
     padding: 12px;
     background-color: #23232f;
     color: #ffffff;
