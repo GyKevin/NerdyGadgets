@@ -31,7 +31,7 @@
         <div class="Intro">
             <h1>Nerdy Gadgets</h1>
             <p>Waar passie voor technologie tot leven komt!</p>
-            <a href="/pages/overzicht.php?type=all&sort=default">Alle Producten</a>
+            <a href="pages/overzicht.php?type=all&sort=default">Alle Producten</a>
         </div>
         <!-- best sellers -->
         <div class="best-seller">
