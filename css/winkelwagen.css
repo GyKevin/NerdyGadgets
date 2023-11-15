@@ -4,48 +4,55 @@ main {
     margin: 0%;
     background-color: white;
 }
-.winkelwagen {
-    width: 750px;
-    height: 423px;
+.content{
+    width: 1100px;
+    height: auto;
     margin: 80px auto;
     background: #FFFFFF;
     box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
     border-radius: 6px;
-   
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
   }
-  .titel {
+  .winkelwagen{
+    height: 100%;
+    width: 50%;
+  }
+  .overzicht{
+    height: 100%;
+    width: 50%;
+  }
+.titel {
     height: 60px;
     border-bottom: 1px solid #E1E8EE;
     padding: 20px 30px;
     color: #5E6977;
     font-size: 18px;
     font-weight: 400;
-  }
-  .item {
+}
+.item {
     padding: 20px 30px;
     height: 120px;
     display: flex;
-  }
-  .item:nth-child(3) {
-    border-top:  1px solid #E1E8EE;
-    border-bottom:  1px solid #E1E8EE;
-  }
-  .buttons {
+}
+.buttons {
     display: inline-block;
     cursor: pointer;
     width: 100px;
     height: 17px;
-    padding-top: 30px;
-    margin-right: 60px;
+    padding-top: 60px;
+    margin-right: 20px;
 
-  }
-  .buttons button{
+}
+.buttons button{
     background-color: #1C00ff00;
     color: black;
-    padding: 10px 18px;
     padding: 10px;
+    border: solid 3px black;
+    border-radius: 10px;
   }
   .buttons img{
     height: 20px;
@@ -76,23 +83,70 @@ margin-top: 8px;
 color: #86939E;
 }
 .quantity {
-    padding-top: 20px;
-    margin-right: 60px;
-  }
-  .quantity input {
+    padding-top: 60px;
+    margin-right: 30px;
+}
+.quantity input {
     width: 50px;
+    height: auto;
     font-size: 16px;
     color: #43484D;
     font-weight: 300;
-  }
-  .price {
+    border: solid 3px;
+    border-radius: 8px;
+}
+.price {
     width: 83px;
-    padding-top: 27px;
+    padding-top: 47px;
     text-align: center;
     font-size: 16px;
     color: #43484D;
     font-weight: 300;
-  }
+}
+.checkout{
+  background-color: #1C00ff00;
+  color: black;
+  border: solid 3px black;
+  border-radius: 10px;
+}
+.overzicht_titel{
+  height: 60px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+}
+.overzicht_titel p{
+  height: 90px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 30px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
+}
+.totaal{
+  padding: 20px 30px;
+  width: 83px;
+  padding-top: 5px ;
+  text-align: center;
+  font-size: 16px;
+  color: #43484D;
+  font-weight: 300;
+}
+.checkout_button button{
+  margin-left: 20px ;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  background-color: #23232f;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
   @media (max-width: 800px) {
     .winkelwagen {
       width: 100%;
