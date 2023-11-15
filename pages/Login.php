@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NerdyGadgets</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- import font-awesome -->
+    <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
     <style>
         body {
@@ -13,97 +15,67 @@
             display: flex;
             flex-direction: column;
         }
+        main {
+            padding-top: 55px;
+        }
         #footer {
             margin-top: auto; 
         }
     </style>
 </head>
 <body>
-<!-- navbar -->
-<div id="navbar"></div>
-
-<!-- content -->
-<div class="login_content">
-    <div class="container">
-        <div class="login-form">
+    <div id="navbar"></div>
+    <main>
+        <div class="login-container">
+            <?php 
+                session_start();
+                if (isset($_SESSION['error'])) {
+                    $error_output = $_SESSION['error'];
+                    echo "<p style='color: red;'$error_output</p>";
+                    echo $error_output;
+                    unset($_SESSION['error']);
+                }
+            ?>
             <h2>Inloggen</h2>
-            <form action="login.php" method="post">
+            <form action="../api/login.php" method="post" class="login-form">
+                <input type="email" name="email" placeholder="email"> <br>
+                <input type="password" name="password" placeholder="wachtwoord"> <br>
+                <input type="submit" class="login" value="Login">
                 
-                <input type="text" name="username" placeholder="Gebruikersnaam" required>
-                <input type="password" name="password" placeholder="Wachtwoord" required>
-                <button class="Inloggen" type="submit">Inloggen</button>
             </form>
+            <a class="go-to-login" href="/pages/register.php">Geen account? Maak een account aan.</a>
         </div>
-    </div>
-</div>
-    <!-- footer -->
+    </main>
     <div id="footer"></div>
 </body>
 </html>
+
 <style>
-.login_content {
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-    }
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    color: #333;
+main {
     display: flex;
     justify-content: center;
-    margin: 0;
 }
-.container {
-    display: flex;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+.login-container {
+    border: 2px solid #ddd;
     border-radius: 5px;
-    overflow: hidden;
-    margin: 100px;
-    width: 400px;
-    justify-content: center;
-    
-}
-.container > div {
-    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
-
-s
-.login-form {
-    background-color: #ffffff;
-    text-align: center;
-    border-right: 1px solid #ddd;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-h2 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-form {
-    width: 100%;
-    max-width: 300px;
-    margin-right: 20px;
-}
-
-input {
+.login-form input{
     width: 100%;
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 3px;
 }
-
-.Inloggen {
-    width: 108%;
+.login {
+    width: 100% !important;
     padding: 12px;
     background-color: #23232f;
     color: #ffffff;
@@ -112,10 +84,16 @@ input {
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    transition: all 0.3 ease-in-out;
 }
-
-button:hover {
+.login:hover {
     background-color: #4e4e58;
 }
-
+.go-to-login {
+    color: black;
+    padding-bottom: 25px;
+}
+.go-to-login:hover {
+    color: #4e4e58;
+}
 </style>
