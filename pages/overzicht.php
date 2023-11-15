@@ -1,8 +1,62 @@
-<?php 
+<?php
 include_once("../db/dbc.php");
+
+$type = $_GET['type'];
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
+
+// Define the base SQL query
 $sql = "SELECT * FROM product";
+
+// Add a WHERE clause for category filtering
+if ($type != 'all' && isset($type)) {
+    $sql .= " WHERE category = '$type'";
+}
+
+// Add a WHERE clause for price filtering
+if (isset($_GET['min']) && isset($_GET['max'])) {
+    $min = $_GET['min'];
+    $max = $_GET['max'];
+    if (strpos($sql, 'WHERE') === false) {
+        $sql .= " WHERE";
+    } else {
+        $sql .= " AND";
+    }
+    $sql .= " price BETWEEN $min AND $max";
+} elseif (isset($_GET['min'])) {
+    $min = $_GET['min'];
+    if (strpos($sql, 'WHERE') === false) {
+        $sql .= " WHERE";
+    } else {
+        $sql .= " AND";
+    }
+    $sql .= " price >= $min";
+} elseif (isset($_GET['max'])) {
+    $max = $_GET['max'];
+    if (strpos($sql, 'WHERE') === false) {
+        $sql .= " WHERE";
+    } else {
+        $sql .= " AND";
+    }
+    $sql .= " price <= $max";
+}
+
+// Add the sorting conditions
+if ($sort == 'default') {
+    $sql .= " ORDER BY id ASC";
+} elseif ($sort == 'name_a') {
+    $sql .= " ORDER BY name ASC";
+} elseif ($sort == 'name_z') {
+    $sql .= " ORDER BY name DESC";
+} elseif ($sort == 'price_low') {
+    $sql .= " ORDER BY price ASC";
+} elseif ($sort == 'price_high') {
+    $sql .= " ORDER BY price DESC";
+}
+
 $result = $conn->query($sql);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +75,9 @@ $result = $conn->query($sql);
             display: flex;
             flex-direction: column;
         }
+        main {
+            padding-top: 55px;
+        }
         #footer {
             margin-top: auto; 
         }
@@ -34,21 +91,70 @@ $result = $conn->query($sql);
     <main>
     <!-- filter -->
         <div class="filter">
-            <select name="type" id="">
-                    <?php
-                    $sqlCategory = "SELECT DISTINCT category, price FROM product";
-                    $resultCategory = $conn->query($sqlCategory);
-                     if($resultCategory->num_rows > 0) {
-                        while($row = $resultCategory->fetch_assoc()) {
-                            $productType = $row['category'];
-                            echo "<option value='$productType'>$productType</option>";
-                        }
-                     }
-                    ?>
-            </select>
+        <form id="filterForm">
+            <!-- sort -->
+            <div class="sort">
+                <h4>Sorteren op:</h4>
+                <?php 
+                $sortOptions = [
+                    'default' => 'Standaard',
+                    'name_a' => 'Naam A-Z',
+                    'name_z' => 'Naam Z-A',
+                    'price_low' => 'Prijs Laag-Hoog',
+                    'price_high' => 'Prijs Hoog-Laag'
+                ];
+
+                foreach ($sortOptions as $key => $value) {
+                    $selected = $key === $sort ? 'selected' : '';
+                    echo "<a href='/pages/overzicht.php?type=$type&sort=$key' class='options $selected'>$value</a> <br>";
+                }
+                ?>
+            </div>
+            <!-- category -->
+            <div>
+                <h4>Categorieën: </h4>
+                <?php 
+                $selected = ($type === 'all') ? 'selected' : ''; // Initialize $selected for the first link
+                ?>
+                <a href="/pages/overzicht.php?type=all&sort=<?=$sort?>" class='options <?=$selected?>'>Alle Producten</a> <br>
+                <?php 
+                $sqlCategory = "SELECT DISTINCT category FROM product";
+                $resultCategory = $conn->query($sqlCategory);
+                if($resultCategory->num_rows > 0) {
+                    while($row = $resultCategory->fetch_assoc()) {
+                        $category = $row['category'];
+                        $selected = $category === $type ? 'selected' : '';
+                        // Add the current "sort" parameter to the URL
+                        echo "<a href='/pages/overzicht.php?type=$category&sort=$sort' class='options $selected'>".ucfirst($category)."</a> <br>";
+                    }
+                }
+                ?>
+            </div>
+            <!-- prijs tussen x-x -->
+            <div>
+                <h4>Prijs tussen: </h4>
+                <input type="number" name="min" placeholder="min" min="0" class="price_inp">
+                <input type="number" name="max" placeholder="max" min="0" class="price_inp">
+                <button type="submit" class="filter_btn">Filter</button>
+            </div>
+            <div>
+                <input type="hidden" name="type" value="<?php echo $type; ?>">
+                <input type="hidden" name="sort" value="<?php echo $sort; ?>">
+            </div>
+        </form>
         </div>
+        
     <!-- product cards -->
     <div class="card-container">
+        <div class="category_name">
+            <h1><?php 
+                if($type == 'all') {
+                    echo "Alle Producten";
+                } else {
+                    echo ucfirst($type);
+                }
+            ?></h1>
+        </div>
         <?php 
         if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -93,6 +199,7 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    margin-left: 250px;
 }
 .prodCard {
     /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
@@ -118,7 +225,7 @@ main {
     font-size: 15px;
     
 }
-.prodCard button {
+/* .prodCard button {
     margin-top: auto;
     background-color: #4CAF50;
     width: 250px;
@@ -129,6 +236,20 @@ main {
     text-decoration: none;
     font-size: 15px;
     border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+} */
+.prodCard button {
+    margin-top: auto;
+    background-color: white;
+    width: 250px;
+    border: 3px solid black;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 10px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
 }
@@ -144,16 +265,69 @@ main {
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     transition: 0.3s;
 }
-.prodCard button:hover {
+/* .prodCard button:hover {
     background-color: #3e8e41;
+} */
+.prodCard button:hover {
+    transform: scale(1.05);
 }
 .prodCard a:hover {
     text-decoration: underline;
 }
+.category_name {
+    width: 100%;
+    text-align: center;
+}
 .filter {
-    position: relative;
-    border: 2px solid #d1d1d1;
-    height: 100vh;
+    position: fixed;
+    border-right: 2px solid #d1d1d1;
+    height: calc(100vh - 65px);
     width: 250px;
+    overflow: auto;
+    padding: 5px;
+}
+.options {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+}
+.options:hover {
+    background-color: #ededed;
+}
+
+.sort {
+    width: 100%;   
+}
+.selected {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+}
+.filter_btn {
+    background-color: white;
+    border: 3px solid black;
+    width: 100%;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+.filter_btn:hover {
+    transform: scale(1.02);
+}
+.price_inp {
+    width: 95%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 2px solid #d1d1d1;
+    border-radius: 5px;
 }
 </style>

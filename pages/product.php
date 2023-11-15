@@ -11,6 +11,7 @@
             $productPrice = $row['price'];
             $productDescription = $row['description'];
             $productImage = $row['image'];
+            $productCategory = $row['category'];
         }
     }
 ?>
@@ -30,6 +31,9 @@
             display: flex;
             flex-direction: column;
         }
+        main {
+            padding-top: 55px;
+        }
         #footer {
             margin-top: auto; 
         }
@@ -41,35 +45,49 @@
 
     <!-- content -->
     <main>
-        <!-- all the data gets imported by doing '<?php //echo content ?>' 
-        feel free to move things around, as long as you include this.  -->
-        <div class="Image_container">
-            <img src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image" width="100px">
+        <!-- image slider -->
+        <div>
+        <img src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image">
         </div>
-        <div class="all_info">
-            <h2><?php echo $productName ?></h2>
-            <h4>€ <?php echo $productPrice ?></h4>
-            <div class="add_to_cart">
-                <div class="quantity">
-                    <span>Add Quantity</span>
-                    <input type="number" name="qty" id="number" value="1" />
-                </div>
-                <button class="add_cart" tabindex="0">
-                    <i class="fa fa-shopping-cart"></i> Add to Cart
-                </button>
-            </div>
-            <div class="Product_beschrijving">
-                <h3>Product beschrijving</h3>
-                <p><?php echo $productDescription ?></p>
-
-            </div>
+        <!-- product info -->
+        <div>
+        <h3><?php echo $productName; ?></h3>
+        <p><?php echo $productCategory; ?></p>
+        <p><?php echo $productPrice; ?></p>
+        <div class="star-container"></div> <!-- star rating -->
+        <p class="Product_beschrijving"><?php echo $productDescription; ?></p>
         </div>
     </main>
 
     <!-- footer -->
     <div id="footer"></div>
+    <script>
+    function readMore() {
+        var productDescription = document.querySelector('.Product_beschrijving p');
+        var button = document.querySelector('.Product_beschrijving button');
+        var maxLength = 200; // You can adjust the maximum length as needed
+
+        if (productDescription.style.display === 'none' || productDescription.style.display === '') {
+            productDescription.style.display = 'block';
+            button.textContent = 'Lees Minder'; // Change button text to "Lees Minder" (Read Less)
+        } else {
+            productDescription.style.display = 'none';
+            button.textContent = 'Lees Meer'; // Change button text back to "Lees Meer" (Read More)
+        }
+
+        var text = productDescription.innerText;
+
+        if (text.length < maxLength) {
+            var truncatedText = text.slice(100, maxLength);
+            productDescription.innerText = truncatedText;
+        }
+    }
+    </script>
+
+
 </body>
 </html>
+
 <style>
     main{
         display: flex;
