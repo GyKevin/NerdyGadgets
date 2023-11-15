@@ -8,14 +8,7 @@ if (isset($_SESSION['user_id'])) {
     $res= $conn -> query($sql);
     if ($res -> num_rows > 0) {
         while ($row = $res->fetch_assoc()) {
-            $first_name = $row["first_name"];
-            $surname_prefix = $row["surname_prefix"];
-            $last_name = $row["surname"];
-            $email = $row["email"];
-            $street_name = $row["street_name"];
-            $apartment_nr = $row["apartment_nr"];
-            $postal_code = $row["postal_code"];
-            $city = $row["city"];
+            $password = $row['password'];
         }
     }
 }
@@ -24,9 +17,6 @@ if (isset($_SESSION['user_id'])) {
 <script>
     function changeData() {
        const element =  document.getElementsByClassName("change");
-       document.getElementById("annuleren").style.display = "block";
-       document.getElementById("submit").style.display = "block";
-       document.getElementById("aanpassen").style.display = "none";
 
         for (let i = 0; i < element.length; i++) {
             element[i].removeAttribute("disabled");
@@ -39,7 +29,7 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mijn Gegevens</title>
+    <title>Wachtwoord aanpassen</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- import font-awesome -->
@@ -64,52 +54,36 @@ if (isset($_SESSION['user_id'])) {
         <main>
             <div class="profiel-container">
                 <div class="box">
-                    <form action="../api/profiel.php" method="post" class="input-form">
-                        <h2>Mijn Gegevens</h2>
-                        <label for="first_name">
-                            Voornaam <br>
-                            <input type='text' class="change" name='first_name' value='<?=$first_name?>' disabled>
+                    <?php 
+                    if (isset($_SESSION['error'])) {
+                        $error_output = $_SESSION['error'];
+                        echo "<p style='color: red;'$error_output</p>";
+                        echo $error_output;
+                        unset($_SESSION['error']);
+                    } elseif (isset($_SESSION['success'])) {
+                        $success_output = $_SESSION['success'];
+                        echo "<p style='color: green;'$success_output</p>";
+                        echo $success_output;
+                        unset($_SESSION["success"]);
+                    }
+                    ?>
+                    <form action="../api/changePass.php" method="post" class="input-form">
+                        <h2>Wachtwoord aanpassen</h2>
+                        <label for="old_password">
+                            Oude Wachtwoord <br>
+                            <input type="password" name="old_password">
                         </label>
-
-                        <label for="surname_prefix">
-                            Tussenvoegsel <br>
-                            <input type='text' class="change" name='surname_prefix' value='<?=$surname_prefix?>' disabled>
+                        <label for="new_password">
+                            Nieuwe Wachtwoord <br>
+                            <input type="password" name="new_password">
                         </label>
-                        
-                        <label for="surname">
-                            Achternaam <br>
-                            <input type='text' class="change" name='surname' value='<?=$last_name?>' disabled>
+                        <label for="again_password">
+                            Opnieuw Nieuwe Wachtwoord <br>
+                            <input type="password" name="again_password">
                         </label>
-
-                        <label for="email">
-                            Email <br>
-                            <input type='text' class="change" name='email' value='<?=$email?>' disabled>
-                        </label>
-
-                        <label for="street_name">
-                            Straat naam <br>
-                            <input type='text' class="change" name='street_name' value='<?=$street_name?>' disabled>
-                        </label>
-
-                        <label for="apartment_nr">
-                            Huisnummer <br>
-                            <input type='text' class="change" name='apartment_nr' value='<?=$apartment_nr?>' disabled>
-                        </label>
-
-                        <label for="postal_code">
-                            Post code <br>
-                            <input type='text' class="change" name='postal_code' value='<?=$postal_code?>' disabled>
-                        </label>
-
-                        <label for="city">
-                            Stad <br>
-                            <input type='text' class="change" name='city' value='<?=$city?>' disabled>
-                        </label>
-                        <input type="submit" name="" id="submit" value="Opslaan">
+                        <input type="submit" name="submit" id="submit" value="Opslaan">
                     </form>
-                    <button id="aanpassen" onclick="changeData()">Gegevens aanpassen</button>
-                    <button id="annuleren" style="display: none;" onclick="window.location.reload()">Annuleren</button>
-                    <a id="newpass" href="changePass.php">Wachtwoord aanpassen</a>
+                    <a id="gegevens" href="profiel.php">Terug naar Mijn Gegevens</a>
                 </div>
             </div>
             
@@ -157,7 +131,6 @@ if (isset($_SESSION['user_id'])) {
     border: 3px solid green !important;
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
-    display: none;
 }
 #submit:hover {
     transform: scale(1.05);
@@ -189,10 +162,10 @@ if (isset($_SESSION['user_id'])) {
     transform: scale(1.05);
     cursor: pointer !important;
 }
-#newpass {
+#gegevens {
     color: black;
 }
-#newpass:hover {
+#gegevens:hover {
     color: #4e4e58;
 }
 </style>
