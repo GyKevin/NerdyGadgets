@@ -2,24 +2,20 @@ main{
     justify-content: center;
 }
 .content {
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin: 0 -16px;
-    width: 1500px;
     align-items: center;
+    margin-top: 100px;
+    justify-content: center;
+    flex-direction: row;
   }
-  .payment
+  /* .payment
   .billing {
-    -ms-flex: 50%;
     flex: 50%;
   }
   
   .checkout {
-    -ms-flex: 75%;
     flex: 75%;
-  }
+  } */
   .billing,
   .payment
   .checkout {
@@ -31,6 +27,8 @@ main{
     padding: 5px 20px 15px 20px;
     border: 1px solid lightgrey;
     border-radius: 3px;
+    width: 700px;
+    align-items: center;
   }
   
   input[type=text] {
@@ -39,6 +37,9 @@ main{
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 3px;
+  }
+  .payment input{
+    margin-right: 1000px;
   }
   
   label {
