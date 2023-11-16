@@ -9,7 +9,7 @@ body {
 #login {
     margin-left: auto;
     margin-right: 20px;
-    float: right;
+    float: right !important;
 }
 
 #logo {
@@ -149,6 +149,13 @@ body {
     display: block;
     position: fixed;
   }
+
+  #winkelwagen {
+    margin-left: auto ;
+    margin-right: 20px ;
+    float: right ;
+  }
+
 
   /* footer styling */
 footer {

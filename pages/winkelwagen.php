@@ -1,3 +1,25 @@
+<?php 
+session_start();
+
+include_once("../db/dbc.php");
+
+$sql = "SELECT * FROM product WHERE id = " . $_COOKIE['product_id'];  
+$result = $conn->query($sql);
+
+if($result->num_rows >0) {
+    while($row = $result->fetch_assoc()) {
+        $productId = $row['id'];
+        $productName = $row['name'];
+        $productPrice = $row['price'];
+        $productDescription = $row['description'];
+        $productImage = $row['image'];
+        $productCategory = $row['category'];
+
+        $btw = ($productPrice / 100) * 21;
+        $subtotal = $productPrice - $btw;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,16 +58,15 @@
 <!-- "product 1" -->
         <div class="item">
             <div class="buttons">
-            <button type="button"><img src="/image/111056_trash_can_icon.png"></button> 
+            <button type="button" onclick="deleteCookie(product_id)"><img src="/image/111056_trash_can_icon.png"></button> 
             </div>
 
             <div class="image">
-                <img src="/image/Pc.jpg">
+            <img src='../image/product_images/<?=$productImage?>.jpg' alt='product image'>
             </div>
-
             <div class="description">
-                <p>uufbvuubb nincionoiwn incwioenje</p>
-                <p>jnvjnfojdnof kicninceroi cpewniewn</p>
+                <p><?=$productName?></p>
+                <p><?=substr($productDescription, 0, 30)?></p>
             </div>
 
             <div class="quantity"> 
@@ -53,7 +74,7 @@
             </div>
 
             <div class="price">
-                <p>$10</p>
+                <p>€<?=$productPrice?></p>
             </div>
          </div>
 
@@ -64,10 +85,10 @@
             </div>
 
             <div class="totaal">
-                <p>Subtotaal $</p> 
+                <p>Subtotaal € <?=$subtotal?></p> 
                 <p>Shipping free</p>
-                <p>Taxes $</p>
-                <p>Totaal</p> 
+                <p>Taxes € <?=$btw?></p>
+                <p>Totaal €<?=$productPrice?></p> 
             </div>
             <div class="checkout_button">
                 <button>Checkout</button>

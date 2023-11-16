@@ -31,6 +31,7 @@
         </div>
         <a class="right" href="#news">Over Ons</a>
         <a href="">Contact</a>
+        <a href="../pages/winkelwagen.php" id="winkelwagen">Winkelwagen</a>
           <!-- <form action="../api/login.php"> -->
             <?php 
               // check if cookie is set

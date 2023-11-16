@@ -54,6 +54,11 @@
         <h3><?php echo $productName; ?></h3>
         <p><?php echo $productCategory; ?></p>
         <p><?php echo $productPrice; ?></p>
+
+        <form action="../api/addToCart.php" method="post">
+            <button name="product_id" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
+        </form>
+
         <div class="star-container"></div> <!-- star rating -->
         <p class="Product_beschrijving"><?php echo $productDescription; ?></p>
         </div>
@@ -61,28 +66,6 @@
 
     <!-- footer -->
     <div id="footer"></div>
-    <script>
-    function readMore() {
-        var productDescription = document.querySelector('.Product_beschrijving p');
-        var button = document.querySelector('.Product_beschrijving button');
-        var maxLength = 200; // You can adjust the maximum length as needed
-
-        if (productDescription.style.display === 'none' || productDescription.style.display === '') {
-            productDescription.style.display = 'block';
-            button.textContent = 'Lees Minder'; // Change button text to "Lees Minder" (Read Less)
-        } else {
-            productDescription.style.display = 'none';
-            button.textContent = 'Lees Meer'; // Change button text back to "Lees Meer" (Read More)
-        }
-
-        var text = productDescription.innerText;
-
-        if (text.length < maxLength) {
-            var truncatedText = text.slice(100, maxLength);
-            productDescription.innerText = truncatedText;
-        }
-    }
-    </script>
 
 
 </body>
