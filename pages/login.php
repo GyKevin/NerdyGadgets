@@ -68,7 +68,7 @@ main {
     margin-bottom: 50px;
 }
 .login-form input{
-    width: 100%;
+    width: 300px;
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
