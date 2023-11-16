@@ -44,8 +44,7 @@
             </div>
 
             <div class="description">
-                <p>uufbvuubb nincionoiwn incwioenje</p>
-                <p>jnvjnfojdnof kicninceroi cpewniewn</p>
+                <p>Apple MacBook Air (2020) MGN63N/A - 13.3 inch - Apple M1 - 256 GB - Space Grey</p>
             </div>
 
             <div class="quantity"> 

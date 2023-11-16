@@ -18,11 +18,11 @@ main {
   }
   .winkelwagen{
     height: 100%;
-    width: 50%;
+    width: 70%;
   }
   .overzicht{
     height: 100%;
-    width: 50%;
+    width: 30%;
   }
 .titel {
     height: 60px;
@@ -50,40 +50,34 @@ main {
     background-color: #1C00ff00;
     color: black;
     padding: 10px;
-    border: solid 3px black;
-    border-radius: 10px;
+    /* border: solid 3px black; */
+    /* border-radius: 10px; */
+    border-color: #1C00ff00;
   }
-  .buttons img{
-    height: 20px;
+.buttons img{
+    height: 25px;
     width: auto;
   }
 .image img{
-    margin-right: 50px;
+    margin-right: 30px;
     width: 150px;
     height: auto;
 }
 .description{
     padding-top: 10px;
-    margin-right: 60px;
-    width: 115px;
+    margin-right: 20px;
+    width: 300px;
 }
 .description p{
     display: block;
     font-size: 14px;
     color: #43484D;
     font-weight: 400;
-}
-.description p:first-child{
-    margin-bottom: 5px;
-}
-.description p:last-child {
-font-weight: 300px;
-margin-top: 8px;
-color: #86939E;
+    margin-top: 40px;
 }
 .quantity {
     padding-top: 60px;
-    margin-right: 30px;
+    margin-right: 10px;
 }
 .quantity input {
     width: 50px;
