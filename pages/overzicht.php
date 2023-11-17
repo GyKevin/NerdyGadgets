@@ -1,6 +1,9 @@
 <?php
 include_once("../db/dbc.php");
+include_once ("../db/CookiesDatabase.php");
+include_once ("../api/cookies.php");
 
+setAllCookieClicks();
 $type = $_GET['type'];
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 
@@ -55,8 +58,24 @@ if ($sort == 'default') {
 
 //functie voor het veranderen naar de product pagina
 if (isset($_POST['kopen'])){
-    $id = $_POST['kopen'];
-    exit(header("location: product.php?id={$id}"));
+    $category = implode(getProductCategory($_POST['kopen']));
+    echo $category;
+
+    if ($category === "laptops" || isset($_COOKIE["laptopClicks"])){
+        addLaptopClick();
+    }if ($category === "phones" || isset($_COOKIE["phoneClicks"])){
+        addPhoneClicks();
+    }if ($category === "opslag" || isset($_COOKIE["opslagClicks"])){
+        addOpslagClick();
+    }if ($category === "routers" || isset($_COOKIE["routerClicks"])){
+        addRouterClick();
+    }if ($category === "componenten" || isset($_COOKIE["componentClicks"])){
+        addComponentClick();
+    }if ($category === "desktops" || isset($_COOKIE["desktopClicks"])){
+        addDesktopClick();
+    }
+
+//    exit(header("location: product.php?id={$_POST['kopen']}"));
 }
 
 $result = $conn->query($sql);
@@ -176,7 +195,7 @@ $result = $conn->query($sql);
                     <div id='buy-btn'>
                         <p>€ $productPrice</p> <br>
                         
-//                        veranderd van href naar form
+//                        veranderdt van a tagg naar form tagg
                         <form method='post'>
                             <button type='submit' id='koop-btn' name='kopen' value='$productId'>Bekijk Product</button>
                         </form>
