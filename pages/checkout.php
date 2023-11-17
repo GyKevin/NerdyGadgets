@@ -51,7 +51,7 @@
 
             <div class="payment">
                 <h3>Payment</h3>
-                </div>
+
                 <label for="cname">Name on Card</label>
                 <input type="text" id="cname" name="cardname">
                 <label for="ccnum">Credit card number</label>
@@ -69,6 +69,7 @@
                     <input type="text" id="cvv" name="cvv">
                 </div>
                 </div>
+                </div>
             </div>
 
             </div>
@@ -78,5 +79,6 @@
     </div>
     </div>
     </main>
+    <div id="footer"></div>
 </body>
 </html>
