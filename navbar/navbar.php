@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>navbar</title>
     <link rel="stylesheet" href="navbar.css">
+    <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="navbar">
@@ -31,7 +32,6 @@
         </div>
         <a class="right" href="#news">Over Ons</a>
         <a href="">Contact</a>
-        <a href="../pages/winkelwagen.php" id="winkelwagen">Winkelwagen</a>
           <!-- <form action="../api/login.php"> -->
             <?php 
               // check if cookie is set
@@ -61,6 +61,8 @@
               }
             ?>
           <!-- </form> -->
+        <a href="../pages/winkelwagen.php" id="winkelwagen"><i style='font-size:20px' class='fas'>&#xf07a;</i></a>
+
       </div>
 </body>
 </html>
