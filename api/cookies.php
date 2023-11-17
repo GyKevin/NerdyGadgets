@@ -7,22 +7,22 @@ function setAllCookieClicks(){
     $componentClicks = 0;
     $desktopClicks = 0;
 
-    if (isset($_COOKIE["laptopClicks"])){
+    if (!isset($_COOKIE["laptopClicks"])){
         setcookie("laptopClicks", $laptopClicks,time() +(86400 *30), "/");
     }
-    if (isset($_COOKIE["phoneClicks"])){
+    if (!isset($_COOKIE["phoneClicks"])){
         setcookie("phoneClicks", $phoneClicks,time() +(86400 *30), "/");
     }
-    if (isset($_COOKIE["opslagClicks"])){
+    if (!isset($_COOKIE["opslagClicks"])){
         setcookie("opslagClicks", $opslagClicks,time() +(86400 *30), "/");
     }
-    if (isset($_COOKIE["routerClicks"])){
+    if (!isset($_COOKIE["routerClicks"])){
         setcookie("routerClicks", $routerClicks,time() +(86400 *30), "/");
     }
-    if (isset($_COOKIE["componentClicks"])){
+    if (!isset($_COOKIE["componentClicks"])){
         setcookie("componentClicks", $componentClicks,time() +(86400 *30), "/");
     }
-    if (isset($_COOKIE["desktopClicks"])){
+    if (!isset($_COOKIE["desktopClicks"])){
         setcookie("desktopClicks", $desktopClicks,time() +(86400 *30), "/");
     }
 }
@@ -40,7 +40,7 @@ function addLaptopClick(){
 }
 
 function addPhoneClicks(){
-    if (!isset($_COOKIE["phoneClicks"])){
+    if (isset($_COOKIE["phoneClicks"])){
         $phoneClicks = $_COOKIE["phoneClicks"];
         $phoneClicks++;
 
@@ -49,7 +49,7 @@ function addPhoneClicks(){
 }
 
 function addOpslagClick(){
-    if (!isset($_COOKIE["phoneClicks"])){
+    if (isset($_COOKIE["opslagClicks"])){
         $opslagClicks = $_COOKIE["opslagClicks"];
         $opslagClicks++;
 
@@ -59,7 +59,7 @@ function addOpslagClick(){
 }
 
 function addRouterClick(){
-    if (!isset($_COOKIE["routerClicks"])){
+    if (isset($_COOKIE["routerClicks"])){
         $routerClicks = $_COOKIE["routerClicks"];
         $routerClicks++;
 
@@ -68,7 +68,7 @@ function addRouterClick(){
 }
 
 function addComponentClick(){
-    if (!isset($_COOKIE["componentClicks"])){
+    if (isset($_COOKIE["componentClicks"])){
         $componentClicks = $_COOKIE["componentClicks"];
         $componentClicks++;
 
@@ -77,7 +77,7 @@ function addComponentClick(){
 }
 
 function addDesktopClick(){
-    if (!isset($_COOKIE["desktopClicks"])){
+    if (isset($_COOKIE["desktopClicks"])){
         $desktopClicks = $_COOKIE["desktopClicks"];
         $desktopClicks++;
 

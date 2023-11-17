@@ -61,17 +61,17 @@ if (isset($_POST['kopen'])){
     $category = implode(getProductCategory($_POST['kopen']));
     echo $category;
 
-    if ($category === "laptops" || isset($_COOKIE["laptopClicks"])){
+    if ($category === "laptops" ){
         addLaptopClick();
-    }if ($category === "phones" || isset($_COOKIE["phoneClicks"])){
+    }if ($category === "phones" ){
         addPhoneClicks();
-    }if ($category === "opslag" || isset($_COOKIE["opslagClicks"])){
+    }if ($category === "opslag" ){
         addOpslagClick();
-    }if ($category === "routers" || isset($_COOKIE["routerClicks"])){
+    }if ($category === "routers" ){
         addRouterClick();
-    }if ($category === "componenten" || isset($_COOKIE["componentClicks"])){
+    }if ($category === "componenten" ){
         addComponentClick();
-    }if ($category === "desktops" || isset($_COOKIE["desktopClicks"])){
+    }if ($category === "desktops" ){
         addDesktopClick();
     }
 
