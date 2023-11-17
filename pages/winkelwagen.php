@@ -66,7 +66,6 @@ if($result->num_rows >0) {
             </div>
             <div class="description">
                 <p><?=$productName?></p>
-                <p><?=substr($productDescription, 0, 30)?></p>
             </div>
 
             <div class="quantity"> 
