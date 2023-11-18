@@ -36,6 +36,7 @@ main {
     padding: 20px 30px;
     height: 120px;
     display: flex;
+    flex-direction: column;
 }
 .buttons {
     display: inline-block;
@@ -140,28 +141,31 @@ main {
   font-size: 16px;
   margin-bottom: 20px;
 }
-  @media (max-width: 800px) {
-    .winkelwagen {
-      width: 100%;
-      height: auto;
-      overflow: hidden;
-    }
-    .item {
-      height: auto;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .image img {
-      width: 50%;
-    }
-    .image,
-    .quantity,
-    .description {
-      width: 100%;
-      text-align: center;
-      margin: 6px 0;
-    }
-    .buttons {
-      margin-right: 20px;
-    }
+@media (max-width: 800px) {
+  .winkelwagen {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
   }
+  .item {
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .image img {
+    width: 50%;
+  }
+  .image,
+  .quantity,
+  .description {
+    width: 100%;
+    text-align: center;
+    margin: 6px 0;
+  }
+  .buttons {
+    margin-right: 20px;
+  }
+}
+.items {
+  display: flex;
+}

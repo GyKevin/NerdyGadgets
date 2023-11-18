@@ -1,25 +1,4 @@
-<?php 
-session_start();
 
-include_once("../db/dbc.php");
-
-$sql = "SELECT * FROM product WHERE id = " . $_COOKIE['product_id'];  
-$result = $conn->query($sql);
-
-if($result->num_rows >0) {
-    while($row = $result->fetch_assoc()) {
-        $productId = $row['id'];
-        $productName = $row['name'];
-        $productPrice = $row['price'];
-        $productDescription = $row['description'];
-        $productImage = $row['image'];
-        $productCategory = $row['category'];
-
-        $btw = ($productPrice / 100) * 21;
-        $subtotal = $productPrice - $btw;
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,29 +34,86 @@ if($result->num_rows >0) {
                 Winkelwagen
             </div>
             
-<!-- "product 1" -->
+<!-- producten -->
         <div class="item">
-            <div class="buttons">
-            <button type="button" onclick="deleteCookie(product_id)"><img src="/image/111056_trash_can_icon.png"></button> 
-            </div>
 
-            <div class="image">
-            <img src='../image/product_images/<?=$productImage?>.jpg' alt='product image'>
-            </div>
-            <div class="description">
-                <p><?=$productName?></p>
-            </div>
+        <?php 
+        session_start();
 
-            <div class="quantity"> 
-                <input type="number" name="quantity" value="1">
-            </div>
+        include_once("../db/dbc.php");
 
-            <div class="price">
-                <p>€<?=$productPrice?></p>
+        // Check if the cart array exists in the session
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            // Use the IN clause to retrieve all products in the cart
+            $productIds = implode(',', $_SESSION['cart']);
+            // echo $productIds;
+            
+            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $totalPrice = 0;
+                while ($row = $result->fetch_assoc()) {
+                    $productId = $row['id'];
+                    $productName = $row['name'];
+                    $productPrice = $row['price'];
+                    $productDescription = $row['description'];
+                    $productImage = $row['image'];
+                    $productCategory = $row['category'];
+
+                    if (isset($_POST['quantity'])) {
+                        $productPrice = $productPrice * $_POST['quantity'];
+                    }
+
+                    // displaying all the prices propperly
+                    $totalPrice += $productPrice;
+                    $btw = ($totalPrice / 100) * 21;
+                    $subtotal = $totalPrice - $btw;
+                    
+            // the closing tags are a bit more down
+        ?>
+            <div class="items">
+                <div class="buttons">
+                <button type="button" onclick="deleteCookie(product_id)"><img src="/image/111056_trash_can_icon.png"></button> 
+                </div>
+
+                <div class="image">
+                <img src='../image/product_images/<?=$productImage?>.jpg' alt='product image'>
+                </div>
+                <div class="description">
+                    <p><?=$productName?></p>
+                </div>
+
+                <form action="winkelwagen.php" method="post" id="quantityForm">
+                <div class="quantity"> 
+                    <input type="number" name="quantity" id="quantityInput" value="<?php echo isset($_POST['quantity']) ? htmlspecialchars($_POST['quantity']) : '1'; ?>" min="1">
+                    <!-- <input type="submit"> -->
+                </div>
+                <script>
+                    document.getElementById('quantityInput').addEventListener('input', function() {
+                        // Submit the form when the quantity changes
+                        document.getElementById('quantityForm').submit();
+                    });
+                </script>
+                </form>
+                <!-- remember the input -->
+                
+                
+
+                <div class="price">
+                    <p>€<?=$productPrice?></p>
+                </div>
             </div>
+            <?php 
+                }
+                }
+            } else {
+                echo "Cart is empty.";
+            }
+         ?>
          </div>
-
         </div>
+        
         <div class="overzicht">
             <div class="overzicht_titel">
                Overzicht
@@ -85,9 +121,9 @@ if($result->num_rows >0) {
 
             <div class="totaal">
                 <p>Subtotaal € <?=$subtotal?></p> 
-                <p>Shipping free</p>
-                <p>Taxes € <?=$btw?></p>
-                <p>Totaal €<?=$productPrice?></p> 
+                <p>BTW € <?=$btw?></p>
+                <p>Gratis verzending</p>
+                <p>Totaal €<?=$totalPrice?></p> 
             </div>
             <div class="checkout_button">
                 <button>Checkout</button>
