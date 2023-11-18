@@ -62,6 +62,31 @@
             </a>
         </div>
 
+        <!--aanbevolen producten-->
+        <div class="best-seller">
+            <h1>Aanbevolen Producten</h1>
+            <div style="display: flex; justify-content: center;">
+                <?php
+                include_once ("db/productQueries.php");
+                include_once ("api/cookies.php");
+                $result = getRecommendedProducts(getHighestCookieValue());
+
+                $aantal = 0;
+                for ($i = 0; $i < 4; $i++) {
+                    $productImage = $result[$i]['image'];
+                    $productPrice = $result[$i]['price'];
+                    $productName = $result[$i]['name'];
+
+                    echo "<div class='product'>";
+                    echo "<img src='/image/product_images/" . $productImage . ".jpg' alt=''>";
+                    echo "<p>" . $productName . "</p>";
+                    echo "<p>Prijs: €" . $productPrice . "</p>";
+                    echo "</div>";
+                }
+                ?>
+            </div>
+        </div>
+
         <!-- klanten recenties -->
         <div class="reviews">
             <h1>Onze klanten recenties</h1>
