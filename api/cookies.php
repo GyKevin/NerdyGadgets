@@ -84,5 +84,19 @@ function addDesktopClick(){
         setcookie("desktopClicks", $desktopClicks,time() +(86400 *30), "/");
     }
 }
+
+function getHighestCookieValue(){
+    $clicks = array(
+       "laptops" => $_COOKIE["laptopClicks"],
+       "phones" => $_COOKIE["phoneClicks"],
+       "opslag" => $_COOKIE["opslagClicks"],
+       "routers" => $_COOKIE["routerClicks"],
+       "components" => $_COOKIE["componentClicks"],
+       "desktops" => $_COOKIE["desktopClicks"]
+    );
+
+    return implode(array_keys($clicks,max($clicks)));
+
+}
 ?>
 
