@@ -70,12 +70,17 @@
                     $btw = ($totalPrice / 100) * 21;
                     $subtotal = $totalPrice - $btw;
                     
+                    if (isset($_POST['trash'])) {
+                        unset($_SESSION['cart'][$productId]);
+                    }
             // the closing tags are a bit more down
         ?>
             <div class="items">
-                <div class="buttons">
-                <button type="button" onclick="deleteCookie(product_id)"><img src="/image/111056_trash_can_icon.png"></button> 
-                </div>
+                <form action="winkelwagen.php" method="post">
+                    <div class="buttons">
+                    <button name="trash"><img src="/image/111056_trash_can_icon.png"></button> 
+                    </div>
+                </form>
 
                 <div class="image">
                 <img src='../image/product_images/<?=$productImage?>.jpg' alt='product image'>
@@ -108,7 +113,7 @@
                 }
                 }
             } else {
-                echo "Cart is empty.";
+                echo "Winkelwagen is leeg.";
             }
          ?>
          </div>
@@ -120,13 +125,20 @@
             </div>
 
             <div class="totaal">
-                <p>Subtotaal € <?=$subtotal?></p> 
-                <p>BTW € <?=$btw?></p>
-                <p>Gratis verzending</p>
-                <p>Totaal €<?=$totalPrice?></p> 
+                <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                echo "<p>Subtotaal € <?=$subtotal?></p> 
+                    <p>BTW € <?=$btw?></p>
+                    <p>Gratis verzending</p>
+                    <p>Totaal €<?=$totalPrice?></p>";
+                } else {
+                echo "<p>Subtotaal €</p> 
+                    <p>BTW €</p>
+                    <p>Gratis verzending</p>
+                    <p>Totaal €</p>";
+                } ?>
             </div>
             <div class="checkout_button">
-                <button>Checkout</button>
+                <button class="checkoutbtn"><a href="checkout.php">Checkout</a></button>
             </div>
         </div>
     </div>

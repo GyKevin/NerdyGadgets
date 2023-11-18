@@ -47,6 +47,9 @@ main {
     margin-right: 20px;
 
 }
+.trashcan {
+  cursor: pointer;
+}
 .buttons button{
     background-color: #1C00ff00;
     color: black;
@@ -168,4 +171,11 @@ main {
 }
 .items {
   display: flex;
+}
+.checkoutbtn {
+  cursor: pointer !important;
+}
+.checkoutbtn a {
+  text-decoration: none;
+  color: white !important;
 }
