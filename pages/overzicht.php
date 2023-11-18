@@ -75,7 +75,7 @@ if (isset($_POST['kopen'])){
         addDesktopClick();
     }
 
-//    exit(header("location: product.php?id={$_POST['kopen']}"));
+    exit(header("location: product.php?id={$_POST['kopen']}"));
 }
 
 $result = $conn->query($sql);
@@ -195,7 +195,6 @@ $result = $conn->query($sql);
                     <div id='buy-btn'>
                         <p>€ $productPrice</p> <br>
                         
-//                        veranderdt van a tagg naar form tagg
                         <form method='post'>
                             <button type='submit' id='koop-btn' name='kopen' value='$productId'>Bekijk Product</button>
                         </form>
