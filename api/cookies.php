@@ -95,7 +95,9 @@ function getHighestCookieValue(){
        "desktops" => $_COOKIE["desktopClicks"]
     );
 
-    return implode(array_keys($clicks,max($clicks)));
+    $maxValue = max($clicks);
+
+    return array_search($maxValue,$clicks);
 
 }
 ?>
