@@ -22,6 +22,40 @@
             margin-top: auto; 
         }
     </style>
+
+<script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            var y = document.getElementById("repass");
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }
+
+        }
+        function mySubmit(obj) {
+            var pwdObj = document.getElementById('password');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+
+            var pwdObj = document.getElementById('repass');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
 </head>
 <body>
 <div id="navbar"></div>
@@ -46,9 +80,9 @@
                 <input type="text" name="house_number" placeholder="house number"><br>
                 <input type="text" name="postal_code" placeholder="postal code"><br>
                 <input type="text" name="city" placeholder="city"><br>
-                <input type="password" name="password" placeholder="password"><br>
-                <input type="password" name="repeat_password" placeholder="repeat password"><br>
-                <input type="submit" class="Registreer" value="Registreer">
+                <input type="password" name="password" placeholder="password" id="password"><br>
+                <input type="password" name="repeat_password" placeholder="repeat password" id="repass"><br>
+                <input type="submit" class="Registreer" value="Registreer" onclick="mySubmit(this)">
             </form>
             
 

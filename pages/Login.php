@@ -22,6 +22,17 @@
             margin-top: auto; 
         }
     </style>
+     <script>
+        function mySubmit(obj) {
+            var pwdObj = document.getElementById('password');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
 </head>
 <body>
     <div id="navbar"></div>
@@ -39,8 +50,8 @@
             <h2>Inloggen</h2>
             <form action="../api/login.php" method="post" class="login-form">
                 <input type="email" name="email" placeholder="email"> <br>
-                <input type="password" name="password" placeholder="wachtwoord"> <br>
-                <input type="submit" class="login" value="Login">
+                <input type="password" name="password" placeholder="wachtwoord" id="password"> <br>
+                <input type="submit" class="login" value="Login" onclick="mySubmit(this)">
                 
             </form>
             <a class="go-to-login" href="/pages/register.php">Geen account? Maak een account aan.</a>
