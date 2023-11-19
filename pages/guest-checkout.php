@@ -2,9 +2,14 @@
 session_start();
 include_once("../db/dbc.php");
 if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
-    $productIds = unserialize($_COOKIE['cart']);
-                $productIds = implode(',', $productIds);
-                // echo $productIds;
+    $cart = unserialize($_COOKIE['cart']);
+    // $productIds = implode(',', $cart);
+    $ids = array_map(function ($item) {
+        return $item['id'];
+    }, $cart);
+    
+    // Implode the IDs into a string
+    $productIds = implode(', ', $ids);
                 
                 $sql = "SELECT * FROM product WHERE id IN ($productIds)";
                 $result = $conn->query($sql);
@@ -22,7 +27,10 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                         $totalPrice += $productPrice;
                         $btw = ($totalPrice / 100) * 21;
                         $subtotal = $totalPrice - $btw;
-                   
+
+                    }
+                }
+                }
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +74,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 }
             ?>
                 <!-- put php here -->
-                    <!-- <form action="../api/checkout.php" method="post"> -->
+                <form action="../api/deleteCookie.php">
                     <label for="first_name">
                         Voornaam <br>
                         <input type="text" name="first_name" id="">
@@ -140,10 +148,10 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     Klarna  
                 </label>
             </div>
-                <form action="../api/deleteCookie.php">
+                <!-- <form action="../api/deleteCookie.php"> -->
                 <div class="checkout">
                 <p>Als je op 'Bestellen en betalen' klikt, ga je akkoord met de op jouw bestelling van toepassing zijnde (algemene) voorwaarden van NerdyGadgets </p>
-                <input type="submit" class="bestellen" value="Bestellen en betalen">
+                <input type="submit" class="bestellen" value="Bestellen en betalen" name="trash">
                 </div>
                 </form>
         </div>
@@ -153,11 +161,11 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 </body>
 </html>
 <?php 
- }
-}
-} else {
-    echo "U heeft nog niks in de winkelwagen staan.";
-}
+//  }
+// }
+// } else {
+//     echo "U heeft nog niks in de winkelwagen staan.";
+// }
 ?>
 
 <script>

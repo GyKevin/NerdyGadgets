@@ -2,8 +2,14 @@
 session_start();
 include_once("../db/dbc.php");
 if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
-    $productIds = unserialize($_COOKIE['cart']);
-                $productIds = implode(',', $productIds);
+    $cart = unserialize($_COOKIE['cart']);
+    // $productIds = implode(',', $cart);
+    $ids = array_map(function ($item) {
+        return $item['id'];
+    }, $cart);
+    
+    // Implode the IDs into a string
+    $productIds = implode(', ', $ids);
                 // echo $productIds;
                 
                 $sql = "SELECT * FROM product WHERE id IN ($productIds)";
@@ -22,7 +28,6 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                         $totalPrice += $productPrice;
                         $btw = ($totalPrice / 100) * 21;
                         $subtotal = $totalPrice - $btw;
-                   
 ?>
 
 <!DOCTYPE html>
