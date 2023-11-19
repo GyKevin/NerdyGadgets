@@ -37,44 +37,50 @@
 <!-- producten -->
         <div class="item">
 
-        <?php 
-        session_start();
+        <?php
+session_start();
 
-        include_once("../db/dbc.php");
+include_once("../db/dbc.php");
 
-        // Check if the cart array exists in the session
-        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-            // Use the IN clause to retrieve all products in the cart
-            $productIds = implode(',', $_SESSION['cart']);
-            // echo $productIds;
-            
-            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
-            $result = $conn->query($sql);
+// Check if the cart array exists in the session
+if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
+    // Use the IN clause to retrieve all products in the cart
+    $productIds = unserialize($_COOKIE['cart']);
+    $productIds = implode(',', $productIds);
+    // echo $productIds;
 
-            if ($result->num_rows > 0) {
-                $totalPrice = 0;
-                while ($row = $result->fetch_assoc()) {
-                    $productId = $row['id'];
-                    $productName = $row['name'];
-                    $productPrice = $row['price'];
-                    $productDescription = $row['description'];
-                    $productImage = $row['image'];
-                    $productCategory = $row['category'];
+    $sql = "SELECT * FROM product WHERE id IN ($productIds)";
+    $result = $conn->query($sql);
 
-                    if (isset($_POST['quantity'])) {
-                        $productPrice = $productPrice * $_POST['quantity'];
-                    }
+    if ($result->num_rows > 0) {
+        $totalPrice = 0;
+        while ($row = $result->fetch_assoc()) {
+            $productId = $row['id'];
+            $productName = $row['name'];
+            $productPrice = $row['price'];
+            $productDescription = $row['description'];
+            $productImage = $row['image'];
+            $productCategory = $row['category'];
 
-                    // displaying all the prices propperly
-                    $totalPrice += $productPrice;
-                    $btw = ($totalPrice / 100) * 21;
-                    $subtotal = $totalPrice - $btw;
-                    
-                    if (isset($_POST['trash'])) {
-                        unset($_SESSION['cart'][$productId]);
-                    }
-            // the closing tags are a bit more down
-        ?>
+            if (isset($_POST['quantity'])) {
+                $productPrice = $productPrice * $_POST['quantity'];
+            }
+
+            // displaying all the prices propperly
+            $totalPrice += $productPrice;
+            $btw = ($totalPrice / 100) * 21;
+            $subtotal = $totalPrice - $btw;
+
+            if (isset($_POST['trash'])) {
+                // You can't unset a value in a cookie directly; you need to update the cookie
+                $cart = unserialize($_COOKIE['cart']);
+                $key = array_search($productId, $cart);
+                if ($key !== false) {
+                    unset($cart[$key]);
+                    setcookie('cart', serialize($cart), time() + 3600, '/');
+                }
+            }
+            ?>
             <div class="items">
                 <form action="winkelwagen.php" method="post">
                     <div class="buttons">
@@ -125,7 +131,7 @@
             </div>
 
             <div class="totaal">
-                <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                <?php if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 echo "<p>Subtotaal €$subtotal </p> 
                     <p>BTW €$btw</p>
                     <p>Gratis verzending</p>
