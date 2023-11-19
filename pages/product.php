@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NerdyGadgets</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
-    <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/navbar/import-handler.js" defer></script>
     <style>
         body {
@@ -54,11 +54,6 @@
         <h3><?php echo $productName; ?></h3>
         <p><?php echo $productCategory; ?></p>
         <p><?php echo $productPrice; ?></p>
-
-        <form action="../api/addToCart.php" method="post">
-            <button name="product_id" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
-        </form>
-
         <div class="star-container"></div> <!-- star rating -->
         <p class="Product_beschrijving"><?php echo $productDescription; ?></p>
         </div>
@@ -66,39 +61,37 @@
 
     <!-- footer -->
     <div id="footer"></div>
+    <script>
+    function readMore() {
+        var productDescription = document.querySelector('.Product_beschrijving p');
+        var button = document.querySelector('.Product_beschrijving button');
+        var maxLength = 200; // You can adjust the maximum length as needed
+
+        if (productDescription.style.display === 'none' || productDescription.style.display === '') {
+            productDescription.style.display = 'block';
+            button.textContent = 'Lees Minder'; // Change button text to "Lees Minder" (Read Less)
+        } else {
+            productDescription.style.display = 'none';
+            button.textContent = 'Lees Meer'; // Change button text back to "Lees Meer" (Read More)
+        }
+
+        var text = productDescription.innerText;
+
+        if (text.length < maxLength) {
+            var truncatedText = text.slice(100, maxLength);
+            productDescription.innerText = truncatedText;
+        }
+    }
+    </script>
 
 
 </body>
 </html>
 
 <style>
-    main{
-        display: flex;
-    }
-    .Image_container {
-        display: flex;
-    }
-    img{
-        width: 400px;
-        height: auto;
-        margin-left: 100px;
-        object-fit: contain;
-    }
-    .add_cart{
-        margin-top: 20px;
-        margin-left: 0px;
-        margin-bottom: 15px;
-        height: 30px;
-        width: 125px;
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-
-    }
-
+main {
+    display: flex;
+    flex-direction: row ;
+    /* flex-wrap: wrap; */
+}
 </style>
