@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1159aa73-71e8-492f-a6ba-450242ca2854" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/overzicht.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/overzicht.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/product.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,10 +84,23 @@
       <workItem from="1698310587208" duration="16000" />
       <workItem from="1698763048345" duration="155000" />
     </task>
+    <task id="LOCAL-00001" summary="fixed issue where bekijk product faya ging">
+      <option name="closed" value="true" />
+      <created>1700428476949</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700428476949</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed issue where bekijk product faya ging" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed issue where bekijk product faya ging" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
