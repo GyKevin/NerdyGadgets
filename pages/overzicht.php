@@ -196,7 +196,7 @@ $result = $conn->query($sql);
                         <p>€ $productPrice</p> <br>
                         
                         <form method='post'>
-                            <button type='submit' id='koop-btn' name='kopen' value='$productId'>Bekijk Product</button>
+                            <button type='submit' id='' name='kopen' value='$productId'>Bekijk Product</button>
                         </form>
                     </div>
                 </div>";
