@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <!-- import font-awesome -->
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
@@ -22,6 +22,40 @@
             margin-top: auto; 
         }
     </style>
+
+<script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            var y = document.getElementById("repass");
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }
+
+        }
+        function mySubmit(obj) {
+            var pwdObj = document.getElementById('password');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+
+            var pwdObj = document.getElementById('repass');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
 </head>
 <body>
 <div id="navbar"></div>
@@ -37,7 +71,7 @@
                 }
             ?>
             <h2>Registratie</h2>
-            <form action="../api/register.php" method="post">
+            <form action="../api/register.php" method="post" class="registratie-form">
                 <input type="text" name="first_name" placeholder="first name"> <br>
                 <input type="text" name="surname_prefix" placeholder="surname"><br>
                 <input type="text" name="last_name" placeholder="last name"><br>
@@ -46,9 +80,9 @@
                 <input type="text" name="house_number" placeholder="house number"><br>
                 <input type="text" name="postal_code" placeholder="postal code"><br>
                 <input type="text" name="city" placeholder="city"><br>
-                <input type="password" name="password" placeholder="password"><br>
-                <input type="password" name="repeat_password" placeholder="repeat password"><br>
-                <input type="submit" class="Registreer" value="Registreer">
+                <input type="password" name="password" placeholder="password" id="password"><br>
+                <input type="password" name="repeat_password" placeholder="repeat password" id="repass"><br>
+                <input type="submit" class="Registreer" value="Registreer" onclick="mySubmit(this)">
             </form>
             
 
@@ -76,7 +110,7 @@ main {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-input {
+.registratie-form input {
     width: 300px;
     padding: 12px;
     margin: 10px 0;
@@ -84,7 +118,7 @@ input {
     border-radius: 3px;
 }
 .Registreer {
-    width: 100%;
+    width: 100% !important;
     padding: 12px;
     background-color: #23232f;
     color: #ffffff;
