@@ -126,10 +126,10 @@
 
             <div class="totaal">
                 <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-                echo "<p>Subtotaal € <?=$subtotal?></p> 
-                    <p>BTW € <?=$btw?></p>
+                echo "<p>Subtotaal €$subtotal </p> 
+                    <p>BTW €$btw</p>
                     <p>Gratis verzending</p>
-                    <p>Totaal €<?=$totalPrice?></p>";
+                    <p>Totaal €$totalPrice</p>";
                 } else {
                 echo "<p>Subtotaal €</p> 
                     <p>BTW €</p>

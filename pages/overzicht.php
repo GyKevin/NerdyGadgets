@@ -169,9 +169,14 @@ $result = $conn->query($sql);
                     <a href='product.php?id=$productId'>$productName</a>
                     <div id='buy-btn'>
                         <p>€ $productPrice</p> <br>
-                        <a href='product.php?id=$productId'>
-                            <button id='koop-btn'>Bekijk Product</button>
-                        </a>
+                        <div class='koop-btns'>
+                            <a href='product.php?id=$productId'>
+                                <button>Bekijk Product</button>
+                            </a>
+                            <a href='quickadd.php?id=$productId'>
+                                <button id='koop-btn'><i style='font-size:15px' class='fas'>&#xf07a;</i></button>
+                            </a>
+                        </div>
                     </div>
                 </div>";
             }
@@ -242,10 +247,11 @@ main {
 .prodCard button {
     margin-top: auto;
     background-color: white;
-    width: 250px;
+    width: 200px;
     border: 3px solid black;
     color: black;
     padding: 10px;
+    margin-right: 2.5px;
     text-align: center;
     text-decoration: none;
     font-size: 15px;
@@ -259,6 +265,14 @@ main {
 #buy-btn p {
     margin: 0;
     padding: 0;
+}
+.koop-btns {
+    display: flex;
+    flex-direction: row;
+}
+#koop-btn {
+    width: 50px;
+    margin-left: 2.5px;
 }
 .prodCard:hover {
     /* transform: scale(0.95); */
