@@ -51,7 +51,6 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 <body>
     <!-- navbar -->
     <div id="navbar"></div>
-    <form action="../api/checkout.php" method="post">
     <main>
         <div class="container">
             <!-- checkout -->
@@ -67,61 +66,39 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 }
             ?>
                 <!-- put php here -->
-                <?php
-                if (isset($_SESSION['user_id'])) {
-                    $sql = "SELECT * FROM user WHERE id = " . $_SESSION['user_id'];
-                    $res= $conn -> query($sql);
-                    if ($res -> num_rows > 0) {
-                        while ($row = $res->fetch_assoc()) {
-                            $first_name = $row["first_name"];
-                            $surname_prefix = $row["surname_prefix"];
-                            $last_name = $row["surname"];
-                            $email = $row["email"];
-                            $street_name = $row["street_name"];
-                            $apartment_nr = $row["apartment_nr"];
-                            $postal_code = $row["postal_code"];
-                            $city = $row["city"];
-                        
-                ?>
-                <!-- <form action="../api/checkout.php" method="post"> -->
+                    <!-- <form action="../api/checkout.php" method="post"> -->
                     <label for="first_name">
                         Voornaam <br>
-                        <input type="text" name="first_name" id="" value="<?=$first_name?>" disabled>
+                        <input type="text" name="first_name" id="">
                     </label>
                     <label for="surname_prefix">
                         Tussenvoegsel <br>
-                        <input type="text" name="surname_prefix" id="" value="<?=$surname_prefix?>" disabled>
+                        <input type="text" name="surname_prefix" id="" >
                     </label>
                     <label for="last_name">
                         Achternaam <br>
-                        <input type="text" name="last_name" id="" value="<?=$last_name?>" disabled>
+                        <input type="text" name="last_name" id="">
                     </label>
                     <label for="email">
                         email <br>
-                        <input type="text" name="email" id="" value="<?=$email?>" disabled>
+                        <input type="text" name="email" id="">
                     </label> 
                     <label for="street_name">
                         Straat <br>
-                        <input type="text" name="street_name" id="" value="<?=$street_name?>" disabled>
+                        <input type="text" name="street_name" id="">
                     </label>
                     <label for="apartment_nr">
                         Huis nummer <br>
-                        <input type="text" name="apartment_nr" id="" value="<?=$apartment_nr?>" disabled>
+                        <input type="text" name="apartment_nr" id="">
                     </label>
                     <label for="postal_code">
                         Post code <br>
-                        <input type="text" name="postal_code" id="" value="<?=$postal_code?>" disabled>
+                        <input type="text" name="postal_code" id="">
                     </label>
                     <label for="city">
                         Stad <br>
-                        <input type="text" name="city" id="" value="<?=$city?>" disabled>
+                        <input type="text" name="city" id="">
                     </label>
-                <!-- </form> -->
-                    <?php
-                            }
-                        }
-                    }
-                    ?>
             </div>
 
             <!-- items -->
@@ -132,7 +109,8 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     <p class='productname'>".substr($productName , 0 , 40)."...</p>
                     <p>€$productPrice</p>
                 </div>";
-            ?>            
+            ?>
+            
             <p>Nog te betalen: €<?=$totalPrice?></p>
             </div>
 
@@ -162,15 +140,14 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     Klarna  
                 </label>
             </div>
-
+                <form action="../api/deleteCookie.php">
                 <div class="checkout">
                 <p>Als je op 'Bestellen en betalen' klikt, ga je akkoord met de op jouw bestelling van toepassing zijnde (algemene) voorwaarden van NerdyGadgets </p>
                 <input type="submit" class="bestellen" value="Bestellen en betalen">
                 </div>
-            <!-- </form> -->
+                </form>
         </div>
     </main>
-    </form>
     <!-- footer -->
     <div id="footer"></div>
 </body>
