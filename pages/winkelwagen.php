@@ -45,9 +45,15 @@ include_once("../db/dbc.php");
 // Check if the cart array exists in the session
 if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
     // Use the IN clause to retrieve all products in the cart
-    $productIds = unserialize($_COOKIE['cart']);
-    $productIds = implode(',', $productIds);
-    // echo $productIds;
+    $cart = unserialize($_COOKIE['cart']);
+    // $productIds = implode(',', $cart);
+    $ids = array_map(function ($item) {
+        return $item['id'];
+    }, $cart);
+    
+    // Implode the IDs into a string
+    $productIds = implode(', ', $ids);
+    // print_r($cart);
 
     $sql = "SELECT * FROM product WHERE id IN ($productIds)";
     $result = $conn->query($sql);
@@ -62,8 +68,16 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             $productImage = $row['image'];
             $productCategory = $row['category'];
 
-            if (isset($_POST['quantity'])) {
-                $productPrice = $productPrice * $_POST['quantity'];
+            $cartItem = null;
+            foreach ($cart as $item) {
+                if ($item['id'] == $productId) {
+                    $cartItem = $item;
+                    break;
+                }
+            }
+
+            if (isset($cartItem)) {
+                $productPrice = $productPrice * $cartItem['quantity'];
             }
 
             // displaying all the prices propperly
@@ -72,19 +86,26 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             $subtotal = $totalPrice - $btw;
 
             if (isset($_POST['trash'])) {
-                // You can't unset a value in a cookie directly; you need to update the cookie
-                $cart = unserialize($_COOKIE['cart']);
-                $key = array_search($productId, $cart);
-                if ($key !== false) {
-                    unset($cart[$key]);
-                    setcookie('cart', serialize($cart), time() + 3600, '/');
+                $index = array_search($_POST['product_id'], array_column($cart, 'id'));
+
+                // Check if the ID was found
+                if ($index !== false) {
+                    // Remove the array from the cart using unset
+                    unset($cart[$index]);
+                    // Reset array keys to ensure continuous indexing
+                    $cart = array_values($cart);
+    
+                    // Optionally, you can reindex the array keys
+                    // $cart = array_values(array_filter($cart));
+                    setcookie('cart', serialize($cart), time()-3600, '/'); 
                 }
             }
             ?>
             <div class="items">
                 <form action="winkelwagen.php" method="post">
                     <div class="buttons">
-                    <button name="trash"><img src="/image/111056_trash_can_icon.png"></button> 
+                    <button name="trash"><img src="/image/111056_trash_can_icon.png"></button>
+                    <input type="hidden" name="product_id" value=<?=$productId?>>
                     </div>
                 </form>
 
@@ -95,16 +116,15 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     <p><?=$productName?></p>
                 </div>
 
-                <form action="winkelwagen.php" method="post" id="quantityForm">
+                <form action="../api/addToCart.php" method="post" id="quantityForm" oninput='submitForm(this)'>
                 <div class="quantity"> 
-                    <input type="number" name="quantity" id="quantityInput" value="<?php echo isset($_POST['quantity']) ? htmlspecialchars($_POST['quantity']) : '1'; ?>" min="1">
-                    <!-- <input type="submit"> -->
+                    <input type="number" name="quantity" id="quantityInput" value="<?php echo isset($cartItem['quantity']) ? htmlspecialchars($cartItem['quantity']) : '1'; ?>" min="1">
+                    <input name='product_id' value=<?=$productId?> type="hidden" />
                 </div>
                 <script>
-                    document.getElementById('quantityInput').addEventListener('input', function() {
-                        // Submit the form when the quantity changes
-                        document.getElementById('quantityForm').submit();
-                    });
+                    function submitForm(form) {
+                        form.submit();
+                    }
                 </script>
                 </form>
                 <!-- remember the input -->

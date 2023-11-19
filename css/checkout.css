@@ -1,72 +1,74 @@
-main{
-    justify-content: center;
+main {
+  width: 100vw;
+  height: 100%;
+  margin: 0%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
-.content {
-    display: flex;
-    align-items: center;
-    margin-top: 50px;
-    justify-content: center;
-    flex-direction: row;
-    margin-bottom: 50px;
-  }
-  /* .payment
-  .billing {
-    flex: 50%;
-  }
-  
-  .checkout {
-    flex: 75%;
-  } */
-  .billing,
-  .payment{
-    padding: 0 16px;
-  }
-  
-  .container {
-    background-color: #f2f2f2;
-    padding: 5px 20px 15px 20px;
-    border: 1px solid lightgrey;
-    border-radius: 3px;
-    width: 700px;
-    align-items: center;
-  }
-  
-  input[type=text] {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  .payment input{
-    margin-right: 1000px;
-  }
-  
-  label {
-    margin-bottom: 10px;
-    display: block;
-  }
-  .btn {
-    background-color: #23232f;
-    color: white;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    width: 100%;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 17px;
-  }
-  
-  .btn:hover {
-    background-color: #2e2e3f;
-  }
-  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
-  @media (max-width: 800px) {
-    .row {
-      flex-direction: column-reverse;
-    }
-    .col-25 {
-      margin-bottom: 20px;
-    }
-  }
+.container {
+  width: 40vw;
+  height: fit-content;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bezorgadres {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.bezorgadres input {
+  width: 300px;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.betalen {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.product {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.productname {
+  width: 70%;
+}
+.bestellen {
+  margin-left: 20px ;
+  border: none;
+  background-color: #23232f;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+}
+.checkout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.checkout p {
+  width: 50%;
+}
+.checkout input:hover {
+  background-color: #4e4e58;
+}
