@@ -203,6 +203,7 @@ $result = $conn->query($sql);
             }
         }
 
+
         $conn->close();
         ?>
         </div>
@@ -271,7 +272,6 @@ main {
     border: 3px solid black;
     color: black;
     padding: 10px;
-    margin-right: 2.5px;
     text-align: center;
     text-decoration: none;
     font-size: 15px;
@@ -285,14 +285,6 @@ main {
 #buy-btn p {
     margin: 0;
     padding: 0;
-}
-.koop-btns {
-    display: flex;
-    flex-direction: row;
-}
-#koop-btn {
-    width: 50px;
-    margin-left: 2.5px;
 }
 .prodCard:hover {
     /* transform: scale(0.95); */

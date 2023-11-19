@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
-    <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- import font-awesome -->
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
@@ -22,17 +22,6 @@
             margin-top: auto; 
         }
     </style>
-     <script>
-        function mySubmit(obj) {
-            var pwdObj = document.getElementById('password');
-            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
-            hashObj.update(pwdObj.value);
-            var hash = hashObj.getHash("HEX");
-            pwdObj.value = hash;
-            console.log(pwdObj.value)
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
 </head>
 <body>
     <div id="navbar"></div>
@@ -48,10 +37,10 @@
                 }
             ?>
             <h2>Inloggen</h2>
-            <form action="../api/login.php" method="post" class="login-form">
+            <form action="../api/login.php" method="post">
                 <input type="email" name="email" placeholder="email"> <br>
-                <input type="password" name="password" placeholder="wachtwoord" id="password"> <br>
-                <input type="submit" class="login" value="Login" onclick="mySubmit(this)">
+                <input type="password" name="password" placeholder="wachtwoord"> <br>
+                <input type="submit" class="login" value="Login">
                 
             </form>
             <a class="go-to-login" href="/pages/register.php">Geen account? Maak een account aan.</a>
@@ -78,7 +67,7 @@ main {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-.login-form input{
+input {
     width: 300px;
     padding: 12px;
     margin: 10px 0;
@@ -86,7 +75,7 @@ main {
     border-radius: 3px;
 }
 .login {
-    width: 100% !important;
+    width: 100%;
     padding: 12px;
     background-color: #23232f;
     color: #ffffff;
