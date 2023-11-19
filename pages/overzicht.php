@@ -194,10 +194,14 @@ $result = $conn->query($sql);
                     <a href='product.php?id=$productId'>$productName</a>
                     <div id='buy-btn'>
                         <p>€ $productPrice</p> <br>
-                        
+                        <div class='koop-btns'>
                         <form method='post'>
                             <button type='submit' id='' name='kopen' value='$productId'>Bekijk Product</button>
                         </form>
+                            <a href='quickadd.php?id=$productId'>
+                                <button id='koop-btn'><i style='font-size:15px' class='fas'>&#xf07a;</i></button>
+                            </a>
+                        </div>
                     </div>
                 </div>";
             }
@@ -267,7 +271,7 @@ main {
 .prodCard button {
     margin-top: auto;
     background-color: white;
-    width: 250px;
+    width: 200px;
     border: 3px solid black;
     color: black;
     padding: 10px;

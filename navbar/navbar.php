@@ -61,6 +61,7 @@
               }
             ?>
           <!-- </form> -->
+          <a href="../pages/winkelwagen.php" id="winkelwagen"><i style='font-size:20px' class='fas'>&#xf07a;</i></a>
       </div>
 </body>
 </html>
