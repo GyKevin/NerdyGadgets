@@ -158,8 +158,8 @@ $result = $conn->query($sql);
             <!-- prijs tussen x-x -->
             <div>
                 <h4>Prijs tussen: </h4>
-                <input type="number" name="min" placeholder="min" min="0" class="price_inp">
-                <input type="number" name="max" placeholder="max" min="0" class="price_inp">
+                <input type="number" name="min" placeholder="Min" min="0" class="price_inp">
+                <input type="number" name="max" placeholder="Max" min="0" class="price_inp">
                 <button type="submit" class="filter_btn">Filter</button>
             </div>
             <div>
