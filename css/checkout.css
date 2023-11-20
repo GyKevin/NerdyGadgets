@@ -72,3 +72,9 @@ main {
 .checkout input:hover {
   background-color: #4e4e58;
 }
+.gegevens {
+  color: black;
+}
+.gegevens:hover {
+  color: #4e4e58;
+}
