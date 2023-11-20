@@ -49,8 +49,8 @@
                     </button>
 
                     <div class='dropdown-content-user'>
-                        <a href=''>Mijn gegevens</a>
-                        <a href=''>Mijn bestellingen</a>
+                        <a href='../pages/profiel.php'>Mijn gegevens</a>
+                        <a href='../pages/bestellingen.php'>Mijn bestellingen</a>
                         <a href='/navbar/logout.php'>uitloggen</a>
                     </div>
                   </div>";
