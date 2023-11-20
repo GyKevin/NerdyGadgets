@@ -42,6 +42,7 @@ include_once("../db/dbc.php");
                 JOIN User u ON o.user_id = u.id
                 WHERE u.id = " . $_SESSION['user_id'];
                 $result = $conn->query($sql);
+                if($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $id = $row['id'];
                     $name = $row['name'];
@@ -59,7 +60,10 @@ include_once("../db/dbc.php");
                                 <p>€$price</p>
                             </div>
                         </div>";
-                }
+                } 
+            } else {
+                echo "U heeft nog geen bestellingen";
+            }
             ?>
             </div>
         </main>
