@@ -58,6 +58,7 @@ main {
     /* border: solid 3px black; */
     /* border-radius: 10px; */
     border-color: #1C00ff00;
+    height: 25px;
   }
 .buttons img{
     height: 25px;
