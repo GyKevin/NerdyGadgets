@@ -270,16 +270,16 @@ main {
 } */
 .prodCard button {
     margin-top: auto;
-    background-color: white;
+    background-color: #23232f;
     width: 200px;
-    border: 3px solid black;
-    color: black;
+    border: none !important;
+    color: white;
     padding: 10px;
     margin-right: 2.5px;
     text-align: center;
     text-decoration: none;
     font-size: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
 }
@@ -307,7 +307,7 @@ main {
     background-color: #3e8e41;
 } */
 .prodCard button:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 .prodCard a:hover {
     text-decoration: underline;
@@ -346,10 +346,10 @@ main {
     text-underline-offset: 2px;
 }
 .filter_btn {
-    background-color: white;
-    border: 3px solid black;
+    background-color: #23232f;
+    border: none;
     width: 100%;
-    color: black;
+    color: white;
     padding: 10px;
     text-align: center;
     text-decoration: none;

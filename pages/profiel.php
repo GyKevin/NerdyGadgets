@@ -150,7 +150,7 @@ if (isset($_SESSION['user_id'])) {
     padding: 12px;
     margin: 5px 0;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 #submit {
     background-color: white !important;

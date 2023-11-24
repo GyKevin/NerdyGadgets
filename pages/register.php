@@ -115,7 +115,7 @@ main {
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 .Registreer {
     width: 100% !important;
