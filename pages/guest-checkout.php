@@ -30,7 +30,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
                     }
                 }
-                }
+            
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +61,11 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
     <!-- navbar -->
     <div id="navbar"></div>
     <main>
+        <?php
+    if(isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])){
+            print ("Uhdesunh");
+        }
+        ?>
         <div class="container">
             <!-- checkout -->
                 <!-- user gegevens -->
@@ -200,6 +205,13 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 // } else {
 //     echo "U heeft nog niks in de winkelwagen staan.";
 // }
+                }else{
+                    echo "<div class='redirect'>";
+                    echo "U heeft nog niks in uw winkelmandje staan";
+                    echo "<br>";
+                    echo  "<input type='button' name='' value='Terug naar winkelmandje' id=''>";
+                    echo "</div>";
+                }
 ?>
 
 <script>
