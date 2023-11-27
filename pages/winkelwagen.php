@@ -86,25 +86,20 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             $subtotal = $totalPrice - $btw;
 
             if (isset($_POST['trash'])) {
-                $index = array_search($_POST['product_id'], array_column($cart, 'id'));
-
-                // Check if the ID was found
+                $productIdToRemove = $_POST['trash'];
+                $index = array_search($productIdToRemove, array_column($cart, 'id'));
+            
                 if ($index !== false) {
-                    // Remove the array from the cart using unset
                     unset($cart[$index]);
-                    // Reset array keys to ensure continuous indexing
-                    $cart = array_values($cart);
-    
-                    // Optionally, you can reindex the array keys
-                    // $cart = array_values(array_filter($cart));
-                    setcookie('cart', serialize($cart), time()-3600, '/'); 
+                    setcookie('cart', serialize($cart), time() + 3600, '/'); // Update the expiration time
                 }
             }
+            
             ?>
             <div class="items">
-                <form action="winkelwagen.php" method="post">
+                <form action="winkelwagen.php?product_id=<?=$productId?>" method="post">
                     <div class="buttons">
-                    <button name="trash"><img src="/image/111056_trash_can_icon.png"></button>
+                    <button name="trash" value="<?=$productId?>"><img src="/image/111056_trash_can_icon.png"></button>
                     <input type="hidden" name="product_id" value=<?=$productId?>>
                     </div>
                 </form>
