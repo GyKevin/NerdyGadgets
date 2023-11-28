@@ -47,16 +47,17 @@
     <main>
         <!-- image slider -->
         <div>
+        <div>
         <img src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image">
         </div>
         <!-- product info -->
         <div>
-        <h3><?php echo $productName; ?></h3>
-        <p><?php echo $productCategory; ?></p>
-        <p><?php echo $productPrice; ?></p>
+        <h3 class="Product_naam"><?php echo $productName; ?></h3>
+        <p class="Product_categorie"><?php echo $productCategory; ?></p>
+        <p class="Product_prijs"><?php echo $productPrice; ?></p>
 
         <form action="../api/addToCart.php" method="post">
-            <button name="product_id" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
+            <button class="add_cart" name="product_id" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
         </form>
 
         <div class="star-container"></div> <!-- star rating -->
@@ -79,26 +80,40 @@
         display: flex;
     }
     img{
-        width: 400px;
+        width: 500px;
         height: auto;
         margin-left: 100px;
+        margin-top: 50px;
         object-fit: contain;
     }
     .add_cart{
-        margin-top: 20px;
-        margin-left: 0px;
-        margin-bottom: 15px;
-        height: 30px;
-        width: 125px;
-        background-color: #4CAF50; /* Green */
-        border: none;
+        margin-top: auto;
+        background-color: #23232f;
+        width: 200px;
+        border: none !important;
         color: white;
-        padding: 15px 32px;
+        padding: 10px;
+        margin-right: 2.5px;
+        margin-left: 5px;
         text-align: center;
         text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-
+        font-size: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s all ease-in-out;
+    }
+    .Product_beschrijving{
+        border-width: 5px 10px;
+        margin-left: 5px;
+    }
+    .Product_naam{
+        margin-left: 5px;
+    }
+    .Product_categorie{
+        margin-left: 5px;
+    }
+    .Product_prijs{
+        margin-left: 5px;
     }
 
 </style>
