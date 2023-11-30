@@ -35,6 +35,8 @@ include_once("../db/dbc.php");
     $sql = "SELECT * FROM product WHERE id = " . $_GET['id'] . "";  
     $result = $conn->query($sql);
 
+    $order_id = $_GET['order_id'];
+
     if($result->num_rows >0) {
         while($row = $result->fetch_assoc()) {
             $productId = $row['id'];
@@ -46,8 +48,20 @@ include_once("../db/dbc.php");
 
     ?>
         <h4><?=$productName?></h4>
-
-    <form action="../api/review.php" method="post">
+        <?php
+            if (isset($_SESSION['error'])) {
+                $error_output = $_SESSION['error'];
+                echo "<p style='color: red;'$error_output</p>";
+                echo $error_output;
+                unset($_SESSION['error']);
+            } elseif (isset($_SESSION['success'])) {
+                $success_output = $_SESSION['success'];
+                echo "<p style='color: green;'$success_output</p>";
+                echo $success_output;
+                unset($_SESSION["success"]);
+            }
+        ?>
+    <form action="../api/review.php?id=<?=$productId?>&order_id=<?=$order_id?>" method="post">
         <div>
             <input type="radio" value="1" name="ster">
             <input type="radio" value="2" name="ster">

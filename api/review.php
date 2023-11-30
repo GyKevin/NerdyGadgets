@@ -9,21 +9,53 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-//get items from form
-$star = $_POST['ster'];
-$title = $_POST['title'];
-$review = $_POST['review'];
+$user_id = $_SESSION['user_id'];
 
-if (empty($title)) {
-    $_SESSION['error'] = "Geef het review een titel";
-    header("Location: ../pages/review.php");
-    exit();
+$sql = "SELECT * FROM product WHERE id = " . $_GET['id'] . "";  
+$result = $conn->query($sql);
+
+if($result->num_rows >0) {
+    while($row = $result->fetch_assoc()) {
+        $productId = $row['id'];
+        $productName = $row['name'];
+        $productPrice = $row['price'];
+        $productDescription = $row['description'];
+        $productImage = $row['image'];
+        $productCategory = $row['category'];
+
+        //get items from form
+        $star = $_POST['ster'];
+        $title = $_POST['title'];
+        $review = $_POST['review'];
+
+        //get order id
+        $order_id = $_GET['order_id'];
+        if (empty($title)) {
+            $_SESSION['error'] = "Geef het review een titel!";
+            header("Location: ../pages/review.php?id=$productId&order_id=$order_id");
+            exit();
+        }
+
+        if (!isset($star)) {
+            $_SESSION['error'] = "Geef het product een beoordeling!";
+            header("Location: ../pages/review.php?id=$productId&order_id=$order_id");
+            exit();
+        }
+
+        $sql = "INSERT INTO review (Order_item_order_id, Order_item_product_id, User_id, title, review, rating)
+        VALUES ('$order_id', '$productId', '$user_id', '$title', '$review', '$star')";
+
+        if ($conn->query($sql) === TRUE) {
+                $_SESSION['success'] = "Bedankt voor u review!";
+                header("location: ../pages/review.php");
+                exit();
+            } else {
+                echo "Error inserting into Order_item: " . $conn->error;
+            }
+
+        // Close connection
+        $conn->close();
+    }
 }
 
-if (!isset($star1) && !isset($star2) && !isset($star3) && !isset($star4) && !isset($star5)) {
-    $_SESSION['error'] = "Geef het product een ster tussen 1 en 5";
-    header("Location: ../pages/review.php");
-    exit();
-}
-echo $star;
 ?>

@@ -49,6 +49,7 @@ include_once("../db/dbc.php");
                     $image = $row['image'];
                     $quantity = $row['quantity'];
                     $price = $row['price'] * $quantity;
+                    $order_id = $row['order_id'];
 
                     // echo $name;
                     // echo "<img src='../image/product_images/$image.jpg' alt='product image' width='100px'>";
@@ -56,10 +57,11 @@ include_once("../db/dbc.php");
                             <p>X".$quantity . str_repeat('&nbsp;', 5)."</p>
                             <img src='../image/product_images/$image.jpg' alt='product image' width='120px'>
                             <div class='text'>
+                                <p>#$order_id</p>
                                 <a href='product.php?id=$id'>$name</a>
                                 <p>€$price</p>
                             </div>
-                            <a href='review.php?id=$id'>
+                            <a href='review.php?id=$id&order_id=$order_id'>
                                 <button>Schrijf review</button>
                             </a>
                         </div>";
