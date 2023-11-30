@@ -39,9 +39,25 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             $productImage = $row['image'];
             $productCategory = $row['category'];
 
-            $totalPrice += $productPrice;
+            // $totalPrice += $productPrice;
             $btw = ($totalPrice / 100) * 21;
             $subtotal = $totalPrice - $btw;
+
+            //get quantity of product
+            $cartItem = null;
+            foreach ($cart as $item) {
+                if ($item['id'] == $productId) {
+                    $cartItem = $item;
+                    break;
+                }
+            }
+            if (isset($cartItem)) {
+                // Ensure quantity is at least 1
+                $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
+                //product price is calculated
+                $productPrice = $productPrice * $cartItem['quantity'];
+                $totalPrice += $productPrice;
+            }
         }
     }
     } else {
@@ -50,7 +66,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
 $user_id = $_SESSION['user_id']; 
 $product_id = $productIds; 
-$quantity = 1; // Replace with actual quantity
+$quantity = $cartItem['quantity']; // Replace with actual quantity
 
 // Insert into Order table
 $order_date = date('Y-m-d H:i:s');

@@ -16,7 +16,7 @@ if ($res->num_rows > 0) {
         //check if old password matches with the one in the input field
         if ($oldPass != $currPass) {
             $error_count = +1;
-            $_SESSION['error'] = "Oude w achtwoorden matchen niet";
+            $_SESSION['error'] = "Oude wachtwoorden matchen niet";
             header("location: ../pages/changePass.php");
         }
 
