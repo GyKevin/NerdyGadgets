@@ -77,9 +77,12 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             }
 
             if (isset($cartItem)) {
+                // Ensure quantity is at least 1
+                $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
+                //product price is calculated
                 $productPrice = $productPrice * $cartItem['quantity'];
             }
-
+            
             // displaying all the prices propperly
             $totalPrice += $productPrice;
             $btw = ($totalPrice / 100) * 21;
@@ -113,7 +116,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
                 <form action="../api/addToCart.php" method="post" id="quantityForm" oninput='submitForm(this)'>
                 <div class="quantity"> 
-                    <input type="number" name="quantity" id="quantityInput" value="<?php echo isset($cartItem['quantity']) ? htmlspecialchars($cartItem['quantity']) : '1'; ?>" min="1">
+                    <input type="number" name="quantity" id="quantityInput" value="<?php echo isset($cartItem['quantity']) ? htmlspecialchars($cartItem['quantity']) : '1'; ?>" oninput="validity.valid||(value='');" min="1">
                     <input name='product_id' value=<?=$productId?> type="hidden" />
                 </div>
                 <script>
