@@ -158,8 +158,8 @@ $result = $conn->query($sql);
             <!-- prijs tussen x-x -->
             <div>
                 <h4>Prijs tussen: </h4>
-                <input type="number" name="min" placeholder="min" min="0" class="price_inp">
-                <input type="number" name="max" placeholder="max" min="0" class="price_inp">
+                <input type="number" name="min" placeholder="Min" min="0" class="price_inp">
+                <input type="number" name="max" placeholder="Max" min="0" class="price_inp">
                 <button type="submit" class="filter_btn">Filter</button>
             </div>
             <div>
@@ -194,10 +194,14 @@ $result = $conn->query($sql);
                     <a href='product.php?id=$productId'>$productName</a>
                     <div id='buy-btn'>
                         <p>€ $productPrice</p> <br>
-                        
+                        <div class='koop-btns'>
                         <form method='post'>
                             <button type='submit' id='' name='kopen' value='$productId'>Bekijk Product</button>
                         </form>
+                            <a href='quickadd.php?id=$productId'>
+                                <button id='koop-btn'><i style='font-size:15px' class='fas'>&#xf07a;</i></button>
+                            </a>
+                        </div>
                     </div>
                 </div>";
             }
@@ -266,16 +270,16 @@ main {
 } */
 .prodCard button {
     margin-top: auto;
-    background-color: white;
-    width: 250px;
-    border: 3px solid black;
-    color: black;
+    background-color: #23232f;
+    width: 200px;
+    border: none !important;
+    color: white;
     padding: 10px;
     margin-right: 2.5px;
     text-align: center;
     text-decoration: none;
     font-size: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
 }
@@ -303,7 +307,7 @@ main {
     background-color: #3e8e41;
 } */
 .prodCard button:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 .prodCard a:hover {
     text-decoration: underline;
@@ -342,10 +346,10 @@ main {
     text-underline-offset: 2px;
 }
 .filter_btn {
-    background-color: white;
-    border: 3px solid black;
+    background-color: #23232f;
+    border: none;
     width: 100%;
-    color: black;
+    color: white;
     padding: 10px;
     text-align: center;
     text-decoration: none;

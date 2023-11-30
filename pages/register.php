@@ -72,16 +72,16 @@
             ?>
             <h2>Registratie</h2>
             <form action="../api/register.php" method="post" class="registratie-form">
-                <input type="text" name="first_name" placeholder="first name"> <br>
-                <input type="text" name="surname_prefix" placeholder="surname"><br>
-                <input type="text" name="last_name" placeholder="last name"><br>
+                <input type="text" name="first_name" placeholder="Voornaam"> <br>
+                <input type="text" name="surname_prefix" placeholder="Tussenvoegsel"><br>
+                <input type="text" name="last_name" placeholder="Achternaam"><br>
                 <input type="email" name="email" placeholder="email"><br>
-                <input type="text" name="street_name" placeholder="street name"><br>
-                <input type="text" name="house_number" placeholder="house number"><br>
-                <input type="text" name="postal_code" placeholder="postal code"><br>
-                <input type="text" name="city" placeholder="city"><br>
-                <input type="password" name="password" placeholder="password" id="password"><br>
-                <input type="password" name="repeat_password" placeholder="repeat password" id="repass"><br>
+                <input type="text" name="street_name" placeholder="Straat naam"><br>
+                <input type="text" name="house_number" placeholder="huisnummer"><br>
+                <input type="text" name="postal_code" placeholder="postcode"><br>
+                <input type="text" name="city" placeholder="Stad"><br>
+                <input type="password" name="password" placeholder="Wachtwoord" id="password"><br>
+                <input type="password" name="repeat_password" placeholder="Herhaal Wachtwoord" id="repass"><br>
                 <input type="submit" class="Registreer" value="Registreer" onclick="mySubmit(this)">
             </form>
             
@@ -115,7 +115,7 @@ main {
     padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 .Registreer {
     width: 100% !important;

@@ -16,8 +16,14 @@ if (mysqli_connect_errno()) {
 // }
 
 if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
-    $productIds = unserialize($_COOKIE['cart']);
-    $productIds = implode(',', $productIds);
+    $cart = unserialize($_COOKIE['cart']);
+    // $productIds = implode(',', $cart);
+    $ids = array_map(function ($item) {
+        return $item['id'];
+    }, $cart);
+    
+    // Implode the IDs into a string
+    $productIds = implode(', ', $ids);
     // echo $productIds;
     
     $sql = "SELECT * FROM product WHERE id IN ($productIds)";
@@ -58,7 +64,7 @@ if ($conn->query($sqlInsertOrder) === TRUE) {
     $sqlInsertOrderItem = "INSERT INTO Order_item (order_id, product_id, quantity) VALUES ($last_order_id, $product_id, $quantity)";
 
     if ($conn->query($sqlInsertOrderItem) === TRUE) {
-        echo "Order and Order Item inserted successfully.";
+        header("location: ../pages/bestellingen.php");
     } else {
         echo "Error inserting into Order_item: " . $conn->error;
     }

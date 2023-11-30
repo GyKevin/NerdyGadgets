@@ -40,6 +40,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
+    <link rel="stylesheet" href="/css/checkout.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
     <style>
@@ -112,11 +113,44 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             <!-- items -->
             <div class="item">
                 <h2>Overzicht</h2>
-            <?php
+                <?php
+            if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
+                $cart = unserialize($_COOKIE['cart']);
+                // $productIds = implode(',', $cart);
+                $ids = array_map(function ($item) {
+                    return $item['id'];
+                }, $cart);
+                
+                // Implode the IDs into a string
+                $productIds = implode(', ', $ids);
+                            // echo $productIds;
+                            
+                            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
+                            $result = $conn->query($sql);
+                
+                            if ($result->num_rows > 0) {
+                                $totalPrice = 0;
+                                while ($row = $result->fetch_assoc()) {
+                                    $productId = $row['id'];
+                                    $productName = $row['name'];
+                                    $productPrice = $row['price'];
+                                    $productDescription = $row['description'];
+                                    $productImage = $row['image'];
+                                    $productCategory = $row['category'];
+
+                                    $totalPrice += $productPrice;
+                                    $btw = ($totalPrice / 100) * 21;
+                                    $subtotal = $totalPrice - $btw;
+
             echo "<div class='product'>
                     <p class='productname'>".substr($productName , 0 , 40)."...</p>
                     <p>€$productPrice</p>
                 </div>";
+            }
+        }
+        } else {
+            echo "U heeft nog niks in de winkelwagen staan.";
+        }
             ?>
             
             <p>Nog te betalen: €<?=$totalPrice?></p>
@@ -186,80 +220,3 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
         }
     }
 </script>
-
-<style>
-main {
-    width: 100vw;
-    height: 100%;
-    margin: 0%;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-.container {
-    width: 40vw;
-    height: fit-content;
-    border: 2px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.bezorgadres {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-.bezorgadres input {
-    width: 300px;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-}
-.betalen {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-.item {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-.product {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-}
-.productname {
-    width: 70%;
-}
-.bestellen {
-    margin-left: 20px ;
-    border: none;
-    background-color: #23232f;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    width: 200px;
-    height: 50px;
-}
-.checkout {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-.checkout p {
-    width: 50%;
-}
-.checkout input:hover {
-    background-color: #4e4e58;
-}
-</style>

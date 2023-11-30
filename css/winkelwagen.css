@@ -38,26 +38,26 @@ main {
     height: 120px;
     display: flex;
     flex-direction: column;
+
 }
 .buttons {
-    display: inline-block;
-    cursor: pointer;
-    width: 100px;
-    height: 17px;
-    padding-top: 60px;
-    margin-right: 20px;
-
+  display: flex;
+  cursor: pointer;
+  width: auto;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 .trashcan {
   cursor: pointer;
 }
 .buttons button{
-    background-color: #1C00ff00;
-    color: black;
-    padding: 10px;
-    /* border: solid 3px black; */
-    /* border-radius: 10px; */
-    border-color: #1C00ff00;
+  background-color: #1C00ff00;
+  color: black;
+  border-color: #1C00ff00;
+  height: fit-content;
+  margin-bottom: 30px;
+  margin-right: 45px;
   }
 .buttons img{
     height: 25px;
@@ -66,7 +66,8 @@ main {
 .image img{
     margin-right: 30px;
     width: 150px;
-    height: auto;
+    height: 110px;
+    object-fit: contain;
 }
 .description{
     padding-top: 10px;
@@ -81,7 +82,7 @@ main {
     margin-top: 40px;
 }
 .quantity {
-    padding-top: 60px;
+    margin-top: 55px;
     margin-right: 10px;
 }
 .quantity input {
@@ -95,7 +96,7 @@ main {
 }
 .price {
     width: 83px;
-    padding-top: 47px;
+    margin-top: 40px;
     text-align: center;
     font-size: 16px;
     color: #43484D;
@@ -144,6 +145,7 @@ main {
   display: inline-block;
   font-size: 16px;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 .checkout_button button:hover {
   background-color: #4e4e58;
