@@ -82,7 +82,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 //product price is calculated
                 $productPrice = $productPrice * $cartItem['quantity'];
             }
-            
+
             // displaying all the prices propperly
             $totalPrice += $productPrice;
             $btw = ($totalPrice / 100) * 21;
@@ -135,6 +135,11 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             </div>
             <?php 
                 }
+                } elseif ($result->num_rows <= 0){
+                    unset($_COOKIE['cart']);
+                    $cart = array_values($cart);
+                    setcookie('cart', serialize($cart), time()-3600, '/'); 
+                    header("location: ../pages/winkelwagen.php");
                 }
             } else {
                 echo "Winkelwagen is leeg.";
