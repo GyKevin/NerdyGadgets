@@ -113,39 +113,57 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             <!-- items -->
             <div class="item">
                 <h2>Overzicht</h2>
-                <?php
-            if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
-                $cart = unserialize($_COOKIE['cart']);
-                // $productIds = implode(',', $cart);
-                $ids = array_map(function ($item) {
-                    return $item['id'];
-                }, $cart);
-                
-                // Implode the IDs into a string
-                $productIds = implode(', ', $ids);
-                            // echo $productIds;
-                            
-                            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
-                            $result = $conn->query($sql);
-                
-                            if ($result->num_rows > 0) {
-                                $totalPrice = 0;
-                                while ($row = $result->fetch_assoc()) {
-                                    $productId = $row['id'];
-                                    $productName = $row['name'];
-                                    $productPrice = $row['price'];
-                                    $productDescription = $row['description'];
-                                    $productImage = $row['image'];
-                                    $productCategory = $row['category'];
+<?php
+    if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
+        $cart = unserialize($_COOKIE['cart']);
+        // $productIds = implode(',', $cart);
+        $ids = array_map(function ($item) {
+            return $item['id'];
+        }, $cart);
+        
+        // Implode the IDs into a string
+        $productIds = implode(', ', $ids);
+            // echo $productIds;
+            
+            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
+            $result = $conn->query($sql);
+        
+            if ($result->num_rows > 0) {
+                $totalPrice = 0;
+                while ($row = $result->fetch_assoc()) {
+                    $productId = $row['id'];
+                    $productName = $row['name'];
+                    $productPrice = $row['price'];
+                    $productDescription = $row['description'];
+                    $productImage = $row['image'];
+                    $productCategory = $row['category'];
+                    $btw = ($totalPrice / 100) * 21;
+                    $subtotal = $totalPrice - $btw;
 
-                                    $totalPrice += $productPrice;
-                                    $btw = ($totalPrice / 100) * 21;
-                                    $subtotal = $totalPrice - $btw;
+                    //get quantity of product
+                    $cartItem = null;
+                    foreach ($cart as $item) {
+                        if ($item['id'] == $productId) {
+                            $cartItem = $item;
+                            break;
+                        }
+                    }
 
-            echo "<div class='product'>
-                    <p class='productname'>".substr($productName , 0 , 40)."...</p>
-                    <p>€$productPrice</p>
-                </div>";
+                    if (isset($cartItem)) {
+                        // Ensure quantity is at least 1
+                        $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
+                        //product price is calculated
+                        $productPrice = $productPrice * $cartItem['quantity'];
+                        $totalPrice += $productPrice;
+
+                    }
+
+                    // display product information
+                    echo "<div class='product'>
+                            <p>x".$cartItem['quantity']. str_repeat('&nbsp;', 1)."</p>
+                            <p class='productname'>".substr($productName , 0 , 40)."...</p>
+                            <p>€$productPrice</p>
+                        </div>";
             }
         }
         } else {
