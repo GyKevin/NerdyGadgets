@@ -1,6 +1,8 @@
 <!-- get all the data from the database -->
 <?php
     include_once("../db/dbc.php");
+    session_start();
+
     $sql = "SELECT * FROM product WHERE id = " . $_GET['id'] . "";  
     $result = $conn->query($sql);
 
@@ -103,28 +105,63 @@
             </label>
         </div>
         <!-- existing reviews -->
-        <div class="existing-reviews">
-            <img class="pfp" src="../image/no-pfp.png" alt="">
+        <?php
 
+        // $sql = "SELECT * FROM review WHERE Order_item_product_id = " . $productId;
+        $sql = "SELECT r.*, u.first_name, u.surname_prefix, u.surname
+        FROM review r
+        JOIN user u ON r.User_id = u.id
+        WHERE Order_item_product_id = " . $productId;
+        $result = $conn->query($sql);
+        if($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $order_id = $row['Order_item_order_id'];
+            $product_id = $row['Order_item_product_id'];
+            $title = $row['title'];
+            $comment = $row['review'];
+            $rating = $row['rating'];
+            $name = $row['first_name'] ." ". $row['surname_prefix'] ." ". $row['surname'];
+        
+        ?>
+        <div class="existing-reviews">
             <!-- user name, date and stars -->
             <div class="review-user">
-                <h4>Kevin Gyori</h4>
-                <p>august 19 2023</p>
-                <span>&starf;&starf;&starf;&starf;&starf;</span>
+                <img class="pfp" src="../image/no-pfp.png" alt="">
+                <h4><?=$name?></h4>
+                <?php
+                    if ($rating == 1) {
+                        echo "<span>&starf;&star;&star;&star;&star;</span>";
+                    } else if ($rating == 2) {
+                        echo "<span>&starf;&starf;&star;&star;&star;</span>";
+                    }else if ($rating == 3) {
+                        echo "<span>&starf;&starf;&starf;&star;&star;</span>";
+                    }else if ($rating == 4) {
+                        echo "<span>&starf;&starf;&starf;&starf;&star;</span>";
+                    }else if ($rating == 5) {
+                        echo "<span>&starf;&starf;&starf;&starf;&starf;</span>";
+                    }
+                ?>
+                
             </div>
 
             <!-- comment and title -->
             <div class="review-comment">
-                <h3>me likey product veri gud</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit.</p>
+                <h3><?=$title?></h3>
+                <p><?=$comment?></p>
             </div>
         </div>
-    </div>
+        <?php
+        } 
+        } else {
+            echo "<div style='width: 100%; height: 300px; display: flex; align-items: center; justify-content: center;'>
+            <p>Deze product heeft nog geen reviews</p>
+        </div>";
+        }
+    ?>
+    </div> <!-- end of review containet -->
+
+
+
 </div>
 </main>
 
