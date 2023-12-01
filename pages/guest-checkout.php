@@ -30,7 +30,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
                     }
                 }
-                }
+}
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
-    <link rel="stylesheet" href="/css/checkout.css">
+    <link rel="stylesheet" href="/css/guest-checkout.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
     <style>
@@ -75,45 +75,64 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 }
             ?>
                 <!-- put php here -->
-                <form action="../api/deleteCookie.php">
-                    <label for="first_name">
-                        Voornaam <br>
-                        <input type="text" name="first_name" id="">
-                    </label>
-                    <label for="surname_prefix">
-                        Tussenvoegsel <br>
-                        <input type="text" name="surname_prefix" id="" >
-                    </label>
-                    <label for="last_name">
-                        Achternaam <br>
-                        <input type="text" name="last_name" id="">
-                    </label>
-                    <label for="email">
-                        email <br>
-                        <input type="text" name="email" id="">
-                    </label> 
-                    <label for="street_name">
-                        Straat <br>
-                        <input type="text" name="street_name" id="">
-                    </label>
-                    <label for="apartment_nr">
-                        Huis nummer <br>
-                        <input type="text" name="apartment_nr" id="">
-                    </label>
-                    <label for="postal_code">
-                        Post code <br>
-                        <input type="text" name="postal_code" id="">
-                    </label>
-                    <label for="city">
-                        Stad <br>
-                        <input type="text" name="city" id="">
-                    </label>
+                <form action="" method="post">
+                    <?php include_once('../api/guest_checkout-functions.php'); checkAllinputs(); ?>
+
+<!--                    ../api/deleteCookie.php-->
+                    <div class="labels">
+                        <span class="first_name">*</span>
+                        <label for="first_name">Voornaam</label>
+                        <input type="text" name="first_name" id="" placeholder="Verplict">
+                    </div>
+
+                    <div class="labels">
+                        <label for="surname_prefix">Tussenvoegsel</label>
+                        <input type="text" name="surname_prefix">
+                    </div>
+
+                    <div class="labels">
+                        <span class="last_name">*</span>
+                        <label for="last_name">Achternaam</label>
+                        <input type="text" name="last_name" placeholder="Verplict">
+                    </div>
+
+                    <div class="labels">
+                        <span class="email">*</span>
+                        <span class="email-error">Ongeldig e-mailadres ingevuld</span>
+                        <label for="email">email</label>
+                        <input type="text" name="email" placeholder="Verplict">
+                    </div>
+
+                    <div class="labels">
+                        <span class="street_name">*</span>
+                        <label for="street_name">Straat</label>
+                        <input type="text" name="street_name" placeholder="Verplict">
+                    </div>
+                    <div class="labels">
+                        <span class="apartment_nr">*</span>
+                        <label for="apartment_nr">Huis nummer</label>
+                        <input type="text" name="apartment_nr" placeholder="Verplict">
+                    </div>
+                    <div class="labels">
+                        <span class="postal_code">*</span>
+                        <span class="postcode-error">Ongeldige postcode ingevuld</span>
+                        <label for="postal_code">Post code</label>
+                        <input type="text" name="postal_code" placeholder="Verplict">
+                    </div>
+                    <div class="labels">
+                        <span class="city">*</span>
+                        <label for="city">Stad</label>
+                        <input type="text" name="city" placeholder="Verplict">
+                    </div>
             </div>
 
             <!-- items -->
             <div class="item">
                 <h2>Overzicht</h2>
 <?php
+
+
+
     if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
         $cart = unserialize($_COOKIE['cart']);
         // $productIds = implode(',', $cart);
