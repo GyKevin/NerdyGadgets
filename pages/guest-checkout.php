@@ -77,7 +77,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 <!-- put php here -->
                 <form action="../api/deleteCookie.php">
                     <label for="first_name">
-                        Voornaam <br>
+                        Voornaam* <br>
                         <input type="text" name="first_name" id="">
                     </label>
                     <label for="surname_prefix">
@@ -85,27 +85,27 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                         <input type="text" name="surname_prefix" id="" >
                     </label>
                     <label for="last_name">
-                        Achternaam <br>
+                        Achternaam* <br>
                         <input type="text" name="last_name" id="">
                     </label>
                     <label for="email">
-                        email <br>
+                        E-mail* <br>
                         <input type="text" name="email" id="">
                     </label> 
                     <label for="street_name">
-                        Straat <br>
+                        Straat* <br>
                         <input type="text" name="street_name" id="">
                     </label>
                     <label for="apartment_nr">
-                        Huis nummer <br>
+                        Huisnummer* <br>
                         <input type="text" name="apartment_nr" id="">
                     </label>
                     <label for="postal_code">
-                        Post code <br>
+                        Postcode* <br>
                         <input type="text" name="postal_code" id="">
                     </label>
                     <label for="city">
-                        Stad <br>
+                        Stad* <br>
                         <input type="text" name="city" id="">
                     </label>
             </div>
