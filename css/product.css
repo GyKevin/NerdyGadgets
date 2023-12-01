@@ -1,0 +1,115 @@
+.info-container {
+    display: flex;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+.image-slider {
+    /* border: 2px solid blue; */
+    width: 40%;
+}
+.image-slider img {
+    width: 550px !important;
+    height: 320px !important;
+    object-fit: contain;
+    margin-left: 20px;
+}
+.product-info {
+    /* border: 2px solid red; */
+    width: 60%;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-left: 2px solid #ddd;
+}
+.title {
+    border-bottom: 2px solid #ddd;
+}
+.buy {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+}
+.buy p {
+    font-size: 30px;
+}
+.add_cart{
+    margin-top: auto;
+    background-color: #78b657;
+    width: 200px;
+    border: none !important;
+    color: white;
+    padding: 10px;
+    margin-left: 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+.add_cart:hover {
+    background-color: #5f9d3e;
+}
+#more-btn {
+    margin-top: auto;
+    background-color: #23232f;
+    width: 120px;
+    height: 40px;
+    border: none !important;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+#more-btn:hover {
+    background-color: #4e4e58;
+}
+
+/* review section */
+.review-container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.review-field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+}
+.review-field h2 {
+    margin: 0;
+}
+.review-field p {
+    margin: 0;
+}
+.review-field span {
+    font-size: 30px;
+}
+.review-field input {
+    width: 800px;
+}
+.review-field textarea {
+    width: 800px;
+}
+.pfp {
+    width: 60px;
+    height: 60px;
+    border-radius: 120px;
+    margin-top: 40px;
+    margin-right: 20px;
+}
+.existing-reviews {
+    display: flex;
+    align-items: flex-start;
+}
+.review-user {
+    margin-right: 50px !important;
+}
+
+.review-comment {
+    width: 60%;
+}
