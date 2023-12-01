@@ -127,104 +127,110 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             </div>
 
             <!-- items -->
-            <div class="item">
-                <h2>Overzicht</h2>
-<?php
+            <div class="sorting">
+                <div class="item">
+                    <h2>Overzicht</h2>
+                <?php
+                    if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
+                        $cart = unserialize($_COOKIE['cart']);
+                        // $productIds = implode(',', $cart);
+                        $ids = array_map(function ($item) {
+                            return $item['id'];
+                        }, $cart);
 
+                        // Implode the IDs into a string
+                        $productIds = implode(', ', $ids);
+                            // echo $productIds;
 
+                            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
+                            $result = $conn->query($sql);
 
-    if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
-        $cart = unserialize($_COOKIE['cart']);
-        // $productIds = implode(',', $cart);
-        $ids = array_map(function ($item) {
-            return $item['id'];
-        }, $cart);
-        
-        // Implode the IDs into a string
-        $productIds = implode(', ', $ids);
-            // echo $productIds;
-            
-            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
-            $result = $conn->query($sql);
-        
-            if ($result->num_rows > 0) {
-                $totalPrice = 0;
-                while ($row = $result->fetch_assoc()) {
-                    $productId = $row['id'];
-                    $productName = $row['name'];
-                    $productPrice = $row['price'];
-                    $productDescription = $row['description'];
-                    $productImage = $row['image'];
-                    $productCategory = $row['category'];
-                    $btw = ($totalPrice / 100) * 21;
-                    $subtotal = $totalPrice - $btw;
+                            if ($result->num_rows > 0) {
+                                $totalPrice = 0;
+                                while ($row = $result->fetch_assoc()) {
+                                    $productId = $row['id'];
+                                    $productName = $row['name'];
+                                    $productPrice = $row['price'];
+                                    $productDescription = $row['description'];
+                                    $productImage = $row['image'];
+                                    $productCategory = $row['category'];
+                                    $btw = ($totalPrice / 100) * 21;
+                                    $subtotal = $totalPrice - $btw;
 
-                    //get quantity of product
-                    $cartItem = null;
-                    foreach ($cart as $item) {
-                        if ($item['id'] == $productId) {
-                            $cartItem = $item;
-                            break;
+                                    //get quantity of product
+                                    $cartItem = null;
+                                    foreach ($cart as $item) {
+                                        if ($item['id'] == $productId) {
+                                            $cartItem = $item;
+                                            break;
+                                        }
+                                    }
+
+                                    if (isset($cartItem)) {
+                                        // Ensure quantity is at least 1
+                                        $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
+                                        //product price is calculated
+                                        $productPrice = $productPrice * $cartItem['quantity'];
+                                        $totalPrice += $productPrice;
+
+                                    }
+
+                                    // display product information
+                                    echo "<div class='product'>
+                                            <img id='product-image' src='../image/product_images/" . $productImage . ".jpg' alt=''>
+                                            <p>x".$cartItem['quantity']. str_repeat('&nbsp;', 1)."</p>
+                                            <p class='productname'>".substr($productName , 0 , 40)."...</p>
+                                            <p>€$productPrice</p>
+                                        </div>";
+                            }
                         }
-                    }
+                        } else {
+                            echo "U heeft nog niks in de winkelwagen staan.";
+                        }
+                            ?>
 
-                    if (isset($cartItem)) {
-                        // Ensure quantity is at least 1
-                        $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
-                        //product price is calculated
-                        $productPrice = $productPrice * $cartItem['quantity'];
-                        $totalPrice += $productPrice;
 
-                    }
-
-                    // display product information
-                    echo "<div class='product'>
-                            <p>x".$cartItem['quantity']. str_repeat('&nbsp;', 1)."</p>
-                            <p class='productname'>".substr($productName , 0 , 40)."...</p>
-                            <p>€$productPrice</p>
-                        </div>";
-            }
-        }
-        } else {
-            echo "U heeft nog niks in de winkelwagen staan.";
-        }
-            ?>
-            
-            <p>Nog te betalen: €<?=$totalPrice?></p>
-            </div>
-
-            <!-- betaalmethode -->
-            <div class="betalen">
-            <h2>Betaalmethode</h2>
-                
-                <label for="">
-                    <input type="radio" name="radio" id="ideal" onchange="betaalmethode()">
-                    iDeal
-                </label>
-                <!-- put a dropdown menu here -->
-                <select name="" id="betaalmethodes" style="display: none;">
-                    <option value="">ING</option>
-                    <option value="">abn amro</option>
-                    <option value="">asn bank</option>
-                    <option value="">bunq</option>
-                    <option value="">rabobank</option>
-                    <option value="">sns</option>
-                </select>
-                <label for="">
-                    <input type="radio" name="radio" name="" id="paypal" onchange="uncheck()">
-                    Paypal
-                </label>
-                <label for="">
-                    <input type="radio" name="radio" id="klarna" onchange="uncheck()">
-                    Klarna  
-                </label>
-            </div>
-                <!-- <form action="../api/deleteCookie.php"> -->
-                <div class="checkout">
-                <p>Als je op 'Bestellen en betalen' klikt, ga je akkoord met de op jouw bestelling van toepassing zijnde (algemene) voorwaarden van NerdyGadgets </p>
-                <input type="submit" class="bestellen" value="Bestellen en betalen" name="trash">
                 </div>
-                </form>
+
+                <!-- betaalmethode -->
+                <div class="betalen">
+                <h2>Betaalmethode</h2>
+                    <div class="betalen-inner">
+                        <div class="betalen-opties">
+                            <label for="">
+                                <input type="radio" name="radio" id="ideal" onchange="betaalmethode()">
+                                <span>iDeal</span>
+                            </label>
+                            <!-- put a dropdown menu here -->
+                            <select name="" id="betaalmethodes" style="display: none;">
+                                <option value="">ING</option>
+                                <option value="">abn amro</option>
+                                <option value="">asn bank</option>
+                                <option value="">bunq</option>
+                                <option value="">rabobank</option>
+                                <option value="">sns</option>
+                            </select>
+                            <label for="">
+                                <input type="radio" name="radio" name="" id="paypal" onchange="uncheck()">
+                                Paypal
+                            </label>
+                            <label for="">
+                                <input type="radio" name="radio" id="klarna" onchange="uncheck()">
+                                Klarna
+                            </label>
+                        </div>
+                        <div class="betalen-termijnen">
+                            <p>Als je op 'Bestellen en betalen' klikt, ga je akkoord met de op jouw bestelling van toepassing zijnde (algemene) voorwaarden van NerdyGadgets </p>
+                        </div>
+                    </div>
+                </div>
+                    <!-- <form action="../api/deleteCookie.php"> -->
+
+            </div>
+            <div class="checkout">
+                <input type="submit" class="bestellen" value="Bestellen en betalen" name="trash">
+                <p>Totaal bedrag: €<?=$totalPrice?></p>
+            </div>
         </div>
     </main>
     <!-- footer -->

@@ -9,16 +9,17 @@ main {
     align-content: center;
 }
 .container {
-    width: 40vw;
+    /*margin: 20px;*/
+    width: 60vw;
     height: fit-content;
     border: 2px solid #ddd;
     border-radius: 6px;
     box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
 }
 .bezorgadres {
+    margin: 0 20px 20px 20px;
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -31,25 +32,48 @@ main {
     border-radius: 3px;
 }
 .betalen {
+
     display: flex;
     flex-direction: column;
     width: 50%;
+}
+.betalen-opties{
+    /*height: 5vh;*/
+    display: grid;
+    margin: 10px;
+}
+.betalen-opties label{
+    display: flex;
+}
+.betalen-termijnen{
+margin: 10px;
+    /*height: 5vh;*/
 }
 .item {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 90%;
 }
 .product {
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
+    margin: 10px;
     display: flex;
     flex-direction: row;
     width: 100%;
+}
+#product-image{
+    margin-right: 10px;
+    width: 15vh;
+    max-width:80px ;
+    max-height: 70px;
 }
 .productname {
     width: 70%;
 }
 .bestellen {
-    margin-left: 20px ;
+    /*margin-left: 20px ;*/
     border: none;
     background-color: #23232f;
     color: white;
@@ -61,14 +85,17 @@ main {
     height: 50px;
 }
 .checkout {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+
+    margin: 20px 20px 0 0;
+    /*position: absolute;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*width: 100%;*/
 }
 .checkout p {
-    width: 50%;
+    top: 50px;
 }
 .checkout input:hover {
     background-color: #4e4e58;
