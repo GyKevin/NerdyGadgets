@@ -50,12 +50,15 @@
 
                 while($row = $result->fetch_assoc()) {
                     $productImage = $row['image'];
+                    $productID = $row['id'];
 
+                    echo "<a href='pages/product.php?id=$productID'>";
                     echo "<div class='product'>";
                     echo "<img src='/image/product_images/" . $productImage . ".jpg' alt=''>";
                     echo "<p>" . $row['name'] . "</p>";
                     echo "<p>Prijs: €" . $row['price'] . "</p>";
                     echo "</div>";
+                    echo "<a href='pages/product.php?id=$productID'>";
                 }
             ?>
             </div>
@@ -73,15 +76,19 @@
 
                 $aantal = 0;
                 for ($i = 0; $i < 4; $i++) {
+                    $productID = $result[$i]['id'];
                     $productImage = $result[$i]['image'];
                     $productPrice = $result[$i]['price'];
                     $productName = $result[$i]['name'];
 
+                    echo "<a href='pages/product.php?id=$productID'>";
                     echo "<div class='product'>";
                     echo "<img src='/image/product_images/" . $productImage . ".jpg' alt=''>";
                     echo "<p>" . $productName . "</p>";
                     echo "<p>Prijs: €" . $productPrice . "</p>";
                     echo "</div>";
+                    echo "</a>";
+
                 }
                 ?>
             </div>
