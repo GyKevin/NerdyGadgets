@@ -48,6 +48,52 @@ if (isset($_SESSION['user_id'])) {
             margin-top: auto; 
         }
     </style>
+    <script>
+        function myFunction() {
+            var y = document.getElementById("old_pass");
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            var y = document.getElementById("repass");
+            if (y.type === "password") {
+                y.type = "text";
+            } else {
+                y.type = "password";
+            }
+
+        }
+        function mySubmit(obj) {
+            var pwdObj = document.getElementById('password');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+
+            var pwdObj = document.getElementById('repass');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+
+            var pwdObj = document.getElementById('old_pass');
+            var hashObj = new jsSHA("SHA-512", "TEXT", {numRounds: 1});
+            hashObj.update(pwdObj.value);
+            var hash = hashObj.getHash("HEX");
+            pwdObj.value = hash;
+            console.log(pwdObj.value)
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
 </head>
 <body>
     <div id="navbar"></div>
@@ -71,17 +117,17 @@ if (isset($_SESSION['user_id'])) {
                         <h2>Wachtwoord aanpassen</h2>
                         <label for="old_password">
                             Oude Wachtwoord <br>
-                            <input type="password" name="old_password">
+                            <input type="password" id="old_pass" name="old_password">
                         </label>
                         <label for="new_password">
                             Nieuwe Wachtwoord <br>
-                            <input type="password" name="new_password">
+                            <input type="password" id="password" name="new_password">
                         </label>
                         <label for="again_password">
                             Opnieuw Nieuwe Wachtwoord <br>
-                            <input type="password" name="again_password">
+                            <input type="password" id="repass" name="again_password">
                         </label>
-                        <input type="submit" name="submit" id="submit" value="Opslaan">
+                        <input type="submit" name="submit" id="submit" value="Opslaan" onclick="mySubmit(this)">
                     </form>
                     <a id="gegevens" href="profiel.php">Terug naar Mijn Gegevens</a>
                 </div>

@@ -77,6 +77,9 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             }
 
             if (isset($cartItem)) {
+                // Ensure quantity is at least 1
+                $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
+                //product price is calculated
                 $productPrice = $productPrice * $cartItem['quantity'];
             }
 
@@ -86,25 +89,20 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             $subtotal = $totalPrice - $btw;
 
             if (isset($_POST['trash'])) {
-                $index = array_search($_POST['product_id'], array_column($cart, 'id'));
-
-                // Check if the ID was found
+                $productIdToRemove = $_POST['trash'];
+                $index = array_search($productIdToRemove, array_column($cart, 'id'));
+            
                 if ($index !== false) {
-                    // Remove the array from the cart using unset
                     unset($cart[$index]);
-                    // Reset array keys to ensure continuous indexing
-                    $cart = array_values($cart);
-    
-                    // Optionally, you can reindex the array keys
-                    // $cart = array_values(array_filter($cart));
-                    setcookie('cart', serialize($cart), time()-3600, '/'); 
+                    setcookie('cart', serialize($cart), time() + 3600, '/'); // Update the expiration time
                 }
             }
+            
             ?>
             <div class="items">
-                <form action="winkelwagen.php" method="post">
+                <form action="winkelwagen.php?product_id=<?=$productId?>" method="post">
                     <div class="buttons">
-                    <button name="trash"><img src="/image/111056_trash_can_icon.png"></button>
+                    <button name="trash" value="<?=$productId?>"><img src="/image/111056_trash_can_icon.png"></button>
                     <input type="hidden" name="product_id" value=<?=$productId?>>
                     </div>
                 </form>
@@ -118,7 +116,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
                 <form action="../api/addToCart.php" method="post" id="quantityForm" oninput='submitForm(this)'>
                 <div class="quantity"> 
-                    <input type="number" name="quantity" id="quantityInput" value="<?php echo isset($cartItem['quantity']) ? htmlspecialchars($cartItem['quantity']) : '1'; ?>" min="1">
+                    <input type="number" name="quantity" id="quantityInput" value="<?php echo isset($cartItem['quantity']) ? htmlspecialchars($cartItem['quantity']) : '1'; ?>" oninput="validity.valid||(value='');" min="1">
                     <input name='product_id' value=<?=$productId?> type="hidden" />
                 </div>
                 <script>
@@ -137,6 +135,11 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             </div>
             <?php 
                 }
+                } elseif ($result->num_rows <= 0){
+                    unset($_COOKIE['cart']);
+                    $cart = array_values($cart);
+                    setcookie('cart', serialize($cart), time()-3600, '/'); 
+                    header("location: ../pages/winkelwagen.php");
                 }
             } else {
                 echo "Winkelwagen is leeg.";
