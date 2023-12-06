@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once("../db/dbc.php");
 if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
@@ -7,34 +7,34 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
     $ids = array_map(function ($item) {
         return $item['id'];
     }, $cart);
-    
+
     // Implode the IDs into a string
     $productIds = implode(', ', $ids);
-                
-                $sql = "SELECT * FROM product WHERE id IN ($productIds)";
-                $result = $conn->query($sql);
-    
-                if ($result->num_rows > 0) {
-                    $totalPrice = 0;
-                    while ($row = $result->fetch_assoc()) {
-                        $productId = $row['id'];
-                        $productName = $row['name'];
-                        $productPrice = $row['price'];
-                        $productDescription = $row['description'];
-                        $productImage = $row['image'];
-                        $productCategory = $row['category'];
 
-                        $totalPrice += $productPrice;
-                        $btw = ($totalPrice / 100) * 21;
-                        $subtotal = $totalPrice - $btw;
+    $sql = "SELECT * FROM product WHERE id IN ($productIds)";
+    $result = $conn->query($sql);
 
-                    }
-                }
+    if ($result->num_rows > 0) {
+        $totalPrice = 0;
+        while ($row = $result->fetch_assoc()) {
+            $productId = $row['id'];
+            $productName = $row['name'];
+            $productPrice = $row['price'];
+            $productDescription = $row['description'];
+            $productImage = $row['image'];
+            $productCategory = $row['category'];
+
+            $totalPrice += $productPrice;
+            $btw = ($totalPrice / 100) * 21;
+            $subtotal = $totalPrice - $btw;
+        }
+    }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,36 +49,40 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             display: flex;
             flex-direction: column;
         }
+
         main {
             padding-top: 55px;
         }
+
         #footer {
-            margin-top: auto; 
+            margin-top: auto;
         }
     </style>
 </head>
+
 <body>
     <!-- navbar -->
     <div id="navbar"></div>
     <main>
         <div class="container">
             <!-- checkout -->
-                <!-- user gegevens -->
+            <!-- user gegevens -->
             <div class="bezorgadres">
-            <h2>Bezorgadres</h2>
-            <?php 
+                <h2>Bezorgadres</h2>
+                <?php
                 if (isset($_SESSION['error'])) {
                     $error_output = $_SESSION['error'];
                     echo "<p style='color: red;'$error_output</p>";
                     echo $error_output;
                     unset($_SESSION['error']);
                 }
-            ?>
+                ?>
                 <!-- put php here -->
                 <form action="" method="post">
-                    <?php include_once('../api/guest_checkout-functions.php'); checkAllinputs(); ?>
+                    <?php include_once('../api/guest_checkout-functions.php');
+                    checkAllinputs(); ?>
 
-<!--                    ../api/deleteCookie.php-->
+                    <!--                    ../api/deleteCookie.php-->
                     <div class="labels">
                         <span class="first_name">*</span>
                         <label for="first_name">Voornaam</label>
@@ -130,7 +134,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             <div class="sorting">
                 <div class="item">
                     <h2>Overzicht</h2>
-                <?php
+                    <?php
                     if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                         $cart = unserialize($_COOKIE['cart']);
                         // $productIds = implode(',', $cart);
@@ -140,104 +144,124 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
                         // Implode the IDs into a string
                         $productIds = implode(', ', $ids);
-                            // echo $productIds;
+                        // echo $productIds;
 
-                            $sql = "SELECT * FROM product WHERE id IN ($productIds)";
-                            $result = $conn->query($sql);
+                        $sql = "SELECT * FROM product WHERE id IN ($productIds)";
+                        $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                $totalPrice = 0;
-                                while ($row = $result->fetch_assoc()) {
-                                    $productId = $row['id'];
-                                    $productName = $row['name'];
-                                    $productPrice = $row['price'];
-                                    $productDescription = $row['description'];
-                                    $productImage = $row['image'];
-                                    $productCategory = $row['category'];
-                                    $btw = ($totalPrice / 100) * 21;
-                                    $subtotal = $totalPrice - $btw;
+                        if ($result->num_rows > 0) {
+                            $totalPrice = 0;
+                            while ($row = $result->fetch_assoc()) {
+                                $productId = $row['id'];
+                                $productName = $row['name'];
+                                $productPrice = $row['price'];
+                                $productDescription = $row['description'];
+                                $productImage = $row['image'];
+                                $productCategory = $row['category'];
+                                $btw = ($totalPrice / 100) * 21;
+                                $subtotal = $totalPrice - $btw;
 
-                                    //get quantity of product
-                                    $cartItem = null;
-                                    foreach ($cart as $item) {
-                                        if ($item['id'] == $productId) {
-                                            $cartItem = $item;
-                                            break;
-                                        }
+                                //get quantity of product
+                                $cartItem = null;
+                                foreach ($cart as $item) {
+                                    if ($item['id'] == $productId) {
+                                        $cartItem = $item;
+                                        break;
                                     }
+                                }
 
-                                    if (isset($cartItem)) {
-                                        // Ensure quantity is at least 1
-                                        $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
-                                        //product price is calculated
-                                        $productPrice = $productPrice * $cartItem['quantity'];
-                                        $totalPrice += $productPrice;
+                                if (isset($cartItem)) {
+                                    // Ensure quantity is at least 1
+                                    $cartItem['quantity'] = max(1, (int)$cartItem['quantity']);
+                                    //product price is calculated
+                                    $productPrice = $productPrice * $cartItem['quantity'];
+                                    $totalPrice += $productPrice;
+                                }
 
-                                    }
-
-                                    // display product information
-                                    echo "<div class='product'>
+                                // display product information
+                                echo "<div class='product'>
                                             <img id='product-image' src='../image/product_images/" . $productImage . ".jpg' alt=''>
-                                            <p>x".$cartItem['quantity']. str_repeat('&nbsp;', 1)."</p>
-                                            <p class='productname'>".substr($productName , 0 , 40)."...</p>
+                                            <p>x" . $cartItem['quantity'] . str_repeat('&nbsp;', 1) . "</p>
+                                            <p class='productname'>" . substr($productName, 0, 40) . "...</p>
                                             <p>€$productPrice</p>
                                         </div>";
                             }
                         }
-                        } else {
-                            echo "U heeft nog niks in de winkelwagen staan.";
-                        }
-                            ?>
+                    } else {
+                        echo "U heeft nog niks in de winkelwagen staan.";
+                    }
+                    ?>
 
 
                 </div>
+                <div class="Kortingscode">
+                    <form action="" method="post">
+                        <label for="korting">Korting</label>
+                        <input type="text" name="kortingcodez">
+                        <button type="submit">Korting toepassen</button>
+                    </form>
 
-                <!-- betaalmethode -->
-                <div class="betalen">
+                    <?php
+                    session_start();
+                    $kortingscodeOutput = isset($_SESSION['korting']) ? $_SESSION['korting'] : null;
+                    $kortingscode = isset($_POST['kortingcodez']);
+                    if ($kortingscode == $kortingscodeOutput) {
+                        $totalPrice *= 0.9; // Apply a 10% discount`
+                    }
+                    ?>
+                </div>
+            <div class="redirect-button">
+                <a href="../pages/Kortingcodes.php">
+                    <button>kortingscode</button>
+                </a>
+            </div>
+            <!-- betaalmethode -->
+            <div class="betalen">
                 <h2>Betaalmethode</h2>
-                    <div class="betalen-inner">
-                        <div class="betalen-opties">
-                            <label for="">
-                                <input type="radio" name="radio" id="ideal" onchange="betaalmethode()">
-                                <span>iDeal</span>
-                            </label>
-                            <!-- put a dropdown menu here -->
-                            <select name="" id="betaalmethodes" style="display: none;">
-                                <option value="">ING</option>
-                                <option value="">abn amro</option>
-                                <option value="">asn bank</option>
-                                <option value="">bunq</option>
-                                <option value="">rabobank</option>
-                                <option value="">sns</option>
-                            </select>
-                            <label for="">
-                                <input type="radio" name="radio" name="" id="paypal" onchange="uncheck()">
-                                Paypal
-                            </label>
-                            <label for="">
-                                <input type="radio" name="radio" id="klarna" onchange="uncheck()">
-                                Klarna
-                            </label>
-                        </div>
-                        <div class="betalen-termijnen">
-                            <p>Als je op 'Bestellen en betalen' klikt, ga je akkoord met de op jouw bestelling van toepassing zijnde (algemene) voorwaarden van NerdyGadgets </p>
-                        </div>
+                <div class="betalen-inner">
+                    <div class="betalen-opties">
+                        <label for="">
+                            <input type="radio" name="radio" id="ideal" onchange="betaalmethode()">
+                            <span>iDeal</span>
+                        </label>
+                        <!-- put a dropdown menu here -->
+                        <select name="" id="betaalmethodes" style="display: none;">
+                            <option value="">ING</option>
+                            <option value="">abn amro</option>
+                            <option value="">asn bank</option>
+                            <option value="">bunq</option>
+                            <option value="">rabobank</option>
+                            <option value="">sns</option>
+                        </select>
+                        <label for="">
+                            <input type="radio" name="radio" name="" id="paypal" onchange="uncheck()">
+                            Paypal
+                        </label>
+                        <label for="">
+                            <input type="radio" name="radio" id="klarna" onchange="uncheck()">
+                            Klarna
+                        </label>
+                    </div>
+                    <div class="betalen-termijnen">
+                        <p>Als je op 'Bestellen en betalen' klikt, ga je akkoord met de op jouw bestelling van toepassing zijnde (algemene) voorwaarden van NerdyGadgets </p>
                     </div>
                 </div>
-                    <!-- <form action="../api/deleteCookie.php"> -->
+            </div>
+            <!-- <form action="../api/deleteCookie.php"> -->
 
-            </div>
-            <div class="checkout">
-                <input type="submit" class="bestellen" value="Bestellen en betalen" name="trash">
-                <p>Totaal bedrag: €<?=$totalPrice?></p>
-            </div>
+        </div>
+        <div class="checkout">
+            <input type="submit" class="bestellen" value="Bestellen en betalen" name="trash">
+            <p>Totaal bedrag: €<?= $totalPrice ?></p>
+        </div>
         </div>
     </main>
     <!-- footer -->
     <div id="footer"></div>
 </body>
+
 </html>
-<?php 
+<?php
 //  }
 // }
 // } else {
@@ -248,10 +272,10 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 <script>
     function betaalmethode() {
         ideal = document.getElementById("ideal");
-        
 
-        if(ideal.checked) {
-            document.getElementById("betaalmethodes").style.display="block";
+
+        if (ideal.checked) {
+            document.getElementById("betaalmethodes").style.display = "block";
         }
     }
 
@@ -259,7 +283,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
         if (paypal.checked || klarna.checked) {
             paypal = document.getElementById("paypal");
             klarna = document.getElementById("klarna");
-            document.getElementById("betaalmethodes").style.display="none";
+            document.getElementById("betaalmethodes").style.display = "none";
         }
     }
 </script>
