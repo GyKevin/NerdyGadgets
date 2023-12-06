@@ -202,7 +202,6 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     </form>
 
                     <?php
-                    session_start();
                     $kortingscodeOutput = isset($_SESSION['korting']) ? $_SESSION['korting'] : null;
                     $kortingscode = isset($_POST['kortingcodez']);
                     if ($kortingscode == $kortingscodeOutput) {
