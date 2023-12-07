@@ -67,21 +67,22 @@
                     $error_output = $_SESSION['error'];
                     echo "<p style='color: red;'$error_output</p>";
                     echo $error_output;
-                    unset($_SESSION['error']);
+                    unset($_SESSION['error']); 
                 }
             ?>
             <h2>Registratie</h2>
             <form action="../api/register.php" method="post" class="registratie-form">
-                <input type="text" name="first_name" placeholder="Voornaam"> <br>
-                <input type="text" name="surname_prefix" placeholder="Tussenvoegsel"><br>
-                <input type="text" name="last_name" placeholder="Achternaam"><br>
-                <input type="email" name="email" placeholder="email"><br>
-                <input type="text" name="street_name" placeholder="Straat naam"><br>
-                <input type="text" name="house_number" placeholder="huisnummer"><br>
-                <input type="text" name="postal_code" placeholder="postcode"><br>
-                <input type="text" name="city" placeholder="Stad"><br>
-                <input type="password" name="password" placeholder="Wachtwoord" id="password"><br>
-                <input type="password" name="repeat_password" placeholder="Herhaal Wachtwoord" id="repass"><br>
+                <p style="color: gray;">* Verplicht</p>
+                <input type="text" name="first_name" placeholder="Voornaam *"> <br>
+                <input type="text" name="surname_prefix" placeholder="Tussenvoegsel (optioneel)"><br>
+                <input type="text" name="last_name" placeholder="Achternaam *"><br>
+                <input type="email" name="email" placeholder="email *"><br>
+                <input type="text" name="street_name" placeholder="Straat naam *"><br>
+                <input type="text" name="house_number" placeholder="huisnummer *"><br>
+                <input type="text" name="postal_code" placeholder="postcode *"><br>
+                <input type="text" name="city" placeholder="Stad *"><br>
+                <input type="password" name="password" placeholder="Wachtwoord *" id="password"><br>
+                <input type="password" name="repeat_password" placeholder="Herhaal Wachtwoord *" id="repass"><br>
                 <input type="submit" class="Registreer" value="Registreer" onclick="mySubmit(this)">
             </form>
             

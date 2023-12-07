@@ -168,10 +168,14 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             </div>
             <div class="checkout_button">
                 <?php
-                if (isset($_SESSION['user_id'])) {
-                    echo "<button class='checkoutbtn'><a href='checkout.php'>Checkout</a></button>";
+                if (isset($_COOKIE['cart'])) {
+                    if (isset($_SESSION['user_id'])) {
+                        echo "<button class='checkoutbtn'><a href='checkout.php'>Checkout</a></button>";
+                    } else {
+                        echo "<button class='checkoutbtn'><a href='guest-checkout.php'>Checkout</a></button>";
+                    }
                 } else {
-                    echo "<button class='checkoutbtn'><a href='guest-checkout.php'>Checkout</a></button>";
+                    echo "<input type='submit' class='noCheckout' value='Leeg Winkelwagen'>";
                 }
                 ?>
             </div>
