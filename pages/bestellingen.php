@@ -61,7 +61,7 @@ include_once("../db/dbc.php");
                                 <a href='product.php?id=$id'>$name</a>
                                 <p>€$price</p>
                             </div>
-                            <a href='review.php?id=$id&order_id=$order_id'>
+                            <a href='product.php?id=$id'>
                                 <button>Schrijf review</button>
                             </a>
                         </div>";
