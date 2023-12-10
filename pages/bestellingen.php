@@ -47,18 +47,23 @@ include_once("../db/dbc.php");
                     $id = $row['id'];
                     $name = $row['name'];
                     $image = $row['image'];
-                    $price = $row['price'];
                     $quantity = $row['quantity'];
+                    $price = $row['price'] * $quantity;
+                    $order_id = $row['order_id'];
 
                     // echo $name;
                     // echo "<img src='../image/product_images/$image.jpg' alt='product image' width='100px'>";
                     echo "<div class='item'>
-                            <p>X$quantity</p>
+                            <p>X".$quantity . str_repeat('&nbsp;', 5)."</p>
                             <img src='../image/product_images/$image.jpg' alt='product image' width='120px'>
                             <div class='text'>
+                                <p>#$order_id</p>
                                 <a href='product.php?id=$id'>$name</a>
                                 <p>€$price</p>
                             </div>
+                            <a href='product.php?id=$id'>
+                                <button>Schrijf review</button>
+                            </a>
                         </div>";
                 } 
             } else {
@@ -66,6 +71,7 @@ include_once("../db/dbc.php");
             }
             ?>
             </div>
+            
         </main>
     <div id="footer"></div>
 </body>
@@ -91,13 +97,15 @@ main {
 }
 .item {
     display: flex;
+    align-items: center;
     flex-direction: row;
     margin-bottom: 20px;
     width: 80%;
 }
 .item img {
     min-width: 120px !important;
-    height: 100%;
+    height: 120px;
+    object-fit: contain;
 }
 .text {
     margin-left: 20px;

@@ -188,22 +188,52 @@ $result = $conn->query($sql);
                 $productPrice = $row['price'];
                 $productDescription = $row['description'];
                 $productImage = $row['image'];
-                echo
-                "<div class='prodCard'>
-                    <img src='../image/product_images/" . $productImage . ".jpg' alt='product image' width='100px'>
-                    <a href='product.php?id=$productId'>$productName</a>
+                ?>
+                <div class='prodCard'>
+                    <img src='../image/product_images/<?=$productImage?>.jpg' alt='product image' width='100px'>
+                    <a href='product.php?id=<?=$productId?>'><?=$productName?></a>
                     <div id='buy-btn'>
-                        <p>€ $productPrice</p> <br>
+                        <?php
+                        $reviewSql = "SELECT count(Order_item_product_id) AS total, rating FROM review WHERE Order_item_product_id = $productId";
+                        $ReviewRes = $conn->query($reviewSql);
+                        if($ReviewRes->num_rows > 0) {
+                            while ($row = $ReviewRes->fetch_assoc()) {
+                                $total = $row['total'];
+                                $rating = $row['rating'];
+                                
+                                // calculate total rating
+                                $numbers = [$rating];
+                                $sum = array_sum($numbers);
+                                $count = count($numbers);
+                                $average = $sum / $count;
+                                if ($average == 1) {
+                                    echo "<span>&starf;&star;&star;&star;&star; $total reviews</span>";
+                                } else if ($average == 2) {
+                                    echo "<span>&starf;&starf;&star;&star;&star; $total reviews</span>";
+                                }else if ($average == 3) {
+                                    echo "<span>&starf;&starf;&starf;&star;&star; $total reviews</span>";
+                                }else if ($average == 4) {
+                                    echo "<span>&starf;&starf;&starf;&starf;&star; $total reviews</span>";
+                                }else if ($average == 5) {
+                                    echo "<span>&starf;&starf;&starf;&starf;&starf; $total reviews</span>";
+                                } else if ($total == 0 ) {
+                                    echo "<span>&star;&star;&star;&star;&star; 0 reviews</span>";
+                                }
+                            }
+                        }
+                        ?>
+                        <p>€ <?=$productPrice?></p> <br>
                         <div class='koop-btns'>
                         <form method='post'>
-                            <button type='submit' id='' name='kopen' value='$productId'>Bekijk Product</button>
+                            <button type='submit' id='' name='kopen' value='<?=$productId?>'>Bekijk Product</button>
                         </form>
-                            <a href='quickadd.php?id=$productId'>
+                            <a href='quickadd.php?id=<?=$productId?>'>
                                 <button id='koop-btn'><i style='font-size:15px' class='fas'>&#xf07a;</i></button>
                             </a>
                         </div>
                     </div>
-                </div>";
+                </div>
+        <?php
             }
         }
 

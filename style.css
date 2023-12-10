@@ -123,7 +123,7 @@
     color: black;
 }
 .product {
-    margin: 0 40px;
+    margin: 0 15px;
     width: 350px;
     transition: all 0.3s ease-in-out;
     border-radius: 5px;

@@ -6,7 +6,7 @@ function getRecommendedProducts($userCategory){
     $connection = connection();
 
     $stmt = mysqli_prepare($connection , "
-        SELECT name,price,image
+        SELECT id,name,price,image
         FROM nerdy_gadgets_start.product
         
         WHERE category = ? AND id BETWEEN 
@@ -26,6 +26,7 @@ function getRecommendedProducts($userCategory){
 
     while ($product = mysqli_fetch_assoc($result)){
         $row[]= array(
+            "id" => $product['id'],
             "name" => $product['name'],
             "image" => $product['image'],
             "price" => $product['price']

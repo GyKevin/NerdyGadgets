@@ -1,0 +1,157 @@
+main {
+    width: 100vw;
+    height: 100%;
+    margin: 0%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.container {
+    /*margin: 20px;*/
+    width: 60vw;
+    height: fit-content;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
+    display: flex;
+    flex-direction: row;
+}
+.bezorgadres {
+    margin: 0 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.bezorgadres input {
+    width: 300px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.betalen {
+
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.betalen-opties{
+    /*height: 5vh;*/
+    display: grid;
+    margin: 10px;
+}
+.betalen-opties label{
+    display: flex;
+}
+.betalen-termijnen{
+margin: 10px;
+    /*height: 5vh;*/
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+.product {
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+#product-image{
+    margin-right: 10px;
+    width: 15vh;
+    max-width:80px ;
+    max-height: 70px;
+}
+.productname {
+    width: 70%;
+}
+.bestellen {
+    /*margin-left: 20px ;*/
+    border: none;
+    background-color: #23232f;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 200px;
+    height: 50px;
+}
+.checkout {
+
+    margin: 20px 20px 0 0;
+    /*position: absolute;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*width: 100%;*/
+}
+.checkout p {
+    top: 50px;
+}
+.checkout input:hover {
+    background-color: #4e4e58;
+}
+.gegevens {
+    color: black;
+}
+.gegevens:hover {
+    color: #4e4e58;
+}
+
+
+.labels{
+    display: grid;
+}
+
+
+.first_name{
+    display: none;
+    color: red;
+}
+
+.last_name{
+    display: none;
+    color: red;
+}
+
+.email {
+    display: none;
+    color: red;
+}
+.email-error {
+    display: none;
+    color: red;
+}
+
+.street_name {
+    display: none;
+    color: red;
+}
+
+.apartment_nr {
+    display: none;
+    color: red;
+}
+
+.postal_code {
+    display: none;
+    color: red;
+}
+.postcode-error {
+    display: none;
+    color: red;
+}
+
+.city {
+    display: none;
+    color: red;
+}
