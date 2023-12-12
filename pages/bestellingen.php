@@ -8,7 +8,7 @@ include_once("../db/dbc.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wachtwoord aanpassen</title>
+    <title>Uw Bestellingen</title>
     <link rel="stylesheet" href="../navbar/navbar.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <!-- import font-awesome -->
@@ -50,6 +50,8 @@ include_once("../db/dbc.php");
                     $quantity = $row['quantity'];
                     $price = $row['price'] * $quantity;
                     $order_id = $row['order_id'];
+                    // $date = $row['order_date'];
+                    $date = "20/12/2023";
 
                     // echo $name;
                     // echo "<img src='../image/product_images/$image.jpg' alt='product image' width='100px'>";
@@ -57,11 +59,11 @@ include_once("../db/dbc.php");
                             <p>X".$quantity . str_repeat('&nbsp;', 5)."</p>
                             <img src='../image/product_images/$image.jpg' alt='product image' width='120px'>
                             <div class='text'>
-                                <p>#$order_id</p>
+                                <p>#$order_id | $date</p>
                                 <a href='product.php?id=$id'>$name</a>
                                 <p>€$price</p>
                             </div>
-                            <a href='product.php?id=$id'>
+                            <a href='product.php?id=$id' class='review-btn'>
                                 <button>Schrijf review</button>
                             </a>
                         </div>";
@@ -101,6 +103,11 @@ main {
     flex-direction: row;
     margin-bottom: 20px;
     width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .item img {
     min-width: 120px !important;
@@ -116,6 +123,26 @@ main {
 }
 .text a:hover {
     text-decoration: underline;
-    color: #4e4e58;;
+    color: #4e4e58;
+}
+.review-btn {
+    margin-left: auto;
+    float: right;
+}
+.review-btn button {
+    width: 120px;
+    height: 40px;
+    background-color: #23232f;
+    border: none !important;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+.review-btn button:hover {
+    background-color: #4e4e58;
 }
 </style>
