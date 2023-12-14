@@ -60,7 +60,7 @@ if($result->num_rows >0) {
 
         if ($conn->query($sql) === TRUE) {
                 $_SESSION['success'] = "Bedankt voor u review!";
-                header("location: ../pages/review.php");
+                header("location: ../pages/product.php?id=$productId");
                 exit();
             } else {
                 echo "Error inserting into Order_item: " . $conn->error;

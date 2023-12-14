@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../css/product.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="../api/gnome.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -53,9 +54,10 @@
     <div class="info-container">
         <!-- image slider -->
         <div class="image-slider">
-            <img src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image">
+            <img id="main_img" src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image">
+            <h2 id="gnomed_txt">Get gnomed</h2>
         </div>
-
+        <img id="stolen_item" src="../image/product_images/<?php echo $productImage ?>.jpg" alt="product image">
         <!-- product info -->
         <div class="product-info">
             <!-- title, category and reviews -->
@@ -98,9 +100,12 @@
             <div class="buy">
                 <p class="Product_prijs">€<?php echo $productPrice; ?></p>
                 <!-- buy button -->
-                <form action="../api/addToCart.php" method="post">
+                <!-- <form action="../api/addToCart.php" method="post">
                     <button class="add_cart" name="product_id" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
-                </form>
+                </form> -->
+                <div>
+                    <button class="add_cart" name="product_id" onclick="gnomed()" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
+                </div>
             </div>
 
             <!-- omschrijving -->
@@ -248,7 +253,7 @@
     </div> <!-- end of review containet -->
 
 
-
+<img id="gnome" class="flipped" src="../image/gnome.png" alt="">
 </div>
 </main>
 
