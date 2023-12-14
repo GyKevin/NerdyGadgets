@@ -35,7 +35,7 @@ include_once("../db/dbc.php");
             <h2>Mijn Bestellingen</h2>
             <?php
 
-                $sql = "SELECT p.*, oi.*
+                $sql = "SELECT p.*, oi.*, o.*
                 FROM Product p
                 JOIN Order_item oi ON p.id = oi.product_id
                 JOIN `Order` o ON oi.order_id = o.id
@@ -50,8 +50,8 @@ include_once("../db/dbc.php");
                     $quantity = $row['quantity'];
                     $price = $row['price'] * $quantity;
                     $order_id = $row['order_id'];
-                    // $date = $row['order_date'];
-                    $date = "20/12/2023";
+                    $date = $row['order_date'];
+                    // $date = "20/12/2023";
 
                     // echo $name;
                     // echo "<img src='../image/product_images/$image.jpg' alt='product image' width='100px'>";
