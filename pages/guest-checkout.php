@@ -43,6 +43,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
     <link rel="stylesheet" href="/css/guest-checkout.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="/api/web-helper-api.js"></script>
     <style>
         body {
             min-height: 100vh;
