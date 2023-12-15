@@ -196,17 +196,18 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 </div>
                 <div class="Kortingscode">
                     <form action="" method="post">
-                        <label for="korting">Korting</label>
-                        <input type="text" name="kortingcodez">
+                        <label for="korting">Korting
+                        <input type="text" name="kortingcodez"></label>
                         <button type="submit">Korting toepassen</button>
                     </form>
 
                     <?php
-                    $kortingscodeOutput = isset($_SESSION['korting']) ? $_SESSION['korting'] : null;
-                    $kortingscode = isset($_POST['kortingcodez']);
-                    if ($kortingscode == $kortingscodeOutput) {
-                        $totalPrice *= 0.9; // Apply a 10% discount`
+                    $kortingscodeOutput = $_SESSION['korting'];
+                    $kortingscodeUser = $_POST['kortingcodez'];
+                    if ($kortingscodeUser == $kortingscodeOutput) {
+                        $totalPrice = $totalPrice * 0.9;
                     }
+
                     ?>
                 </div>
             <div class="redirect-button">
