@@ -203,7 +203,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
                     <?php
                     $kortingscodeOutput = $_SESSION['korting'];
-                    $kortingscodeUser = $_POST['kortingcodez'];
+                    $kortingscodeUser = $_POST['kortingcodez'] ?? " ";
                     if ($kortingscodeUser == $kortingscodeOutput) {
                         $totalPrice = $totalPrice * 0.9;
                     }
