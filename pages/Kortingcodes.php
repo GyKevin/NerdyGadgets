@@ -28,7 +28,7 @@
 <main>
     
 
-<script type="text/javascript" src="../api/korting.js"></script>
+
 <?php
 session_start();
 $kortingscode = kortingscode(5);
@@ -50,15 +50,15 @@ function kortingscode($numberofletters)
 }
 ?>
 
-<div>
+<div class="yea">
     <p><?php echo $kortingscode; ?></p>
 </div>
 
-<script src="/api/korting.js"></script>
+<script src="/api/korting.js" defer></script>
 
 <div class="redirect-button">
                         <a href="../pages/guest-checkout.php">
-                            <button>kortingscode</button>
+                            <button>Terug naar checkout</button>
                         </a>
                         </div>
                         </main>
@@ -69,10 +69,23 @@ function kortingscode($numberofletters)
 </html>
 <style>
     .yea {
-        transition: all 0.3s ease-in-out;
+        transition: all 0.1s ease-in-out;
+        position: absolute;
+        margin-left: 10px;
     }
 
-    .redirect-button {
-        margin-top: 100px;
+    .redirect-button button {
+    margin-top: 50px;
+    border: none;
+    background-color: #23232f;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    height: 25px;
+    margin-left: 10px;
+
+
     }
 </style>
