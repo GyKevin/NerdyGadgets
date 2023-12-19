@@ -178,3 +178,6 @@
     top: 170px;
     left: -135px;
 }
+.hidden {
+    display: none;
+}

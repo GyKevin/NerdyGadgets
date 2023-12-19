@@ -100,10 +100,11 @@
             <div class="buy">
                 <p class="Product_prijs">€<?php echo $productPrice; ?></p>
                 <!-- buy button -->
-                <!-- <form action="../api/addToCart.php" method="post">
+                <form action="../api/addToCart.php" method="post" id="buyForm">
                     <button class="add_cart" name="product_id" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
-                </form> -->
-                <div>
+                </form>
+                <!-- gnome button -->
+                <div id="buyDiv" class="hidden">
                     <button class="add_cart" name="product_id" onclick="gnomed()" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
                 </div>
             </div>
@@ -277,4 +278,28 @@
             moreBtn.innerHTML = "Lees meer";
         }
     }
+
+    // 1 in a 10 change that the gnome shows up
+    function getRandomNumber() {
+    return Math.floor(Math.random() * 10) + 1;
+    }
+
+    function updateButtonVisibility() {
+        var randomNumber = getRandomNumber();
+        var buyForm = document.getElementById('buyForm');
+        var buyDiv = document.getElementById('buyDiv');
+
+        if (randomNumber === 1) {
+        buyForm.classList.add('hidden');
+        buyDiv.classList.remove('hidden');
+        } else {
+        buyForm.classList.remove('hidden');
+        buyDiv.classList.add('hidden');
+        }
+    }
+
+    updateButtonVisibility();
+
+    document.getElementById('buyForm').addEventListener('click', updateButtonVisibility);
+    document.getElementById('buyDiv').addEventListener('click', updateButtonVisibility);
 </script>
