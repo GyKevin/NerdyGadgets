@@ -86,7 +86,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     <div class="labels">
                         <span class="first_name">*</span>
                         <label for="first_name">Voornaam</label>
-                        <input type="text" name="first_name" id="" placeholder="Verplict">
+                        <input type="text" name="first_name" id="" placeholder="Verplicht">
                     </div>
 
                     <div class="labels">
@@ -97,36 +97,36 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     <div class="labels">
                         <span class="last_name">*</span>
                         <label for="last_name">Achternaam</label>
-                        <input type="text" name="last_name" placeholder="Verplict">
+                        <input type="text" name="last_name" placeholder="Verplicht">
                     </div>
 
                     <div class="labels">
                         <span class="email">*</span>
                         <span class="email-error">Ongeldig e-mailadres ingevuld</span>
                         <label for="email">email</label>
-                        <input type="text" name="email" placeholder="Verplict">
+                        <input type="text" name="email" placeholder="Verplicht">
                     </div>
 
                     <div class="labels">
                         <span class="street_name">*</span>
                         <label for="street_name">Straat</label>
-                        <input type="text" name="street_name" placeholder="Verplict">
+                        <input type="text" name="street_name" placeholder="Verplicht">
                     </div>
                     <div class="labels">
                         <span class="apartment_nr">*</span>
                         <label for="apartment_nr">Huis nummer</label>
-                        <input type="text" name="apartment_nr" placeholder="Verplict">
+                        <input type="text" name="apartment_nr" placeholder="Verplicht">
                     </div>
                     <div class="labels">
                         <span class="postal_code">*</span>
                         <span class="postcode-error">Ongeldige postcode ingevuld</span>
                         <label for="postal_code">Post code</label>
-                        <input type="text" name="postal_code" placeholder="Verplict">
+                        <input type="text" name="postal_code" placeholder="Verplicht">
                     </div>
                     <div class="labels">
                         <span class="city">*</span>
                         <label for="city">Stad</label>
-                        <input type="text" name="city" placeholder="Verplict">
+                        <input type="text" name="city" placeholder="Verplicht">
                     </div>
             </div>
 
