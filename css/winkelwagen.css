@@ -135,7 +135,6 @@ main {
 }
 .checkout_button button{
   margin-left: 20px ;
-  background-color: #4CAF50; /* Green */
   border: none;
   background-color: #23232f;
   color: white;
@@ -184,4 +183,17 @@ main {
 .checkoutbtn a {
   text-decoration: none;
   color: white !important;
+}
+.noCheckout {
+  margin-left: 20px ;
+  border: none;
+  background-color: #4e4e58;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }

@@ -31,15 +31,28 @@ if($result->num_rows >0) {
         //get order id
         $order_id = $_GET['order_id'];
         if (empty($title)) {
-            $_SESSION['error'] = "Geef het review een titel!";
-            header("Location: ../pages/review.php?id=$productId&order_id=$order_id");
+            $_SESSION['error'] = "Geef u review een titel!";
+            // header("Location: ../pages/review.php?id=$productId&order_id=$order_id");
+            header("Location: ../pages/product.php?id=$productId");
             exit();
         }
 
         if (!isset($star)) {
             $_SESSION['error'] = "Geef het product een beoordeling!";
-            header("Location: ../pages/review.php?id=$productId&order_id=$order_id");
+            // header("Location: ../pages/review.php?id=$productId&order_id=$order_id");
+            header("Location: ../pages/product.php?id=$productId");
             exit();
+        }
+        
+        // $result = query("SELECT * FROM review WHERE Order_item_order_id = $order_id");
+        $sql = "SELECT * FROM review WHERE Order_item_order_id = $order_id";
+        $result = $conn->query($sql);
+        if($result->num_rows >0) {
+            while($row = $result->fetch_assoc()) {
+                $_SESSION['error'] = "U heeft deze product al beoordeeld.";
+                header("Location: ../pages/product.php?id=$productId");
+                exit();
+            }
         }
 
         $sql = "INSERT INTO review (Order_item_order_id, Order_item_product_id, User_id, title, review, rating)
