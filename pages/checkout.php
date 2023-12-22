@@ -186,6 +186,28 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             <p>Nog te betalen: €<?=$totalPrice?></p>
             </div>
 
+            <div class="Kortingscode">
+                    <form action="" method="post">
+                        <label for="korting">Korting</label>
+                        <input type="text" name="kortingcodez">
+                        <button type="submit">Korting toepassen</button>
+                    </form>
+
+                    <?php
+                    $kortingscodeOutput = isset($_SESSION['korting']) ? $_SESSION['korting'] : null;
+                    $kortingscode = isset($_POST['kortingcodez']);
+                    if ($kortingscode == $kortingscodeOutput) {
+                        $totalPrice *= 0.9; // Apply a 10% discount`
+                    }
+
+                    ?>
+                </div>
+            <div class="redirect-button">
+                <a href="../pages/Kortingcodes.php">
+                    <button>kortingscode</button>
+                </a>
+            </div>
+
             <!-- betaalmethode -->
             <div class="betalen">
             <h2>Betaalmethode</h2>
