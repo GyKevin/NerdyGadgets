@@ -89,23 +89,25 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
             $btw = ($totalPrice / 100) * 21;
             $subtotal = $totalPrice - $btw;
 
-            if (isset($_POST['trash'])) {
-                $productIdToRemove = $_POST['trash'];
+            if (isset($_GET['remove'])) {
+                $productIdToRemove = $_GET['remove'];
                 $index = array_search($productIdToRemove, array_column($cart, 'id'));
             
                 if ($index !== false) {
                     unset($cart[$index]);
-                    setcookie('cart', serialize($cart), time() + 3600, '/'); // Update the expiration time
+                    setcookie('cart', serialize($cart), time() + 3600, '/'); 
+                    header('Location: winkelwagen.php');
+                    exit();
                 }
             }
             
             ?>
             <div class="items">
                 <form action="winkelwagen.php?product_id=<?=$productId?>" method="post">
-                    <div class="buttons">
-                    <button name="trash" value="<?=$productId?>"><img src="/image/111056_trash_can_icon.png"></button>
+                <div class="buttons">
+                    <a href="winkelwagen.php?remove=<?=$productId?>" class="removeBtn"><img src="/image/111056_trash_can_icon.png"></a>
                     <input type="hidden" name="product_id" value=<?=$productId?>>
-                    </div>
+                </div>
                 </form>
 
                 <div class="image">
@@ -127,8 +129,6 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                 </script>
                 </form>
                 <!-- remember the input -->
-                
-                
 
                 <div class="price">
                     <p>€<?=$productPrice?></p>
