@@ -204,8 +204,7 @@ a {
     font-size: 25px;
 }
 .web-helper-shrink button:hover + .web-helper-hover-container{
-    /*display: inline;*/
-   /*visibility: visible;*/
+
     opacity: 1;
     left: 80%;
     transition: all 1s;

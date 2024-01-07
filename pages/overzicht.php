@@ -3,7 +3,7 @@ include_once("../db/dbc.php");
 include_once ("../db/CookiesDatabase.php");
 include_once ("../api/cookies.php");
 
-setAllCookieClicks();
+
 $type = $_GET['type'];
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 

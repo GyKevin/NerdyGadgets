@@ -10,6 +10,7 @@
     <script src="/navbar/import-handler.js" defer></script>
     <script src="/api/web-helper-api.js"></script>
 
+
     <style>
         body {
             min-height: 100vh;
@@ -25,6 +26,7 @@
     </style>
 </head>
 <body>
+<?php include ("api/cookies.php"); setAllCookieClicks(); ?>
     <!-- navigatie bar -->
     <div id="navbar"></div>
     <!-- content -->

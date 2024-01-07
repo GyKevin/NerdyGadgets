@@ -172,7 +172,7 @@
             include_once ("../api/cookies.php");
             $result = getProducts();
 
-            $aantal = 0;
+
             for ($i = 0; $i < sizeof($result); $i++) {
                 $productID = $result[$i]['id'];
                 $productImage = $result[$i]['image'];
@@ -185,7 +185,7 @@
                 <a href='../pages/product.php?id=$productID'>
                     <div class='". $productCategory."'>
                         <div class='product'> 
-                        <img id='product-image' src='../image/product_images/" . $productImage . ".jpg' alt=''>
+                        <img id='product-image' src='../image/product_images/$productImage.jpg' alt=''>
                         <p class='productname'>".substr($productName , 0 , 40)."...</p>
                         <p>€$productPrice</p>
                         </div>

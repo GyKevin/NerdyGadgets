@@ -13,7 +13,6 @@ function neeOnClick(){
     let webHelperTekst = document.getElementById("web-helper-span");
     number = getRandomNumber(number,10);
 
-
     if (number <= 6){
         if (aantalKerenNee === 0){
             aantalKerenNee++;
@@ -42,8 +41,6 @@ function neeOnClick(){
 
         return webHelperTekst.textContent = "I guess i'll die";
     }
-
-
 }
 
 function jaOnClick(){
@@ -55,12 +52,12 @@ function jaOnClick(){
     document.getElementById("web-helper-picture").src="/image/emojis/Confused-emoji.jpg";
 
     sessionStorage.setItem("nerdyBroActief","TRUE");
+    document.cookie = "nerdyBroActief= TRUE;"
     return console.log("ja");
 
 }
 
 function productZoekenOnClick(){
-    console.log('het werkt');
     document.getElementById("web-helper-button-product-zoeken").style.display = "none";
 
     document.getElementById("web-helper-span").textContent = "Welke product zoekt u?"
@@ -72,8 +69,6 @@ function productZoekenOnClick(){
     document.getElementById("web-helper-components-buttons").style.display = "inline";
     document.getElementById("web-helper-desktops-buttons").style.display = "inline";
     document.getElementById("web-helper-category-terug-button").style.display = "inline";
-
-
 }
 
 function clearList(){
@@ -248,9 +243,12 @@ function showOptiesOnClick(){
 }
 
 function doSomething(){
-    let randomNumber = Math.floor(Math.random()*3);
-
-    if (!sessionStorage.getItem("nerdyBroActief")){
+    let randomNumber = Math.floor(Math.random()*4);
+    if (!sessionStorage.getItem("visited")){
+        document.getElementById("algemene-voorwaarden-check").style.display = "inline";
+        sessionStorage.setItem("visited","TRUE");
+        console.log("show visited");
+    }else if (!sessionStorage.getItem("nerdyBroActief")){
         if (randomNumber === 0){
             let randomColor = Math.floor(Math.random()*16777215).toString(16);
             let audio = new Audio("../audio/stars.mp3")
@@ -268,11 +266,15 @@ function doSomething(){
             audio.volume = 0.01;
             audio.play();
         }
+        if (randomNumber === 3){
+            let check = document.getElementById("algemene-voorwaarden-check")
+            check.style.display =("inline")
+        }
     }
 }
 
 function active(){
-    setInterval(doSomething,10000);
+    setInterval(doSomething,20000);
 }
 active();
 function showProductsOnClick(){
@@ -312,4 +314,15 @@ function showProductsOnClick(){
 
         }
     }
+}
+
+function algemeneVoorwaardenJaOnClick(){
+    document.getElementById("algemene-voorwaarden-check-buttons-ja")
+    location.href = ("../Pages/algemene-voorwaarden.php")
+    sessionStorage.setItem("nerdyBroActief","TRUE");
+}
+
+function algemeneVoorwaardenNeeOnClick(){
+    document.getElementById("algemene-voorwaarden-check-buttons-nee")
+    document.getElementById("algemene-voorwaarden-check").style.display = "none";
 }
