@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/navbar/navbar.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js"></script>
+    <script src="/api/web-helper-api.js"></script>
     <link rel="stylesheet" href="/css/winkelwagen.css">
     <style>
         body {

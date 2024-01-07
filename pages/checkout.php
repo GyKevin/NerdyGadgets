@@ -35,6 +35,7 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
     <link rel="stylesheet" href="../css/checkout.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="/api/web-helper-api.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -188,16 +189,16 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
 
             <div class="Kortingscode">
                     <form action="" method="post">
-                        <label for="korting">Korting</label>
-                        <input type="text" name="kortingcodez">
+                        <label for="korting">Korting
+                        <input type="text" name="kortingcodez"></label>
                         <button type="submit">Korting toepassen</button>
                     </form>
 
                     <?php
-                    $kortingscodeOutput = isset($_SESSION['korting']) ? $_SESSION['korting'] : null;
-                    $kortingscode = isset($_POST['kortingcodez']);
-                    if ($kortingscode == $kortingscodeOutput) {
-                        $totalPrice *= 0.9; // Apply a 10% discount`
+                    $kortingscodeOutput = $_SESSION['korting'];
+                    $kortingscodeUser = $_POST['kortingcodez'] ?? " ";
+                    if ($kortingscodeUser == $kortingscodeOutput) {
+                        $totalPrice = $totalPrice * 0.9;
                     }
 
                     ?>
@@ -207,7 +208,6 @@ if (isset($_COOKIE['cart']) && !empty($_COOKIE['cart'])) {
                     <button>kortingscode</button>
                 </a>
             </div>
-
             <!-- betaalmethode -->
             <div class="betalen">
             <h2>Betaalmethode</h2>

@@ -3,7 +3,7 @@ include_once("../db/dbc.php");
 include_once ("../db/CookiesDatabase.php");
 include_once ("../api/cookies.php");
 
-setAllCookieClicks();
+
 $type = $_GET['type'];
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 
@@ -94,6 +94,7 @@ $result = $conn->query($sql);
     <!-- import font-awesome -->
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="/api/web-helper-api.js"></script>
     <style>
         body {
             min-height: 100vh;

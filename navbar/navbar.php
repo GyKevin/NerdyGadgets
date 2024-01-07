@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>navbar</title>
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/algemene-voorwaarden-check.css">
+
+
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
+    <script src="/api/web-helper-api.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -63,6 +67,16 @@
           <!-- </form> -->
           <a href="../pages/winkelwagen.php" id="winkelwagen"><i style='font-size:20px' class='fas'>&#xf07a;</i></a>
       </div>
+    <div id="algemene-voorwaarden-check">
+        <div class="algemene-voorwaarden-check-text">
+            <h3>Wilt u onze algemene voorwaarden bekijken?</h3>
+
+        </div>
+        <div class="algemene-voorwaarden-check-buttons">
+            <button id="algemene-voorwaarden-check-buttons-ja" onclick="algemeneVoorwaardenJaOnClick()">ja</button>
+            <button id="algemene-voorwaarden-check-buttons-nee" onclick="algemeneVoorwaardenNeeOnClick()">nee</button>
+        </div>
+    </div>
 </body>
 </html>
 

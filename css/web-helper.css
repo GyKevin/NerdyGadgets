@@ -1,0 +1,283 @@
+#web-helper-outer{
+    position: fixed;
+    left: 85%;
+    top: 55%;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.30);
+
+    padding: 10px;
+    width: 250px;
+
+    border-radius: 25px;
+
+    display: grid;
+
+}
+.web-helper-image img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.web-helper-image{
+    padding: 0 10px 0 10px;
+    /*border: 10px black solid;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.web-helper-inner{
+    display: grid;
+}
+.web-helper-tekst{
+    border: solid #3f3f55 2px;
+    border-radius: 5px;
+    padding: 5px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+}
+.web-helper-antwoord{
+    display: grid;
+}
+#web-helper-button-product-zoeken{
+    display: none;
+}
+
+#input{
+    display: none;
+}
+#input-button{
+    display: none;
+}
+
+
+
+.item {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+.product {
+    display: flex;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
+    margin: 10px;
+    /*flex-direction: row;*/
+    width: 90%;
+
+}
+.product:hover {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+a {
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+#product-image{
+    margin-right: 10px;
+    width: 15vh;
+    max-width:80px ;
+    max-height: 70px;
+}
+.productname {
+    width: 70%;
+}
+#web-helper-zoek-producten-container{
+    background: white;
+    display: none;
+    padding: 5px;
+    position: fixed;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.10);
+    border-radius: 25px;
+    top: 60%;
+    left: 52%;
+}
+
+#web-helper-zoek-producten-container button{
+    position: relative;
+    left: 5px;
+    top: 5px;
+    background: red;
+    border: none;
+    border-radius: 25px;
+    color: white;
+}
+.web-helper-zoek-producten{
+    margin-top: 5px;
+
+
+   width: 600px;
+    height: 300px;
+    overflow-y: scroll;
+}
+.product-inhoud{
+    display: flex;
+}
+
+.web-helper-zoek-producten-buttons{
+    display: none;
+}
+                            /*nerdy bro buttons*/
+.web-helper-exit-button{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 25px;
+    border: none;
+    background: red;
+    color: white;
+}
+#web-helper-button-ja{
+    width: 120px;
+    background: #23232f;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+}
+#web-helper-button-nee{
+    width: 120px;
+    background: #23232f;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.web-helper-category-buttons{
+    display: grid;
+}
+
+.web-helper-category-button{
+    width: 250px;
+    background: #23232f;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.web-helper-category-button:hover{
+    background: #47475d;
+}
+#web-helper-button-product-zoeken{
+    width: 250px;
+    background: #23232f;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+}
+                                /*Nerdy bro shrink*/
+.web-helper-shrink img{
+    border-radius: 25px;
+}
+#web-helper-shrink-container{
+    display: none;
+}
+.web-helper-shrink{
+    display: flex;
+    align-items: center;
+}
+.web-helper-shrink button{
+    position: fixed;
+    left: 83%;
+    top: 90%;
+    width: 320px;
+    height: 50px;
+    text-decoration: none;
+    border: none;
+    color: white;
+    background: #23232f;
+    border-radius: 25px;
+    font-size: 25px;
+}
+.web-helper-shrink button:hover + .web-helper-hover-container{
+
+    opacity: 1;
+    left: 80%;
+    transition: all 1s;
+
+}
+.web-helper-shrink button:active{
+
+    width: 310px;
+    height: 45px;
+    /*font-size: 18px;*/
+    transition: 0.1ms;
+}
+.web-helper-hover-container{
+    opacity: 0;
+}
+.web-helper-shrink-hover{
+    position: fixed;
+    left: 83%;
+    top: 80%;
+
+    display: flex;
+    align-items: center;
+
+    width: 300px;
+    padding: 5px;
+
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.20);
+
+    /*border: 2px black solid;*/
+    border-radius: 25px
+
+}
+
+                                /*producten zoeken buttons*/
+#web-helper-laptops-buttons{
+    display: none;
+}
+#web-helper-phones-buttons{
+    display: none;
+}
+#web-helper-opslag-buttons{
+    display: none;
+}
+#web-helper-routers-buttons{
+    display: none;
+}
+#web-helper-components-buttons{
+    display: none;
+}
+#web-helper-desktops-buttons{
+    display: none;
+}
+#web-helper-category-terug-button{
+    display: none;
+}
+
+
+                                /*product categories*/
+.laptops{
+    display: none;
+}
+.phones{
+    display: none;
+}
+.opslag{
+    display: none;
+}
+.routers{
+    display: none;
+}
+.componenten{
+    display: none;
+}
+.desktops{
+    display: none;
+}

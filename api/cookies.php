@@ -27,6 +27,7 @@ function setAllCookieClicks(){
     }
 }
 
+
 function addLaptopClick(){
     if (isset($_COOKIE["laptopClicks"])){
         $laptopClicks = $_COOKIE["laptopClicks"];

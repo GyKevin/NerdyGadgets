@@ -3,6 +3,8 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/algemene-voorwaarden.css">
+    <link rel="stylesheet" href="/css/web-helper.css">
+    <script src="/api/web-helper-api.js"></script>
     <script src="/navbar/import-handler.js"></script>
     <style>
         body {
@@ -111,6 +113,89 @@
             10.1. NerdyGadgets behoudt zich het recht voor om deze algemene voorwaarden op elk moment te wijzigen.
             Gewijzigde voorwaarden zijn van toepassing op nieuwe bestellingen.
         </p>
+    </div>
+
+    <div id="web-helper-outer">
+        <button class="web-helper-exit-button" onclick="closeWebHelperOnClick()">X</button>
+        <div class="web-helper-image">
+            <span>Chat met<br>NerdyBro</span>
+
+            <img id="web-helper-picture" src="/image/emojis/glasses-emoji.png" alt="" height="100">
+
+        </div>
+        <div class="web-helper-inner">
+            <div class="web-helper-tekst">
+               <span id="web-helper-span">
+                   Je hebt me gevonden en ja ik was het. Ik ben dus je persoonlijke shop assistent Nerdy Bro.
+                   Ik kan je helpen met aankoop beslissingen nemen. Als je op ja klikt stoppen mijn grappen.
+               </span>
+            </div>
+            <div class="web-helper-antwoord">
+                <span id="web-helper-optie">Wilt u gebruik van mij maken?</span>
+                <div class="web-helper-buttons">
+                    <button id="web-helper-button-ja" onclick="jaOnClick()">Ja</button>
+                    <button id="web-helper-button-nee" onclick="neeOnClick()" ">Nee</button>
+
+                    <button id="web-helper-button-product-zoeken" onclick="productZoekenOnClick()">Product zoeken</button>
+
+                    <div class="web-helper-category-buttons">
+                        <button class="web-helper-category-button" id="web-helper-laptops-buttons" value="laptops" onclick="showLaptopsOnClick()" >Laptops</button>
+                        <button class="web-helper-category-button" id="web-helper-phones-buttons" value="phones" onclick="showPhonesOnClick()">Telefoons</button>
+                        <button class="web-helper-category-button" id="web-helper-opslag-buttons" value="opslag" onclick="showOpslagOnClick()">Opslag</button>
+                        <button class="web-helper-category-button" id="web-helper-routers-buttons" value="routers" onclick="showRoutersOnClick()">Routers</button>
+                        <button class="web-helper-category-button" id="web-helper-components-buttons" value="componenten" onclick="showComponentenOnClick()">Componenten</button>
+                        <button class="web-helper-category-button" id="web-helper-desktops-buttons" value="desktops" onclick="showDesktopsOnClick()">Desktops</button>
+                        <button class="web-helper-category-button" id="web-helper-category-terug-button" value="desktops" onclick="showOptiesOnClick()">Terug gaan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="web-helper-shrink-container">
+        <div class="web-helper-shrink">
+            <button onclick="showWebHelperOnClick()">Nerdy Bro</button>
+            <div class="web-helper-hover-container">
+                <div class="web-helper-shrink-hover">
+                    <img alt="" src="/image/emojis/disgust-emoji.jpg" height="80">
+                    <span>Je hebt me nodig he?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="web-helper-zoek-producten-container">
+        <button onclick="closeWebHelperProductenOnClick()">X</button>
+        <div class="web-helper-zoek-producten">
+
+            <?php
+            include_once ("../db/webHelperDatabase.php");
+            include_once ("../api/cookies.php");
+            $result = getProducts();
+
+
+            for ($i = 0; $i < sizeof($result); $i++) {
+                $productID = $result[$i]['id'];
+                $productImage = $result[$i]['image'];
+                $productPrice = $result[$i]['price'];
+                $productName = $result[$i]['name'];
+                $productCategory = $result[$i]['category'];
+
+
+                echo "
+                <a href='../pages/product.php?id=$productID'>
+                    <div class='". $productCategory."'>
+                        <div class='product'> 
+                        <img id='product-image' src='../image/product_images/$productImage.jpg' alt=''>
+                        <p class='productname'>".substr($productName , 0 , 40)."...</p>
+                        <p>€$productPrice</p>
+                        </div>
+                    </div>
+                </a>
+                ";
+
+            }
+            ?>
+        </div>
     </div>
 </main>
 <!-- footer -->

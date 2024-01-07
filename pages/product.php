@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../css/product.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="/api/web-helper-api.js"></script>
     <script src="../api/gnome.js"></script>
     <style>
         body {
@@ -254,7 +255,7 @@
     </div> <!-- end of review containet -->
 
 
-<img id="gnome" class="flipped" src="../image/gnome.png" alt="">
+
 </div>
 </main>
 
