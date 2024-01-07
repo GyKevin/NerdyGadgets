@@ -149,3 +149,35 @@
 .review-btn:hover {
     background-color: #4e4e58;
 }
+#gnome {
+    width: 200px;
+    height: 300px;
+    position: fixed;
+    bottom: -100%; /* Initially hide the image below the screen */
+    left: 50%;
+    /* transform: translateX(-50%); */
+    /* transform: rotate(60deg); */
+    transition: bottom 0.5s ease-in-out, left 0.5s ease-in-out, top 0.5s ease-in-out; /* Add transition for left property */
+}
+.flipped {
+    transform: scaleX(-1);
+}
+#stolen_item {
+    width: 80px !important;
+    height: 45px !important;
+    object-fit: contain;
+    position: absolute;
+    top: 280px;
+    left: 60px;
+    transform: rotate(60deg);
+    display: none;
+}
+#gnomed_txt {
+    position: absolute;
+    color: red;
+    top: 170px;
+    left: -135px;
+}
+.hidden {
+    display: none;
+}
