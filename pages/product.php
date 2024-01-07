@@ -105,7 +105,7 @@
                 </form>
                 <!-- gnome button -->
                 <div id="buyDiv" class="hidden">
-                    <button class="add_cart" name="product_id" onclick="gnomed()" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
+                    <button class="add_cart" name="product_id" onclick="gnomed()" value="<?php echo $productId; ?>">Toevoegen aan Winkelwagen</button>
                 </div>
             </div>
 
@@ -279,7 +279,7 @@
         }
     }
 
-    // 1 in a 10 change that the gnome shows up
+    
     function getRandomNumber() {
     return Math.floor(Math.random() * 10) + 1;
     }
