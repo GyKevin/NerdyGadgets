@@ -99,22 +99,22 @@
 
         <!-- klanten recenties -->
         <div class="reviews">
-            <h1>Onze klanten recenties</h1>
+            <h1>Onze Trustpilot Recenties</h1>
             <ul class="reviews-container">
                 <li class="review">
                     <img src="/image/no-pfp.png" alt="" style="width: 60px;">
                     <div class="star-container"></div>
-                    <p>"Wow, what a fantastic product! It exceeded my expectations in every way."</p>
+                    <p>"Wow, wat een goede winkel! Het is veel beter dan verwacht"</p>
                 </li>
                 <li class="review">
                     <img src="/image/no-pfp.png" alt="" style="width: 60px;">
                     <div class="star-container"></div>
-                    <p>"I had an amazing experience with this company's customer service."</p>
+                    <p>"Ik had geweldige ervaringen met de klantenservice"</p>
                 </li>
                 <li class="review">
                     <img src="/image/no-pfp.png" alt="" style="width: 60px;">
                     <div class="star-container"></div>
-                    <p>"This webshop is a hidden gem."</p>
+                    <p>"Dit webshop is een hidden gem."</p>
                 </li>
             </ul>
         </div>
