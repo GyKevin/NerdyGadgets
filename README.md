@@ -34,3 +34,12 @@
 Note:
 1. you might have to change the source of the stylesheet and the script
 2. anything and everything you want to put on the page, goes in the ```<main> </main>``` element
+
+## How to make the navbar and the footer work propperly
+To make the navbar and the footer work propperly in wamp/xampp, you need to do the following:
+1. go to the www/htdocs folder
+2. empty the folder
+3. make sure everything is in the www/htdocs map and not in a sepperate map.
+
+### Thats it!
+if you put it in a map within the www or the htdocs folder, it will not work.
