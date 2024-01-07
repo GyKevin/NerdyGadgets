@@ -34,8 +34,8 @@
             ?>
           </div>
         </div>
-        <a class="right" href="#news">Over Ons</a>
-        <a href="">Contact</a>
+        <a class="right" href="/#section1" onclick="ScrollToSection('section1')">Over Ons</a>
+        <a href="/pages/algemene-voorwaarden.php/#section2" onclick="ScrollToSection('section2')">Contact</a>
           <!-- <form action="../api/login.php"> -->
             <?php 
               // check if cookie is set
@@ -80,4 +80,11 @@
 </body>
 </html>
 
-
+<script>
+  function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+</script>

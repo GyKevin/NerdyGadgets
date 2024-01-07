@@ -119,6 +119,7 @@
             </ul>
         </div>
         <!-- kleine over ons -->
+        <section id="section1"></section>
         <div class="About-us">
             <div class="About-us-text">
                 <h2>Nerdy Gadgets</h2>

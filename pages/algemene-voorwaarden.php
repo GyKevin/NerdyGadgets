@@ -33,11 +33,13 @@
             "Verkoper," "wij" of "ons") en de klant (hierna te noemen "Klant" of "u") met betrekking tot de aankoop en
             verkoop van producten via de website van NerdyGadgets.
         </p>
+        <section id="section2"></section>
         <p>
             1.2. Door het plaatsen van een bestelling op NerdyGadgets
             verklaart u akkoord te gaan met en gebonden te zijn aan deze algemene voorwaarden.
         </p>
-
+        
+        
         <h2>2. Contact informatie</h2>
         <p>Telefoonnummer: 036123456789</p>
         <p>E-mail: klantenservice@nerdygadgets.nl</p>
