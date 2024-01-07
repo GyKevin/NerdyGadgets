@@ -9,8 +9,7 @@
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
     <script src="/api/web-helper-api.js"></script>
-
-
+    <script src="../api/konami.js"></script>
     <style>
         body {
             min-height: 100vh;
