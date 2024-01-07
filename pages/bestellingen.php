@@ -14,6 +14,7 @@ include_once("../db/dbc.php");
     <!-- import font-awesome -->
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="/api/web-helper-api.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -45,6 +46,7 @@ include_once("../db/dbc.php");
                 if($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $id = $row['id'];
+                    $product_id  = $row['product_id'];
                     $name = $row['name'];
                     $image = $row['image'];
                     $quantity = $row['quantity'];
@@ -60,10 +62,10 @@ include_once("../db/dbc.php");
                             <img src='../image/product_images/$image.jpg' alt='product image' width='120px'>
                             <div class='text'>
                                 <p>#$order_id | $date</p>
-                                <a href='product.php?id=$id'>$name</a>
+                                <a href='product.php?id=$product_id'>$name</a>
                                 <p>€$price</p>
                             </div>
-                            <a href='product.php?id=$id' class='review-btn'>
+                            <a href='product.php?id=$product_id' class='review-btn'>
                                 <button>Schrijf review</button>
                             </a>
                         </div>";

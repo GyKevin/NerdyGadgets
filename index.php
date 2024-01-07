@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/navbar/navbar.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="/api/web-helper-api.js"></script>
+    <script src="../api/konami.js"></script>
     <style>
         body {
             min-height: 100vh;
@@ -23,6 +25,7 @@
     </style>
 </head>
 <body>
+<?php include ("api/cookies.php"); setAllCookieClicks(); ?>
     <!-- navigatie bar -->
     <div id="navbar"></div>
     <!-- content -->
@@ -96,26 +99,27 @@
 
         <!-- klanten recenties -->
         <div class="reviews">
-            <h1>Onze klanten recenties</h1>
+            <h1>Onze Trustpilot Recenties</h1>
             <ul class="reviews-container">
                 <li class="review">
                     <img src="/image/no-pfp.png" alt="" style="width: 60px;">
                     <div class="star-container"></div>
-                    <p>"Wow, what a fantastic product! It exceeded my expectations in every way."</p>
+                    <p>"Wow, wat een goede winkel! Het is veel beter dan verwacht"</p>
                 </li>
                 <li class="review">
                     <img src="/image/no-pfp.png" alt="" style="width: 60px;">
                     <div class="star-container"></div>
-                    <p>"I had an amazing experience with this company's customer service."</p>
+                    <p>"Ik had geweldige ervaringen met de klantenservice"</p>
                 </li>
                 <li class="review">
                     <img src="/image/no-pfp.png" alt="" style="width: 60px;">
                     <div class="star-container"></div>
-                    <p>"This webshop is a hidden gem."</p>
+                    <p>"Dit webshop is een hidden gem."</p>
                 </li>
             </ul>
         </div>
         <!-- kleine over ons -->
+        <section id="section1"></section>
         <div class="About-us">
             <div class="About-us-text">
                 <h2>Nerdy Gadgets</h2>

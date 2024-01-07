@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../css/product.css">
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
     <script src="/navbar/import-handler.js" defer></script>
+    <script src="/api/web-helper-api.js"></script>
     <script src="../api/gnome.js"></script>
     <style>
         body {
@@ -105,7 +106,7 @@
                 </form>
                 <!-- gnome button -->
                 <div id="buyDiv" class="hidden">
-                    <button class="add_cart" name="product_id" onclick="gnomed()" value="<?php echo $productId; ?>">Toevoegen aan winkelwagen</button>
+                    <button class="add_cart" name="product_id" onclick="gnomed()" value="<?php echo $productId; ?>">Toevoegen aan Winkelwagen</button>
                 </div>
             </div>
 
@@ -254,7 +255,7 @@
     </div> <!-- end of review containet -->
 
 
-<img id="gnome" class="flipped" src="../image/gnome.png" alt="">
+
 </div>
 </main>
 
@@ -279,7 +280,7 @@
         }
     }
 
-    // 1 in a 10 change that the gnome shows up
+    
     function getRandomNumber() {
     return Math.floor(Math.random() * 10) + 1;
     }

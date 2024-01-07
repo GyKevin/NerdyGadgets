@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>navbar</title>
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/algemene-voorwaarden-check.css">
+
+
     <script src="https://kit.fontawesome.com/d44308875f.js" crossorigin="anonymous"></script>
+    <script src="/api/web-helper-api.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -30,8 +34,8 @@
             ?>
           </div>
         </div>
-        <a class="right" href="#news">Over Ons</a>
-        <a href="">Contact</a>
+        <a class="right" href="/#section1" onclick="ScrollToSection('section1')">Over Ons</a>
+        <a href="/pages/algemene-voorwaarden.php/#section2" onclick="ScrollToSection('section2')">Contact</a>
           <!-- <form action="../api/login.php"> -->
             <?php 
               // check if cookie is set
@@ -63,7 +67,24 @@
           <!-- </form> -->
           <a href="../pages/winkelwagen.php" id="winkelwagen"><i style='font-size:20px' class='fas'>&#xf07a;</i></a>
       </div>
+    <div id="algemene-voorwaarden-check">
+        <div class="algemene-voorwaarden-check-text">
+            <h3>Wilt u onze algemene voorwaarden bekijken?</h3>
+
+        </div>
+        <div class="algemene-voorwaarden-check-buttons">
+            <button id="algemene-voorwaarden-check-buttons-ja" onclick="algemeneVoorwaardenJaOnClick()">ja</button>
+            <button id="algemene-voorwaarden-check-buttons-nee" onclick="algemeneVoorwaardenNeeOnClick()">nee</button>
+        </div>
+    </div>
 </body>
 </html>
 
-
+<script>
+  function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+</script>

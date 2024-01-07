@@ -1,0 +1,35 @@
+#algemene-voorwaarden-check{
+    display: none;
+    box-shadow: 1px 6px 6px 4px rgba(0,0,0,0.30);
+    position: fixed;
+    border-radius: 20px;
+    background: white;
+    width: 500px;
+    margin-top: 20%;
+    margin-left: 35%;
+}
+.algemene-voorwaarden-check-text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.algemene-voorwaarden-check-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.algemene-voorwaarden-check-buttons button{
+    margin: 0 10px 10px 10px;
+    width: 250px;
+    background: #23232f;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.algemene-voorwaarden-check-buttons button:hover{
+    background: #47475d;
+}
