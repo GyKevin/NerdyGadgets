@@ -24,7 +24,7 @@ document.addEventListener('keydown', function(e) {
     // vergelijk de key met de required key
     if (key == requiredKey) {
 
-        // ga verder naar de volgende key in de Konami sequence 
+        // ga verder naar de volgende key in de Konami Code
         konamiCodePosition++;
 
         // Als de laatste key is bereikt, activeer de cheats
@@ -42,5 +42,5 @@ function activateCheats() {
     var audio = new Audio('../image/xbox.mp3');
     audio.play();
 
-    alert("Hidden achievement unlocked!");
+    alert("Hidden achievement unlocked: The Konami Code");
 }
