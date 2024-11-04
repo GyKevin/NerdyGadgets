@@ -1,3 +1,6 @@
+## Preview
+![alt text](https://github.com/GyKevin/NerdyGadgets/blob/main/image/website.png)
+
 ## How to import navbar and footer into your page:
 
 1. copy + paste this into the header:
